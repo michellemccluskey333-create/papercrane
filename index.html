@@ -90,7 +90,10 @@
 @keyframes craneSpinLand {
   0% {
     opacity: 0;
-    transform: rotate(0deg) scale(2.2);
+    transform:
+      translate(-50vw, 20vh)
+      rotate(0deg)
+      scale(5);
   }
 
   8% {
@@ -98,27 +101,41 @@
   }
 
   25% {
-    transform: rotate(360deg) scale(1.85);
+    transform:
+      translate(-38vw, 15vh)
+      rotate(360deg)
+      scale(4);
   }
 
   45% {
-    transform: rotate(720deg) scale(1.55);
+    transform:
+      translate(-25vw, 10vh)
+      rotate(720deg)
+      scale(3);
   }
 
   65% {
-    transform: rotate(1080deg) scale(1.3);
+    transform:
+      translate(-12vw, 5vh)
+      rotate(1080deg)
+      scale(2);
   }
 
   85% {
-    transform: rotate(1440deg) scale(1.12);
+    transform:
+      translate(-4vw, 1vh)
+      rotate(1440deg)
+      scale(1.25);
   }
 
   100% {
     opacity: 1;
-    transform: rotate(1800deg) scale(1);
+    transform:
+      translate(0, 0)
+      rotate(1800deg)
+      scale(1);
   }
 }
-
   100% {
     opacity: 1;
     transform: translateY(0) rotate(1800deg) scale(1);
