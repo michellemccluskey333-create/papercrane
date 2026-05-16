@@ -200,35 +200,23 @@
 .door::after {
   content: "";
   position: absolute;
-
-  width: 42%;
-  aspect-ratio: 1.35 / 1;
-
-  top: 13%;
+  width: 58%;
+  aspect-ratio: 1.45 / 1;
+  top: 12%;
   left: 50%;
-
-  transform:
-    translateX(-50%)
-    rotate(-8deg);
-
+  transform: translateX(-50%) rotate(-7deg);
   z-index: 0;
   pointer-events: none;
-
-  border-radius: 48% 52% 44% 56%;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      color-mix(in srgb, var(--accent) 82%, transparent) 0%,
-      color-mix(in srgb, var(--accent) 55%, transparent) 45%,
-      transparent 78%
-    );
-
   opacity: .55;
 
-  filter:
-    blur(18px)
-    saturate(.8);
+  background:
+    radial-gradient(circle at 35% 45%, rgba(158,36,31,.34) 0 3px, transparent 4px),
+    radial-gradient(circle at 62% 38%, rgba(158,36,31,.28) 0 2px, transparent 3px),
+    radial-gradient(circle at 48% 63%, rgba(158,36,31,.30) 0 4px, transparent 5px),
+    radial-gradient(circle at 52% 50%, rgba(158,36,31,.34), transparent 68%);
+
+  filter: blur(2px) saturate(.95);
+  border-radius: 45% 55% 48% 52%;
 }
    .door img,
 .door h2,
@@ -291,20 +279,21 @@
   --accent: var(--purple);
 }
 
-
 .door.tattoo:hover {
-  border-color: #e92f1f;
+  border-color: #ff3b26;
   box-shadow:
-    0 0 6px rgba(233,47,31,.8),
-    0 0 16px rgba(233,47,31,.55),
-    0 0 34px rgba(233,47,31,.32),
-    0 18px 40px rgba(23,18,14,.16);
+    0 0 5px rgba(255,59,38,.95),
+    0 0 14px rgba(255,59,38,.72),
+    0 0 28px rgba(255,59,38,.48),
+    0 0 48px rgba(255,59,38,.28),
+    0 20px 42px rgba(23,18,14,.2);
   transform: translateY(-6px);
 }
-    .door.tattoo:hover .tattoo-art {
+    
+.door.tattoo:hover .tattoo-art {
   filter:
-    drop-shadow(0 16px 22px rgba(23,18,14,.28))
-    drop-shadow(0 0 10px rgba(233,47,31,.22));
+    drop-shadow(0 18px 24px rgba(23,18,14,.32))
+    drop-shadow(0 0 10px rgba(255,59,38,.25));
 
   transform:
     translateX(-50%)
