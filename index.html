@@ -182,24 +182,78 @@
   animation: fadeUp .9s ease both;
   animation-delay: 3.7s;
 }
+/* =========================================================
+   OUTSIDE CAST SHADOW WRAPPER
+   This is the ONLY layer responsible for the shadow
+   on the page background.
+   It is outside the clipped door, so it can spread freely.
+========================================================= */
+
+.door-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 310px;
+  overflow: visible;
+}
+
+/* This creates the large soft shadow OUTSIDE the door */
+.door-wrap::before {
+  content: "";
+  position: absolute;
+
+  left: 50%;
+  bottom: -34px;
+
+  width: 92%;
+  height: 34%;
+
+  transform: translateX(-50%);
+
+  background: rgba(23,18,14,.42);
+  filter: blur(28px);
+  border-radius: 50%;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Extra darker contact shadow directly under the frame */
+.door-wrap::after {
+  content: "";
+  position: absolute;
+
+  left: 50%;
+  bottom: -12px;
+
+  width: 82%;
+  height: 14%;
+
+  transform: translateX(-50%);
+
+  background: rgba(23,18,14,.32);
+  filter: blur(10px);
+  border-radius: 50%;
+
+  z-index: 0;
+  pointer-events: none;
+}
 
 /* =========================================================
-   FLOATING BEVELED PLAQUE
-   This is the physical object itself.
-   The door is no longer just a flat box with a border.
-   It becomes the outer carved frame.
+    BEVELED DOOR / FRAME
+   This is only the physical plaque/frame itself.
+   The outside shadow is handled by .door-wrap.
 ========================================================= */
 
 .door {
   position: relative;
   display: block;
   width: 100%;
+  height: 100%;
 
-  /* This lets the large soft shadow extend outside the card */
   overflow: visible;
-
   text-decoration: none;
   isolation: isolate;
+  z-index: 1;
 
   /* Closed mitered/beveled rectangle shape */
   clip-path: polygon(
@@ -215,62 +269,25 @@
 
   /* Outer carved frame surface */
   background:
-    /* top-left highlight across the frame */
     linear-gradient(135deg, rgba(255,255,255,.72), transparent 34%),
-
-    /* darker lower-right bevel tone */
     linear-gradient(315deg, rgba(23,18,14,.24), transparent 30%),
-
-    /* subtle aged frame base */
     linear-gradient(
       to bottom,
       rgba(246,238,220,.96),
       rgba(214,199,172,.96)
     );
 
-  /* 
-     The huge floating shadow system.
-     This is what makes it look like the reference:
-     large soft atmospheric shadow + darker contact shadow.
-  */
-  filter:
-    drop-shadow(0 48px 34px rgba(23,18,14,.34))
-    drop-shadow(0 22px 18px rgba(23,18,14,.24))
-    drop-shadow(0 7px 6px rgba(23,18,14,.18));
-
-  /*
-     Frame carving:
-     These inset shadows create multiple stacked bevel rings.
-     Think: outside dark edge, raised light bevel, inner dark groove.
-  */
+  /* Frame carving / layered bevel lines */
   box-shadow:
-    /* outer black tattoo-style line */
     inset 0 0 0 2px rgba(20,17,13,.82),
-
-    /* raised light bevel face */
     inset 0 0 0 7px rgba(255,250,236,.82),
-
-    /* dark groove after light bevel */
     inset 0 0 0 10px rgba(45,37,29,.58),
-
-    /* wider pale carved frame body */
     inset 0 0 0 20px rgba(232,220,197,.78),
-
-    /* inner dark compression line */
     inset 0 0 0 23px rgba(33,27,21,.62),
-
-    /* soft interior edge darkness */
     inset 0 0 46px rgba(23,18,14,.12);
-
-    /* OUTSIDE CAST SHADOW ON THE BACKGROUND */
-  filter:
-    drop-shadow(0 42px 34px rgba(23,18,14,.34))
-    drop-shadow(0 18px 14px rgba(23,18,14,.24))
-    drop-shadow(0 5px 4px rgba(23,18,14,.16));
 
   transition:
     transform .35s ease,
-    filter .35s ease,
     box-shadow .35s ease;
 }
 /* =========================================================
@@ -434,26 +451,34 @@
 }
 
 /* =========================================================
-   DOOR HEIGHTS
-   Outer doors are taller.
-   Middle book door is intentionally shorter.
+   DOOR SIZING NOW LIVES ON THE WRAPPERS
+   This lets the shadow sit outside the framed object.
 ========================================================= */
 
-.door.tattoo {
+.tattoo-wrap {
   grid-area: tattoo;
-  height: min(48vh, 440px);
+  height: min(46vh, 430px);
+}
+
+.book-wrap {
+  grid-area: book;
+  height: min(37vh, 350px);
+}
+
+.studio-wrap {
+  grid-area: studio;
+  height: min(46vh, 430px);
+}
+
+.door.tattoo {
   --accent: var(--red);
 }
 
 .door.book {
-  grid-area: book;
-  height: min(38vh, 350px);
   --accent: var(--green);
 }
 
 .door.studio {
-  grid-area: studio;
-  height: min(48vh, 440px);
   --accent: var(--purple);
 }
 
@@ -582,30 +607,27 @@
 
  <div class="hero-spacer" aria-hidden="true"></div>
 
-<s<section class="doors" aria-label="Choose where to enter">
+<section class="doors" aria-label="Choose where to enter">
 
-  <a class="door tattoo" href="tattoo.html">
-    <!-- watercolor wash behind the tattoo machine -->
-    <span class="door-wash" aria-hidden="true"></span>
+  <div class="door-wrap tattoo-wrap">
+    <a class="door tattoo" href="tattoo.html">
+      <img src="Images/gun.png"
+           class="door-art tattoo-art"
+           alt="Coil tattoo machine">
+    </a>
+  </div>
 
-    <img src="Images/gun.png"
-         class="door-art tattoo-art"
-         alt="Coil tattoo machine">
-  </a>
+  <div class="door-wrap book-wrap">
+    <a class="door book" href="bookstore.html">
+      <img src="Images/book.png"
+           class="door-art book-art"
+           alt="Open book illustration">
+    </a>
+  </div>
 
-  <a class="door book" href="bookstore.html">
-    <!-- watercolor wash behind the book -->
-    <span class="door-wash" aria-hidden="true"></span>
-
-    <img src="Images/book.png"
-         class="door-art book-art"
-         alt="Open book illustration">
-  </a>
-
-  <a class="door studio" href="studio.html">
-    <!-- placeholder wash until studio art is added -->
-    <span class="door-wash" aria-hidden="true"></span>
-  </a>
+  <div class="door-wrap studio-wrap">
+    <a class="door studio" href="studio.html"></a>
+  </div>
 
 </section>
 
