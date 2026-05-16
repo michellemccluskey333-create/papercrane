@@ -6,16 +6,7 @@
   <title>PaperCrane Books & Tattoo</title>
   <style>
     :root {
-      --paper: #efe2c6;.entry {
-  height: 100vh;
-  max-height: 100vh;
-  display: grid;
-  grid-template-rows: 34vh 5vh 55vh;
-  justify-items: center;
-  align-items: center;
-  padding: 1vh 4vw 2vh;
-  overflow: hidden;
-}entry
+      --paper: #efe2c6;
       --paper-deep: #d8c39d;
       --ink: #17120e;
       --muted: #6f5d48;
@@ -59,7 +50,7 @@
   height: 100vh;
   max-height: 100vh;
   display: grid;
-  grid-template-rows: 34vh 5vh 55vh;
+  grid-template-rows: 42vh 8vh 50vh;
   justify-items: center;
   align-items: center;
   padding: 1vh 4vw 2vh;
@@ -74,11 +65,14 @@
     transform-origin: center;
     }
 
+
 .logo-stack {
   position: relative;
-  width: min(520px, 48vw, 33vh);
+  width: min(560px, 34vw, 36vh);
   margin: 0 auto;
+  align-self: end;
 }
+
 
 
  .logo-base {
@@ -158,24 +152,23 @@
   letter-spacing: .42em;
   font-size: clamp(.62rem, 1vw, .9rem);
   color: #2a211a;
-  margin-top: .4vh;
+  margin: 0;
   animation: fadeUp .9s ease both;
-  animation-delay: 4.7s;
-  flex-shrink: 0;
+  animation-delay: 4.0s;
 }
 
 .doors {
-  width: min(980px, 92vw);
+  width: min(1060px, 92vw);
   height: 100%;
   display: grid;
-  grid-template-columns: 1.12fr .82fr 1.12fr;
+  grid-template-columns: 1.12fr .84fr 1.12fr;
   grid-template-areas: "tattoo book studio";
-  gap: 2.4vw;
-  align-items: center;
+  gap: 2.2vw;
+  align-items: start;
   justify-items: center;
   margin: 0;
   animation: fadeUp .9s ease both;
-  animation-delay: 4.9s;
+  animation-delay: 4.2s;
 }
 
 .door {
@@ -374,13 +367,13 @@
     <p class="tagline">One Space. Many Stories.</p>
 
     <!-- this is commented out -->
-
-      <!--  <section class="doors" aria-label="Choose where to enter">
+    <section class="doors" aria-label="Choose where to enter">
   <a class="door tattoo" href="tattoo.html"></a>
   <a class="door book" href="bookstore.html"></a>
   <a class="door studio" href="studio.html"></a>
 </section>
 
+      <!--  
     <section class="doors" aria-label="Choose where to enter">
       <a class="door tattoo" href="tattoo.html">
         <div>
