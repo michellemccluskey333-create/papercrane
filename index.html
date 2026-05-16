@@ -22,29 +22,29 @@
       padding: 0;
     }
 
-    body {
-      min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at center top, rgba(255,255,255,.55), transparent 36%),
-        radial-gradient(circle at 15% 20%, rgba(183,134,60,.18), transparent 22%),
-        linear-gradient(135deg, #f5ead5, var(--paper) 48%, #dbc6a4);
-      overflow-x: hidden;
-    }
+   body {
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at center top, rgba(255,255,255,.78), transparent 42%),
+    radial-gradient(circle at 15% 20%, rgba(183,134,60,.10), transparent 24%),
+    linear-gradient(135deg, #fbf4e7, #f3e8d2 48%, #ead8b8);
+  overflow-x: hidden;
+}
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(rgba(23,18,14,.12) 1px, transparent 1px),
-        radial-gradient(rgba(23,18,14,.08) 1px, transparent 1px);
-      background-size: 27px 27px, 11px 11px;
-      opacity: .22;
-      mix-blend-mode: multiply;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(23,18,14,.12) 1px, transparent 1px),
+    radial-gradient(rgba(23,18,14,.08) 1px, transparent 1px);
+  background-size: 27px 27px, 11px 11px;
+  opacity: .14;
+  mix-blend-mode: multiply;
+}
 
 .entry {
   height: 100vh;
@@ -295,24 +295,24 @@
     0 24px
   );
 
-  /* Outer carved frame surface */
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.72), transparent 34%),
-    linear-gradient(315deg, rgba(23,18,14,.24), transparent 30%),
-    linear-gradient(
-      to bottom,
-      rgba(246,238,220,.96),
-      rgba(214,199,172,.96)
-    );
+ /* Outer carved frame surface */
+background:
+  linear-gradient(135deg, rgba(255,255,255,.58), transparent 34%),
+  linear-gradient(315deg, rgba(48,35,22,.30), transparent 32%),
+  linear-gradient(
+    to bottom,
+    rgba(230,211,178,.98),
+    rgba(188,164,125,.98)
+  );
 
   /* Frame carving / layered bevel lines */
-  box-shadow:
-    inset 0 0 0 2px rgba(20,17,13,.82),
-    inset 0 0 0 7px rgba(255,250,236,.82),
-    inset 0 0 0 10px rgba(45,37,29,.58),
-    inset 0 0 0 20px rgba(232,220,197,.78),
-    inset 0 0 0 23px rgba(33,27,21,.62),
-    inset 0 0 46px rgba(23,18,14,.12);
+box-shadow:
+  inset 0 0 0 2px rgba(20,17,13,.86),
+  inset 0 0 0 7px rgba(255,242,214,.72),
+  inset 0 0 0 10px rgba(64,47,31,.68),
+  inset 0 0 0 20px rgba(205,181,140,.82),
+  inset 0 0 0 23px rgba(38,28,19,.70),
+  inset 0 0 48px rgba(54,38,22,.18);
 
   transition:
     transform .35s ease,
