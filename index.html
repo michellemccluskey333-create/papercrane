@@ -182,59 +182,63 @@
   animation: fadeUp .9s ease both;
   animation-delay: 3.7s;
 }
+
+
 /* =========================================================
    OUTSIDE CAST SHADOW WRAPPER
-   This is the ONLY layer responsible for the shadow
-   on the page background.
-   It is outside the clipped door, so it can spread freely.
+   This wrapper creates the shadow ON THE PAGE BACKGROUND.
+   The actual .door sits above it.
 ========================================================= */
 
 .door-wrap {
   position: relative;
   width: 100%;
   max-width: 310px;
+  height: 100%;
   overflow: visible;
+
+  /* creates a clean stacking context so shadows sit behind the door */
+  isolation: isolate;
 }
 
-/* This creates the large soft shadow OUTSIDE the door */
+
+/* LARGE SOFT AMBIENT SHADOW OUTSIDE THE DOOR */
 .door-wrap::before {
   content: "";
   position: absolute;
-
   left: 50%;
-  bottom: -34px;
+  bottom: -46px;
 
-  width: 92%;
-  height: 34%;
+  width: 112%;
+  height: 36%;
 
   transform: translateX(-50%);
 
-  background: rgba(23,18,14,.42);
-  filter: blur(28px);
+  background: rgba(23,18,14,.36);
+  filter: blur(34px);
   border-radius: 50%;
 
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
 
-/* Extra darker contact shadow directly under the frame */
+/* DARKER CONTACT SHADOW CLOSE TO THE FRAME */
 .door-wrap::after {
   content: "";
   position: absolute;
-
   left: 50%;
-  bottom: -12px;
+  bottom: -18px;
 
-  width: 82%;
-  height: 14%;
+  width: 92%;
+  height: 16%;
 
   transform: translateX(-50%);
 
-  background: rgba(23,18,14,.32);
-  filter: blur(10px);
+  background: rgba(23,18,14,.34);
+  filter: blur(12px);
   border-radius: 50%;
 
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -502,13 +506,9 @@
    No neon yet. This tests whether the plaque feels real.
 ========================================================= */
 
+/* TEMP HOVER — PHYSICAL LIFT ONLY */
 .door.tattoo:hover {
   transform: translateY(-8px);
-
-  filter:
-    drop-shadow(0 64px 44px rgba(23,18,14,.38))
-    drop-shadow(0 28px 22px rgba(23,18,14,.26))
-    drop-shadow(0 9px 7px rgba(23,18,14,.18));
 }
 /* TATTOO MACHINE LIFTS SLIGHTLY ON HOVER */
 .door.tattoo:hover .tattoo-art {
@@ -610,23 +610,29 @@
 <section class="doors" aria-label="Choose where to enter">
 
   <div class="door-wrap tattoo-wrap">
-    <a class="door tattoo" href="tattoo.html">
-      <img src="Images/gun.png"
-           class="door-art tattoo-art"
-           alt="Coil tattoo machine">
-    </a>
+<a class="door tattoo" href="tattoo.html">
+  <span class="door-wash" aria-hidden="true"></span>
+
+  <img src="Images/gun.png"
+       class="door-art tattoo-art"
+       alt="Coil tattoo machine">
+</a>
   </div>
 
   <div class="door-wrap book-wrap">
-    <a class="door book" href="bookstore.html">
-      <img src="Images/book.png"
-           class="door-art book-art"
-           alt="Open book illustration">
-    </a>
+ <a class="door book" href="bookstore.html">
+  <span class="door-wash" aria-hidden="true"></span>
+
+  <img src="Images/book.png"
+       class="door-art book-art"
+       alt="Open book illustration">
+</a>
   </div>
 
   <div class="door-wrap studio-wrap">
-    <a class="door studio" href="studio.html"></a>
+   <a class="door studio" href="studio.html">
+  <span class="door-wash" aria-hidden="true"></span>
+</a>
   </div>
 
 </section>
