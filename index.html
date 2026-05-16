@@ -50,10 +50,10 @@
   height: 100vh;
   max-height: 100vh;
   display: grid;
-  grid-template-rows: 48vh 2vh 50vh;
+  grid-template-rows: 44vh 2vh 54vh;
   justify-items: center;
   align-items: start;
-  padding: 4vh 4vw 2vh;
+  padding: 1.5vh 3vw 1vh;
   overflow: hidden;
 }
 
@@ -67,8 +67,9 @@
 
 .logo-stack {
   position: relative;
-  width: min(780px, 56vw, 48vh);
-  margin: 8vh auto 0;
+  width: min(920px, 64vw, 58vh);
+  margin: 2vh auto 0;
+  z-index: 5;
 }
 
 
@@ -155,15 +156,15 @@
 }
 
 .doors {
-  width: min(1100px, 92vw);
+  width: min(1080px, 90vw);
   height: 100%;
   display: grid;
-  grid-template-columns: 1.12fr .84fr 1.12fr;
+  grid-template-columns: 1fr .82fr 1fr;
   grid-template-areas: "tattoo book studio";
-  gap: 1.8vw;
+  gap: 1vw;
   align-items: end;
   justify-items: center;
-  margin: -8vh 0 0;
+  margin: -10vh 0 0;
   animation: fadeUp .9s ease both;
   animation-delay: 4.9s;
 }
