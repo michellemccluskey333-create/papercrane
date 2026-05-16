@@ -47,15 +47,14 @@
     }
 
 .entry {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 1.2vh 2vw;
-  overflow: hidden;
+  justify-content: flex-start;
+  padding: 2vh 3vw 4vh;
+  overflow-x: hidden;
 }
-
 
     .crane {
     width: 86px;
@@ -67,8 +66,8 @@
 
 .logo-stack {
   position: relative;
-  width: min(480px, 52vw, 42vh);
-  margin: 0 auto .6vh;
+  width: min(620px, 64vw, 46vh);
+  margin: 0 auto 1vh;
   flex-shrink: 0;
 }
 
@@ -159,21 +158,21 @@
 .doors {
   width: min(1180px, 96vw);
   display: grid;
-  grid-template-columns: 1.08fr .92fr 1.08fr;
-  gap: 1.4vw;
-  align-items: end;
-  margin-top: 2vh;
+  grid-template-columns: 1.15fr .82fr 1.15fr;
+  grid-template-areas: "tattoo book studio";
+  gap: 3vw;
+  align-items: start;
+  margin-top: 4vh;
   animation: fadeUp .9s ease both;
   animation-delay: 4.9s;
-  flex: 1;
-  max-height: 48vh;
 }
 
 .door {
-  min-height: unset;
-  height: 100%;
-  max-height: 420px;
-  padding: 2.2vh 1.4vw 1.8vh;
+  min-height: 360px;
+  height: auto;
+  max-height: none;
+  padding: 42px 28px 32px;
+  position: relative;
 }
 .door::before {
   content: "✦";
@@ -212,17 +211,24 @@
       background: rgba(255,248,232,.62);
     }
 
-    .door.tattoo {
-      --accent: var(--red);
-    }
+   .door.tattoo {
+  grid-area: tattoo;
+  transform: scale(1.12);
+  transform-origin: top center;
+  --accent: var(--red);
+}
 .door.book {
-  transform: scale(.92);
-  transform-origin: bottom center;
+  grid-area: book;
+  transform: scale(.9);
+  transform-origin: top center;
 }
 
-    .door.studio {
-      --accent: var(--purple);
-    }
+   .door.studio {
+  grid-area: studio;
+  transform: scale(1.12);
+  transform-origin: top center;
+  --accent: var(--purple);
+}
 
     .door.tattoo::after { background: var(--red); }
     .door.book::after { background: var(--green); }
