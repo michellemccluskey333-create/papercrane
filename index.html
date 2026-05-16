@@ -234,9 +234,23 @@
 .door:hover .door-art {
   filter:
     drop-shadow(0 18px 18px rgba(23,18,14,.28));
+}
+
+.door.tattoo:hover .tattoo-art {
+  filter:
+    drop-shadow(0 16px 22px rgba(23,18,14,.28))
+    drop-shadow(0 0 10px rgba(233,47,31,.22));
 
   transform:
-    scale(1.04);
+    translateX(-50%)
+    rotate(42deg)
+    scale(1.05);
+}
+
+.door.book:hover .book-art {
+  transform:
+    translateX(-50%)
+    scale(1.05);
 }
 
 .tattoo-art {
@@ -297,20 +311,13 @@
       box-shadow: 0 0 20px rgba(85,97,47,.44), 0 22px 60px rgba(42, 28, 16, .18);
     }
 
-    .door.book:hover::before {
-      opacity: 1;
-      background: radial-gradient(circle at center 28%, rgba(183,134,60,.25), transparent 48%);
-    }
-
+ 
     .door.studio:hover {
       border-color: var(--purple);
       box-shadow: 0 0 20px rgba(109,63,120,.48), 0 22px 60px rgba(42, 28, 16, .18);
     }
 
-    .door.studio:hover::before {
-      opacity: 1;
-      background: radial-gradient(circle at center 28%, rgba(109,63,120,.22), transparent 48%);
-    }
+
 
     @keyframes neonFlicker {
       0%, 100% { opacity: .72; }
