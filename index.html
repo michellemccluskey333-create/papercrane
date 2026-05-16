@@ -323,6 +323,52 @@
   letter-spacing: .34em;
   transform: translateY(-2px);
 }
+    .book-art {
+  position: relative;
+  width: 150px;
+  height: 105px;
+  margin: 0 auto;
+  perspective: 700px;
+}
+
+.book-page {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 82px;
+  background: #f7ecd2;
+  border: 3px solid var(--ink);
+}
+
+.page-left {
+  left: 0;
+  border-radius: 8px 4px 8px 8px;
+  transform: skewY(-4deg);
+}
+
+.page-right {
+  right: 0;
+  border-radius: 4px 8px 8px 8px;
+  transform: skewY(4deg);
+}
+
+.book-flip {
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+  width: 48%;
+  height: 82px;
+  background: #fff5dc;
+  border: 3px solid var(--ink);
+  border-radius: 6px 4px 8px 8px;
+  transform-origin: right center;
+  transition: transform .55s ease, box-shadow .55s ease;
+}
+
+.door.book:hover .book-flip {
+  transform: rotateY(-62deg);
+  box-shadow: 10px 8px 12px rgba(23,18,14,.18);
+}
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
@@ -368,8 +414,18 @@
 
     <!-- this is commented out -->
     <section class="doors" aria-label="Choose where to enter">
-  <a class="door tattoo" href="tattoo.html"></a>
-  <a class="door book" href="bookstore.html"></a>
+    <a class="door tattoo" href="tattoo.html">
+    <img src="Images/gun.png"
+         class="door-art tattoo-art"
+         alt="Coil tattoo machine">
+  </a>
+  <a class="door book" href="bookstore.html">
+    <div class="book-art" aria-hidden="true">
+      <div class="book-page page-left"></div>
+      <div class="book-page page-right"></div>
+      <div class="book-flip"></div>
+    </div>
+  </a>
   <a class="door studio" href="studio.html"></a>
 </section>
 
