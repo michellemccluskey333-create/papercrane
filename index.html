@@ -155,76 +155,70 @@
   animation-delay: 4.7s;
 }
 
+/* LAYOUT FOR THE THREE DOORS */
 .doors {
-  width: min(980px, 84vw);
+  width: min(1040px, 86vw);
   height: 100%;
   display: grid;
- grid-template-columns: .82fr .82fr .82fr;
+  grid-template-columns: repeat(3, minmax(0, 300px));
   grid-template-areas: "tattoo book studio";
-  gap: 1.75vw;
+  justify-content: space-between;
   align-items: end;
   justify-items: center;
+  gap: clamp(24px, 3vw, 56px);
   margin: -4vh 0 0;
-  padding-bottom: 4vh; /* room for floating shadow */
+  padding-bottom: 7vh; /* gives the large soft shadow room to show */
   animation: fadeUp .9s ease both;
   animation-delay: 3.7s;
 }
 
 /* =========================================
-   ARCHITECTURAL FLOATING DOOR CARDS
+   FLOATING BEVELED PLAQUE / TATTOO-FLASH DOOR
+   Goal: physical frame, closed beveled corners,
+   soft shadow outside the rectangle.
 ========================================= */
 
 .door {
   position: relative;
-  overflow: visible;
-
+  display: block;
   width: 100%;
-  aspect-ratio: 0.72 / 1;
+  max-width: 300px;
+  overflow: visible;
+  text-decoration: none;
 
   background:
-    linear-gradient(
-      to bottom,
-      rgba(255,252,244,.96),
-      rgba(244,236,220,.96)
-    );
+    radial-gradient(circle at center, rgba(255,255,255,.50), transparent 58%),
+    linear-gradient(to bottom, rgba(255,252,242,.96), rgba(237,226,205,.96));
 
   clip-path: polygon(
-    18px 0,
-    calc(100% - 18px) 0,
-    100% 18px,
-    100% calc(100% - 18px),
-    calc(100% - 18px) 100%,
-    18px 100%,
-    0 calc(100% - 18px),
-    0 18px
+    22px 0,
+    calc(100% - 22px) 0,
+    100% 22px,
+    100% calc(100% - 22px),
+    calc(100% - 22px) 100%,
+    22px 100%,
+    0 calc(100% - 22px),
+    0 22px
   );
 
-  /* MAIN FLOATING SHADOW SYSTEM */
+  /* This is the big “floating” shadow system */
+  filter:
+    drop-shadow(0 42px 34px rgba(23,18,14,.30))
+    drop-shadow(0 18px 16px rgba(23,18,14,.22))
+    drop-shadow(0 5px 5px rgba(23,18,14,.14));
+
+  /* These create the carved/inset frame depth */
   box-shadow:
-
-    /* giant ambient field */
-    0 40px 65px rgba(23,18,14,.20),
-
-    /* lower contact shadow */
-    0 18px 24px rgba(23,18,14,.16),
-
-    /* edge grounding */
-    0 6px 10px rgba(23,18,14,.10),
-
-    /* inner paper depth */
-    inset 0 0 35px rgba(23,18,14,.05),
-
-    /* dark outer bevel */
-    inset 0 0 0 2px rgba(34,28,22,.58),
-
-    /* light bevel edge */
-    inset 0 0 0 8px rgba(255,250,238,.75),
-
-    /* secondary dark bevel */
-    inset 0 0 0 10px rgba(34,28,22,.28);
+    inset 0 0 0 2px rgba(28,23,18,.82),
+    inset 0 0 0 7px rgba(250,242,224,.90),
+    inset 0 0 0 10px rgba(70,58,45,.42),
+    inset 0 0 0 17px rgba(234,222,202,.72),
+    inset 0 0 0 19px rgba(38,31,25,.58),
+    inset 0 0 38px rgba(23,18,14,.10);
 
   transition:
     transform .35s ease,
+    filter .35s ease,
     box-shadow .35s ease;
 }
 
@@ -252,14 +246,13 @@
   border-radius: 54% 46% 48% 52%;
 }
     
-/* =========================================
-   INNER BEVEL LINES
-========================================= */
-
+/* INNER RECESSED PANEL LINE */
 .door::before {
   content: "";
   position: absolute;
-  inset: 14px;
+  inset: 24px;
+  z-index: 5;
+  pointer-events: none;
 
   clip-path: polygon(
     14px 0,
@@ -272,10 +265,10 @@
     0 14px
   );
 
-  border:
-    1.5px solid rgba(55,45,35,.42);
-
-  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1.5px rgba(45,37,30,.55),
+    inset 0 0 0 4px rgba(255,248,232,.42),
+    inset 0 0 0 5px rgba(45,37,30,.25);
 }
     
    .door img,
@@ -318,26 +311,27 @@
     rotate(34deg);
 }
 
+/* DOOR HEIGHTS — middle stays shorter */
 .door.tattoo {
   grid-area: tattoo;
-  height: min(43vh, 390px);
+  height: min(46vh, 430px);
   --accent: var(--red);
 }
 
 .door.book {
   grid-area: book;
-  height: min(35vh, 320px);
+  height: min(37vh, 340px);
   --accent: var(--green);
 }
 
 .door.studio {
   grid-area: studio;
-  height: min(43vh, 390px);
+  height: min(46vh, 430px);
   --accent: var(--purple);
 }
 
 /* TATTOO DOOR HOVER — PRESERVES FLOATING SHADOW */
-.door.tattoo:hover {
+ /*.door.tattoo:hover {
   box-shadow:
     0 58px 80px rgba(23,18,14,.26),
     0 24px 34px rgba(23,18,14,.18),
@@ -350,6 +344,15 @@
     inset 0 0 0 10px rgba(150,35,24,.42);
 
   transform: translateY(-8px);
+}*/
+    /* TEMP HOVER — keep this simple while dialing in the physical door */
+.door.tattoo:hover {
+  transform: translateY(-8px);
+
+  filter:
+    drop-shadow(0 58px 44px rgba(23,18,14,.34))
+    drop-shadow(0 24px 20px rgba(23,18,14,.24))
+    drop-shadow(0 8px 7px rgba(23,18,14,.16));
 }
     
 /* TATTOO MACHINE LIFTS SLIGHTLY ON HOVER */
