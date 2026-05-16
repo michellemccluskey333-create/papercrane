@@ -157,27 +157,33 @@ body::before {
 
 /* =========================================================
    DOOR LAYOUT
-   - Keeps three separate cards
-   - Makes outer doors narrower and more vertical
-   - Leaves room underneath for the large floating shadows
+   Goal:
+   - keep the three-door composition
+   - give shadows room to breathe
+   - prevent clipping
 ========================================================= */
 
 .doors {
-  width: min(980px, 84vw);
+  width: min(1120px, 90vw);
   height: 100%;
   display: grid;
-  grid-template-columns: .82fr .82fr .82fr;
+
+  /* outer doors wider, center door slightly smaller */
+  grid-template-columns: minmax(240px, 320px) minmax(230px, 300px) minmax(240px, 320px);
   grid-template-areas: "tattoo book studio";
-  gap: 1.75vw;
+
+  justify-content: space-between;
   align-items: end;
   justify-items: center;
+
+  gap: clamp(36px, 4vw, 72px);
   margin: -4vh 0 0;
 
-  /* IMPORTANT: this gives the shadow room to show on the background */
+  /* gives the smoky shadows room below */
   padding-bottom: 10vh;
 
-  /* IMPORTANT: do not clip the outside shadow */
- overflow: hidden;
+  /* critical: never clip outside shadows */
+  overflow: visible;
 
   animation: fadeUp .9s ease both;
   animation-delay: 3.7s;
@@ -185,46 +191,41 @@ body::before {
 
 
 /* =========================================================
-   OUTSIDE CAST SHADOW WRAPPER
-   This wrapper creates the shadow ON THE PAGE BACKGROUND.
-   The actual .door sits above it.
+   OUTSIDE SHADOW WRAPPER
+   This is what creates the smoky shadow on the page background.
+   The shadow is NOT on the door itself.
 ========================================================= */
 
 .door-wrap {
   position: relative;
   width: 100%;
- max-width: 280px;
   height: 100%;
   overflow: visible;
-
-  /* creates a clean stacking context so shadows sit behind the door */
   isolation: isolate;
 }
 
-
-/* FULL SOFT SHADOW HALO AROUND THE PLAQUE
-   This creates the smoky shadow around the sides and bottom.
-   It is intentionally larger, rounder, and less rectangular. */
+/* SOFT HALO AROUND THE WHOLE PLAQUE
+   This creates the smoky side shadow from the reference image. */
 .door-wrap::before {
   content: "";
   position: absolute;
+
   left: 50%;
-  top: 54%;
+  top: 52%;
 
-  width: 145%;
-  height: 128%;
+  width: 128%;
+  height: 116%;
 
-  transform:
-    translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 
   background:
     radial-gradient(
       ellipse at center,
       rgba(23,18,14,.30) 0%,
       rgba(23,18,14,.22) 28%,
-      rgba(23,18,14,.12) 52%,
-      rgba(23,18,14,.06) 68%,
-      transparent 84%
+      rgba(23,18,14,.12) 50%,
+      rgba(23,18,14,.06) 66%,
+      transparent 82%
     );
 
   filter: blur(34px);
@@ -234,29 +235,30 @@ body::before {
   pointer-events: none;
 }
 
-/* DARK CONTACT SHADOW UNDER THE BOTTOM EDGE
-   This gives the plaque weight without making a hard rectangle. */
+/* HEAVIER BOTTOM CONTACT SHADOW
+   This is the darker shadow right under the frame. */
 .door-wrap::after {
   content: "";
   position: absolute;
+
   left: 50%;
-  bottom: -42px;
+  bottom: -38px;
 
   width: 112%;
-  height: 24%;
+  height: 26%;
 
   transform: translateX(-50%);
 
   background:
     radial-gradient(
       ellipse at center,
-      rgba(23,18,14,.55) 0%,
-      rgba(23,18,14,.38) 30%,
-      rgba(23,18,14,.18) 58%,
-      transparent 82%
+      rgba(23,18,14,.58) 0%,
+      rgba(23,18,14,.38) 34%,
+      rgba(23,18,14,.18) 60%,
+      transparent 84%
     );
 
-  filter: blur(26px);
+  filter: blur(24px);
   border-radius: 50%;
 
   z-index: 0;
@@ -268,9 +270,9 @@ body::before {
 }
 
 /* =========================================================
-    BEVELED DOOR / FRAME
-   This is only the physical plaque/frame itself.
-   The outside shadow is handled by .door-wrap.
+   PHYSICAL BEVELED DOOR / PLAQUE
+   This is the actual visible frame.
+   Outside shadow comes from .door-wrap, not here.
 ========================================================= */
 
 .door {
@@ -279,12 +281,12 @@ body::before {
   width: 100%;
   height: 100%;
 
-  overflow: visible;
+  overflow: hidden;
   text-decoration: none;
   isolation: isolate;
   z-index: 1;
 
-  /* Closed mitered/beveled rectangle shape */
+  /* closed mitered rectangle */
   clip-path: polygon(
     24px 0,
     calc(100% - 24px) 0,
@@ -296,60 +298,58 @@ body::before {
     0 24px
   );
 
- /* Outer carved frame surface */
-background:
-  linear-gradient(135deg, rgba(255,255,255,.58), transparent 34%),
-  linear-gradient(315deg, rgba(48,35,22,.30), transparent 32%),
-  linear-gradient(
-    to bottom,
-    rgba(230,211,178,.98),
-    rgba(188,164,125,.98)
-  );
+  /* warm carved frame base */
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.58), transparent 34%),
+    linear-gradient(315deg, rgba(48,35,22,.26), transparent 34%),
+    linear-gradient(
+      to bottom,
+      rgba(226,210,178,.98),
+      rgba(188,164,125,.98)
+    );
 
-/* Softer carved frame.
-   Fewer harsh stripe lines, more blended bevel depth. */
-box-shadow:
-  inset 0 0 0 2px rgba(20,17,13,.76),
-  inset 0 0 0 8px rgba(255,242,214,.52),
-  inset 0 0 0 11px rgba(64,47,31,.48),
-  inset 0 0 0 19px rgba(205,181,140,.58),
-  inset 0 0 0 22px rgba(38,28,19,.48),
-  inset 0 0 52px rgba(54,38,22,.16);
+  /* softer frame depth — fewer hard stripes */
+  box-shadow:
+    inset 0 0 0 2px rgba(20,17,13,.72),
+    inset 0 0 0 9px rgba(255,242,214,.42),
+    inset 0 0 0 12px rgba(64,47,31,.42),
+    inset 0 0 0 21px rgba(205,181,140,.50),
+    inset 0 0 0 24px rgba(38,28,19,.42),
+    inset 0 0 48px rgba(54,38,22,.16);
 
   transition:
     transform .35s ease,
     box-shadow .35s ease;
 }
 /* =========================================================
-   TOP FRAME DETAIL LINES
-   This adds the hand-drawn architectural linework on top.
-   It helps the frame look carved instead of like a flat box.
+   SOFT TOP FRAME DETAIL
+   Adds illustrated linework without making the frame look striped.
 ========================================================= */
 
 .door::after {
   content: "";
   position: absolute;
-  inset: 9px;
+  inset: 8px;
   z-index: 5;
   pointer-events: none;
 
   clip-path: polygon(
-    18px 0,
-    calc(100% - 18px) 0,
-    100% 18px,
-    100% calc(100% - 18px),
-    calc(100% - 18px) 100%,
-    18px 100%,
-    0 calc(100% - 18px),
-    0 18px
+    19px 0,
+    calc(100% - 19px) 0,
+    100% 19px,
+    100% calc(100% - 19px),
+    calc(100% - 19px) 100%,
+    19px 100%,
+    0 calc(100% - 19px),
+    0 19px
   );
 
-box-shadow:
-  inset 0 0 0 1px rgba(18,14,10,.42),
-  inset 0 0 0 6px rgba(255,250,236,.24),
-  inset 0 0 0 7px rgba(18,14,10,.22),
-  inset 0 -12px 18px rgba(23,18,14,.08),
-  inset 0 10px 14px rgba(255,255,255,.16);
+  box-shadow:
+    inset 0 0 0 1px rgba(18,14,10,.42),
+    inset 0 0 0 7px rgba(255,250,236,.20),
+    inset 0 0 0 8px rgba(18,14,10,.20),
+    inset 0 -14px 18px rgba(23,18,14,.08),
+    inset 0 10px 14px rgba(255,255,255,.15);
 }
 
     /* =========================================================
@@ -384,58 +384,46 @@ box-shadow:
 }
     
 /* =========================================================
-   INNER RECESSED PAPER PANEL
-   This creates the cream center inside the frame.
-   It sits behind the artwork and wash.
+   INNER PAPER PANEL
+   This creates the cream inset surface inside the frame.
 ========================================================= */
 
 .door::before {
   content: "";
   position: absolute;
-  inset: 25px;
+  inset: 24px;
   z-index: 0;
   pointer-events: none;
 
   clip-path: polygon(
-    15px 0,
-    calc(100% - 15px) 0,
-    100% 15px,
-    100% calc(100% - 15px),
-    calc(100% - 15px) 100%,
-    15px 100%,
-    0 calc(100% - 15px),
-    0 15px
+    16px 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% calc(100% - 16px),
+    calc(100% - 16px) 100%,
+    16px 100%,
+    0 calc(100% - 16px),
+    0 16px
   );
 
   background:
-    /* soft center light */
-    radial-gradient(circle at center, rgba(255,255,255,.68), transparent 62%),
-
-    /* subtle edge aging */
-    radial-gradient(circle at center, transparent 58%, rgba(23,18,14,.08) 100%),
-
-    /* parchment base */
+    radial-gradient(circle at center, rgba(255,255,255,.68), transparent 58%),
+    radial-gradient(circle at center, transparent 58%, rgba(23,18,14,.07) 100%),
     linear-gradient(
       to bottom,
-      rgba(250,243,226,.96),
-      rgba(235,224,203,.96)
+      rgba(250,244,229,.98),
+      rgba(235,225,205,.98)
     );
 
   box-shadow:
-    /* inner recessed line */
-    inset 0 0 0 1.5px rgba(38,31,24,.52),
-
-    /* tiny highlight just inside that line */
-    inset 0 0 0 4px rgba(255,250,236,.58),
-
-    /* soft inner paper shadow */
-    inset 0 0 28px rgba(23,18,14,.08);
+    inset 0 0 0 1.5px rgba(38,31,24,.45),
+    inset 0 0 0 4px rgba(255,250,236,.42),
+    inset 0 0 26px rgba(23,18,14,.08);
 }
     
    .door img,
 .door h2,
 .door p,
-.door span,
 .door div {
   position: relative;
   z-index: 1;
@@ -476,23 +464,24 @@ box-shadow:
 }
 
 /* =========================================================
-   DOOR SIZING NOW LIVES ON THE WRAPPERS
-   This lets the shadow sit outside the framed object.
+   DOOR SIZES
+   Outer doors are taller.
+   Middle book door is shorter like your reference.
 ========================================================= */
 
 .tattoo-wrap {
   grid-area: tattoo;
-  height: min(50vh, 460px);
+  height: min(48vh, 440px);
 }
 
 .book-wrap {
   grid-area: book;
-  height: min(39vh, 360px);
+  height: min(36vh, 340px);
 }
 
 .studio-wrap {
   grid-area: studio;
-  height: min(50vh, 460px);
+  height: min(48vh, 440px);
 }
 
 .door.tattoo {
