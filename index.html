@@ -220,7 +220,21 @@
       position: relative;
       z-index: 1;
     }
+.door-art {
+  position: absolute;
+  width: 62%;
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-18deg);
+  z-index: 2;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 6px 8px rgba(23,18,14,.18));
+}
 
+.tattoo-art {
+  width: 72%;
+}
     .door:hover {
       transform: translateY(-8px);
       background: rgba(255,248,232,.62);
