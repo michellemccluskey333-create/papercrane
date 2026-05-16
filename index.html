@@ -200,14 +200,22 @@
 .door::after {
   content: "";
   position: absolute;
-  inset: 0;
-  pointer-events: none;
+  width: 220px;
+  height: 145px;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-7deg);
   opacity: 0;
-  transition: opacity .35s ease;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 48% 42% 46% 40%;
+  background: var(--accent);
+  filter: blur(9px) saturate(.85);
+  transition: opacity .35s ease, transform .35s ease;
 }
 
 .door:hover::after {
-  opacity: .42;
+  opacity: .38;
 }
 
    .door img,
@@ -277,13 +285,11 @@
 
 .door.tattoo:hover {
   border-color: #e92f1f;
-
   box-shadow:
-    0 0 8px rgba(233,47,31,.55),
-    0 0 18px rgba(233,47,31,.32),
-    0 0 34px rgba(233,47,31,.18),
+    0 0 6px rgba(233,47,31,.8),
+    0 0 16px rgba(233,47,31,.55),
+    0 0 34px rgba(233,47,31,.32),
     0 18px 40px rgba(23,18,14,.16);
-
   transform: translateY(-6px);
 }
     .door.tattoo:hover .tattoo-art {
