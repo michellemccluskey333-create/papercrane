@@ -202,61 +202,61 @@ body::before {
 }
 
 
-/* FULL SOFT HALO SHADOW AROUND THE PLAQUE
-   Softer than the current hard beveled shadow.
-   This creates the airbrushed gradient around the frame. */
+/* FULL SOFT SHADOW HALO AROUND THE PLAQUE
+   This creates the smoky shadow around the sides and bottom.
+   It is intentionally larger, rounder, and less rectangular. */
 .door-wrap::before {
   content: "";
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 54%;
 
-  width: 116%;
-  height: 110%;
+  width: 145%;
+  height: 128%;
 
   transform:
-    translate(-50%, -47%)
-    scale(1.02);
+    translate(-50%, -50%);
 
   background:
     radial-gradient(
       ellipse at center,
-      rgba(23,18,14,.34) 0%,
-      rgba(23,18,14,.24) 34%,
-      rgba(23,18,14,.12) 58%,
-      transparent 78%
+      rgba(23,18,14,.30) 0%,
+      rgba(23,18,14,.22) 28%,
+      rgba(23,18,14,.12) 52%,
+      rgba(23,18,14,.06) 68%,
+      transparent 84%
     );
 
-  filter: blur(28px);
-  border-radius: 24px;
+  filter: blur(34px);
+  border-radius: 50%;
 
   z-index: 0;
   pointer-events: none;
 }
 
-/* BOTTOM CONTACT SHADOW
-   Darkest under the bottom edge, but feathered out softly. */
+/* DARK CONTACT SHADOW UNDER THE BOTTOM EDGE
+   This gives the plaque weight without making a hard rectangle. */
 .door-wrap::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -34px;
+  bottom: -42px;
 
-  width: 108%;
-  height: 28%;
+  width: 112%;
+  height: 24%;
 
   transform: translateX(-50%);
 
   background:
     radial-gradient(
       ellipse at center,
-      rgba(23,18,14,.56) 0%,
-      rgba(23,18,14,.38) 36%,
-      rgba(23,18,14,.18) 62%,
-      transparent 86%
+      rgba(23,18,14,.55) 0%,
+      rgba(23,18,14,.38) 30%,
+      rgba(23,18,14,.18) 58%,
+      transparent 82%
     );
 
-  filter: blur(24px);
+  filter: blur(26px);
   border-radius: 50%;
 
   z-index: 0;
@@ -306,14 +306,15 @@ background:
     rgba(188,164,125,.98)
   );
 
-  /* Frame carving / layered bevel lines */
+/* Softer carved frame.
+   Fewer harsh stripe lines, more blended bevel depth. */
 box-shadow:
-  inset 0 0 0 2px rgba(20,17,13,.86),
-  inset 0 0 0 7px rgba(255,242,214,.72),
-  inset 0 0 0 10px rgba(64,47,31,.68),
-  inset 0 0 0 20px rgba(205,181,140,.82),
-  inset 0 0 0 23px rgba(38,28,19,.70),
-  inset 0 0 48px rgba(54,38,22,.18);
+  inset 0 0 0 2px rgba(20,17,13,.76),
+  inset 0 0 0 8px rgba(255,242,214,.52),
+  inset 0 0 0 11px rgba(64,47,31,.48),
+  inset 0 0 0 19px rgba(205,181,140,.58),
+  inset 0 0 0 22px rgba(38,28,19,.48),
+  inset 0 0 52px rgba(54,38,22,.16);
 
   transition:
     transform .35s ease,
@@ -343,17 +344,12 @@ box-shadow:
     0 18px
   );
 
-  box-shadow:
-    /* outer sketch line */
-    inset 0 0 0 1px rgba(18,14,10,.55),
-
-    /* inner parallel line */
-    inset 0 0 0 6px rgba(255,250,236,.38),
-    inset 0 0 0 7.5px rgba(18,14,10,.30),
-
-    /* faint lower darkness like the reference */
-    inset 0 -10px 14px rgba(23,18,14,.10),
-    inset 0 8px 10px rgba(255,255,255,.20);
+box-shadow:
+  inset 0 0 0 1px rgba(18,14,10,.42),
+  inset 0 0 0 6px rgba(255,250,236,.24),
+  inset 0 0 0 7px rgba(18,14,10,.22),
+  inset 0 -12px 18px rgba(23,18,14,.08),
+  inset 0 10px 14px rgba(255,255,255,.16);
 }
 
     /* =========================================================
