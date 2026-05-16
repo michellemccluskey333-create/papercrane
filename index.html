@@ -47,14 +47,15 @@
     }
 
 .entry {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 34px 42px 48px;
-  position: relative;
+  justify-content: center;
+  padding: 1.2vh 2vw;
+  overflow: hidden;
 }
+
 
     .crane {
     width: 86px;
@@ -66,9 +67,11 @@
 
 .logo-stack {
   position: relative;
-  width: min(620px, 72vw);
-  margin: 0 auto 8px;
+  width: min(480px, 52vw, 42vh);
+  margin: 0 auto .6vh;
+  flex-shrink: 0;
 }
+
 
  .logo-base {
   width: 100%;
@@ -145,52 +148,33 @@
   font-family: Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: .42em;
-  font-size: clamp(.72rem, 1.3vw, .95rem);
+  font-size: clamp(.62rem, 1vw, .9rem);
   color: #2a211a;
-  margin-top: 8px;
+  margin-top: .4vh;
   animation: fadeUp .9s ease both;
   animation-delay: 4.7s;
+  flex-shrink: 0;
 }
 
- .doors {
-  width: min(1180px, 100%);
+.doors {
+  width: min(1180px, 96vw);
   display: grid;
   grid-template-columns: 1.08fr .92fr 1.08fr;
-  gap: 32px;
+  gap: 1.4vw;
   align-items: end;
-  margin-top: 34px;
+  margin-top: 2vh;
   animation: fadeUp .9s ease both;
   animation-delay: 4.9s;
+  flex: 1;
+  max-height: 48vh;
 }
 
 .door {
-  min-height: 360px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  padding: 42px 28px 30px;
-  color: var(--ink);
-  text-decoration: none;
-  background: rgba(255, 248, 232, .36);
-  border: 2px solid rgba(23, 18, 14, .78);
-  box-shadow: 0 18px 50px rgba(42, 28, 16, .1);
-  transition: transform .35s ease, box-shadow .35s ease, background .35s ease, border-color .35s ease;
-  overflow: hidden;
-  clip-path: polygon(
-    0 18px,
-    18px 0,
-    calc(100% - 18px) 0,
-    100% 18px,
-    100% calc(100% - 18px),
-    calc(100% - 18px) 100%,
-    18px 100%,
-    0 calc(100% - 18px)
-  );
+  min-height: unset;
+  height: 100%;
+  max-height: 420px;
+  padding: 2.2vh 1.4vw 1.8vh;
 }
-
 .door::before {
   content: "✦";
   position: absolute;
@@ -231,10 +215,9 @@
     .door.tattoo {
       --accent: var(--red);
     }
-
 .door.book {
-  min-height: 320px;
-  margin-bottom: 0;
+  transform: scale(.92);
+  transform-origin: bottom center;
 }
 
     .door.studio {
@@ -284,14 +267,10 @@
     }
 
 .icon {
-  width: 118px;
-  height: 118px;
-  margin-bottom: 34px;
-  color: #fff3dc;
-  filter: drop-shadow(0 2px 0 rgba(0,0,0,.35));
-  transition: transform .35s ease, filter .35s ease;
+  width: clamp(72px, 6vw, 118px);
+  height: clamp(72px, 6vw, 118px);
+  margin-bottom: 1.2vh;
 }
-
 .door.book .icon {
   width: 126px;
   height: 126px;
@@ -301,35 +280,21 @@
       filter: drop-shadow(0 0 8px var(--accent));
     }
 
-    .door h2 {
-      font-size: clamp(1.55rem, 2.8vw, 2.25rem);
-      line-height: 1.05;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-weight: 700;
-    }
+ .door h2 {
+  font-size: clamp(1.3rem, 2vw, 2.2rem);
+}
 
-    .copy {
-      margin-top: 22px;
-      font-family: Arial, sans-serif;
-      font-size: .98rem;
-      line-height: 1.75;
-      letter-spacing: .05em;
-    }
+ .copy {
+  margin-top: 1.2vh;
+  font-size: clamp(.78rem, .9vw, .98rem);
+  line-height: 1.55;
+}
 
-    .enter {
-  margin-top: 26px;
-  display: inline-block;
-  min-width: 210px;
-  padding: 12px 18px;
-  font-family: Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: .28em;
-  color: #fff3dc;
-  background: var(--accent);
-  border: 2px solid rgba(23,18,14,.85);
-  font-weight: 700;
-  transition: letter-spacing .28s ease, transform .28s ease;
+.enter {
+  min-width: unset;
+  width: 82%;
+  padding: 10px 12px;
+  font-size: .78rem;
 }
 
 .door:hover .enter {
@@ -342,25 +307,32 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 900px) {
-      .entry {
-        justify-content: flex-start;
-      }
+@media (max-width: 900px) {
+  .entry {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    padding: 28px 18px 42px;
+  }
 
-      .doors {
-        grid-template-columns: 1fr;
-        max-width: 430px;
-        margin-top: 38px;
-      }
+  .logo-stack {
+    width: min(340px, 82vw);
+    margin-bottom: 12px;
+  }
 
-      .door {
-        min-height: 260px;
-      }
+  .doors {
+    grid-template-columns: 1fr;
+    max-height: none;
+    gap: 18px;
+    margin-top: 24px;
+  }
 
-      .brand h1 {
-        letter-spacing: .1em;
-      }
-    }
+  .door,
+  .door.book {
+    height: auto;
+    transform: none;
+  }
+}
   </style>
 </head>
 <body>
