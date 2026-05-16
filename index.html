@@ -197,32 +197,13 @@
   );
 }
 
-.door::before {
-  content: "✦";
-  position: absolute;
-  top: 78px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--accent);
-  font-size: 1.2rem;
-  opacity: .75;
-  pointer-events: none;
-}
-
-
 .door::after {
   content: "";
   position: absolute;
-  width: 210px;
-  height: 130px;
-  top: 38px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-4deg);
+  inset: 0;
+  pointer-events: none;
   opacity: 0;
-  z-index: 0;
-  border-radius: 48% 42% 46% 40%;
-  filter: blur(1px) saturate(.8);
-  transition: opacity .35s ease, transform .35s ease;
+  transition: opacity .35s ease;
 }
 
 .door:hover::after {
@@ -241,8 +222,10 @@
   position: absolute;
   z-index: 2;
   pointer-events: none;
+
   filter:
-    drop-shadow(0 14px 18px rgba(23,18,14,.28));
+    drop-shadow(0 10px 14px rgba(23,18,14,.18));
+
   transition:
     transform .35s ease,
     filter .35s ease;
@@ -264,10 +247,6 @@
     translateX(-50%)
     rotate(34deg);
 }
-    .door:hover {
-      transform: translateY(-8px);
-      background: rgba(255,248,232,.62);
-    }
 
 .door.tattoo {
   grid-area: tattoo;
@@ -291,16 +270,27 @@
     .door.book::after { background: var(--green); }
     .door.studio::after { background: var(--purple); }
 
-    .door.tattoo:hover {
-      border-color: var(--red);
-      box-shadow: 0 0 22px rgba(158,36,31,.55), 0 22px 60px rgba(42, 28, 16, .18);
-    }
+.door.tattoo:hover {
+  border-color: #e92f1f;
 
-    .door.tattoo:hover::before {
-      opacity: 1;
-      background: radial-gradient(circle at center 28%, rgba(158,36,31,.22), transparent 46%);
-      animation: neonFlicker 1.2s infinite alternate;
-    }
+  box-shadow:
+    0 0 8px rgba(233,47,31,.55),
+    0 0 18px rgba(233,47,31,.32),
+    0 0 34px rgba(233,47,31,.18),
+    0 18px 40px rgba(23,18,14,.16);
+
+  transform: translateY(-6px);
+}
+    .door.tattoo:hover .tattoo-art {
+  filter:
+    drop-shadow(0 16px 22px rgba(23,18,14,.28))
+    drop-shadow(0 0 10px rgba(233,47,31,.22));
+
+  transform:
+    translateX(-50%)
+    rotate(42deg)
+    scale(1.05);
+}
 
     .door.book:hover {
       border-color: var(--green);
