@@ -200,22 +200,35 @@
 .door::after {
   content: "";
   position: absolute;
-  width: 220px;
-  height: 145px;
-  top: 52px;
+
+  width: 42%;
+  aspect-ratio: 1.35 / 1;
+
+  top: 13%;
   left: 50%;
-  transform: translateX(-50%) rotate(-7deg);
+
+  transform:
+    translateX(-50%)
+    rotate(-8deg);
+
   z-index: 0;
   pointer-events: none;
-  border-radius: 48% 42% 46% 40%;
 
-  background: var(--accent);
+  border-radius: 48% 52% 44% 56%;
 
-  opacity: .24;
+  background:
+    radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--accent) 82%, transparent) 0%,
+      color-mix(in srgb, var(--accent) 55%, transparent) 45%,
+      transparent 78%
+    );
+
+  opacity: .55;
 
   filter:
-    blur(10px)
-    saturate(.85);
+    blur(18px)
+    saturate(.8);
 }
    .door img,
 .door h2,
@@ -252,9 +265,9 @@
 }
 
 .tattoo-art {
-  width: 42%;
-  top: 6%;
-  left: 46%;
+   width: 38%;
+  top: 11%;
+  left: 44%;
   transform:
     translateX(-50%)
     rotate(34deg);
@@ -278,9 +291,6 @@
   --accent: var(--purple);
 }
 
-    .door.tattoo::after { background: var(--red); }
-    .door.book::after { background: var(--green); }
-    .door.studio::after { background: var(--purple); }
 
 .door.tattoo:hover {
   border-color: #e92f1f;
@@ -350,8 +360,8 @@
   transform: translateY(-2px);
 }
     .book-art {
-  width: 60%;
-  top: 16%;
+  width: 46%;
+  top: 18%;
   left: 50%;
   transform: translateX(-50%);
 }
