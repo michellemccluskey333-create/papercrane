@@ -202,7 +202,7 @@
 }
 
 
- .door::after {
+.door::after {
   content: "";
   position: absolute;
   width: 150px;
@@ -210,16 +210,25 @@
   top: 42px;
   left: 50%;
   transform: translateX(-50%) rotate(-4deg);
-  opacity: .9;
+  opacity: 0;
   z-index: 0;
   border-radius: 48% 42% 46% 40%;
   filter: saturate(.9);
+  transition: opacity .35s ease;
 }
 
-    .door > * {
-      position: relative;
-      z-index: 1;
-    }
+.door:hover::after {
+  opacity: .82;
+}
+
+   .door img,
+.door h2,
+.door p,
+.door span,
+.door div {
+  position: relative;
+  z-index: 1;
+}
 .door-art {
   position: absolute;
   width: 62%;
@@ -228,8 +237,12 @@
   transform: translateX(-50%) rotate(-18deg);
   z-index: 2;
   pointer-events: none;
-  filter:
-    drop-shadow(0 6px 8px rgba(23,18,14,.18));
+  filter: grayscale(.15) drop-shadow(0 8px 10px rgba(23,18,14,.16));
+  transition: filter .35s ease, transform .35s ease;
+}
+
+.door:hover .door-art {
+  filter: grayscale(0) drop-shadow(0 12px 14px rgba(23,18,14,.22));
 }
 
 .tattoo-art {
