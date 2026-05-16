@@ -205,19 +205,18 @@
   top: 52px;
   left: 50%;
   transform: translateX(-50%) rotate(-7deg);
-  opacity: 0;
   z-index: 0;
   pointer-events: none;
   border-radius: 48% 42% 46% 40%;
+
   background: var(--accent);
-  filter: blur(9px) saturate(.85);
-  transition: opacity .35s ease, transform .35s ease;
-}
 
-.door:hover::after {
-  opacity: .38;
-}
+  opacity: .24;
 
+  filter:
+    blur(10px)
+    saturate(.85);
+}
    .door img,
 .door h2,
 .door p,
