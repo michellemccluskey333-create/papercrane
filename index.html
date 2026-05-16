@@ -174,7 +174,7 @@
   margin: -4vh 0 0;
 
   /* IMPORTANT: this gives the shadow room to show on the background */
-  padding-bottom: 8vh;
+  padding-bottom: 10vh;
 
   /* IMPORTANT: do not clip the outside shadow */
   overflow: visible;
@@ -202,44 +202,64 @@
 }
 
 
-/* LARGE SOFT AMBIENT SHADOW OUTSIDE THE DOOR */
+/* LARGE SOFT AMBIENT SHADOW AROUND THE WHOLE PLAQUE */
 .door-wrap::before {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -46px;
+  bottom: -42px;
 
-  width: 112%;
-  height: 36%;
+  width: 118%;
+  height: 46%;
 
   transform: translateX(-50%);
 
-  background: rgba(23,18,14,.36);
-  filter: blur(34px);
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(23,18,14,.48) 0%,
+      rgba(23,18,14,.32) 34%,
+      rgba(23,18,14,.16) 58%,
+      transparent 78%
+    );
+
+  filter: blur(28px);
   border-radius: 50%;
 
   z-index: -1;
   pointer-events: none;
 }
 
-/* DARKER CONTACT SHADOW CLOSE TO THE FRAME */
+/* DARKER CONTACT SHADOW DIRECTLY BELOW THE FRAME */
 .door-wrap::after {
   content: "";
   position: absolute;
   left: 50%;
   bottom: -18px;
 
-  width: 92%;
-  height: 16%;
+  width: 98%;
+  height: 18%;
 
   transform: translateX(-50%);
 
-  background: rgba(23,18,14,.34);
-  filter: blur(12px);
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(23,18,14,.58) 0%,
+      rgba(23,18,14,.38) 42%,
+      rgba(23,18,14,.16) 70%,
+      transparent 100%
+    );
+
+  filter: blur(13px);
   border-radius: 50%;
 
   z-index: -1;
   pointer-events: none;
+}
+    /* SIDE SHADOW BLOOM — makes the plaque feel raised off the page */
+.door-wrap .door-shadow-side {
+  display: none;
 }
 
 /* =========================================================
