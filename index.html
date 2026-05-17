@@ -46,12 +46,73 @@ body::before {
 
 .entry {
   min-height: 100svh;
+  width: min(1180px, 92vw);
+  margin: 0 auto;
+
   display: grid;
-  grid-template-rows: 38vh 62vh;
+  grid-template-rows: auto auto 1fr auto;
   justify-items: center;
-  align-items: center;
-  padding: clamp(12px, 2vh, 24px) 3vw clamp(14px, 2vh, 24px);
+
+  padding: clamp(22px, 4vh, 46px) 0 clamp(18px, 3vh, 34px);
   overflow: visible;
+}
+
+/* TOP NAV */
+
+.top-nav {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, auto) 1fr repeat(3, auto);
+  align-items: center;
+  column-gap: clamp(28px, 5vw, 80px);
+
+  margin-bottom: clamp(22px, 4vh, 42px);
+
+  font-family: Georgia, "Times New Roman", serif;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: clamp(.68rem, .9vw, .9rem);
+}
+
+.top-nav a {
+  color: rgba(239, 227, 199, .78);
+  text-decoration: none;
+}
+
+.top-nav a.active {
+  color: #9e241f;
+}
+
+.top-nav a::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  margin: 9px auto 0;
+  background: transparent;
+}
+
+.top-nav a.active::after {
+  background: linear-gradient(90deg, transparent, #b7863c, transparent);
+}
+
+/* TOP HERO: LEFT TEXT / LOGO / RIGHT TEXT */
+
+.hero-top {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 390px) 1fr;
+  align-items: center;
+  column-gap: clamp(28px, 5vw, 72px);
+
+  margin-bottom: clamp(16px, 3vh, 34px);
+}
+
+.logo-stack {
+  position: relative;
+  width: min(390px, 34vw);
+  margin: 0 auto;
+  z-index: 5;
 }
 
     .crane {
@@ -64,14 +125,12 @@ body::before {
 
 .logo-stack {
   position: relative;
-  width: min(1040px, 82vw, 42vh);
+  width: min(390px, 34vw);
   margin: 0 auto;
   z-index: 5;
-  align-self: center;
 }
 
-
- .logo-base {
+.logo-base {
   width: 100%;
   display: block;
   position: relative;
@@ -87,7 +146,72 @@ body::before {
   transform-origin: 50% 55%;
   animation: craneSpinLand 4.5s cubic-bezier(.18,.85,.22,1) forwards;
 }
+/* SIDE COPY */
 
+.side-copy {
+  width: 100%;
+  text-align: center;
+
+  font-family: Georgia, "Times New Roman", serif;
+  text-transform: uppercase;
+  letter-spacing: .28em;
+  color: rgba(239, 227, 199, .78);
+
+  font-size: clamp(.9rem, 1.5vw, 1.25rem);
+  line-height: 1.8;
+}
+
+.side-copy p {
+  margin: 0;
+}
+
+.accent-line {
+  width: min(300px, 100%);
+  height: 1px;
+  margin: 0 auto 22px;
+  background:
+    linear-gradient(90deg, transparent, rgba(183,134,60,.75), transparent);
+  position: relative;
+}
+
+.accent-line::after {
+  content: "✦";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -52%);
+  color: rgba(183,134,60,.75);
+  font-size: .7rem;
+}
+
+.accent-line.short {
+  width: min(210px, 82%);
+  margin: 18px auto 0;
+}
+
+    .bottom-links {
+  width: min(520px, 70vw);
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto auto 1fr;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: clamp(12px, 2vh, 24px);
+
+  color: rgba(239, 227, 199, .58);
+  font-size: .95rem;
+}
+
+.bottom-links a {
+  color: rgba(239, 227, 199, .58);
+  text-decoration: none;
+}
+
+.bottom-line {
+  height: 1px;
+  background:
+    linear-gradient(90deg, transparent, rgba(183,134,60,.65), transparent);
+}
 
 @keyframes craneSpinLand {
   0% {
@@ -166,19 +290,28 @@ body::before {
 ========================================================= */
 
 .doors {
-  width: min(1120px, 90vw);
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 300px));
+  grid-template-columns: repeat(3, minmax(230px, 300px));
   grid-template-areas: "tattoo book studio";
   justify-content: center;
   align-items: end;
   justify-items: center;
-  gap: clamp(28px, 4vw, 64px);
-  margin: 0;
-  padding-bottom: clamp(10px, 2vh, 24px);
+
+  gap: clamp(32px, 4.5vw, 72px);
+  margin-top: clamp(4px, 1vh, 12px);
   overflow: visible;
+
   animation: fadeUp .9s ease both;
   animation-delay: 3.7s;
+}
+
+.door-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 4 / 5.05;
+  overflow: visible;
 }
 
 .door-wrap {
@@ -320,89 +453,143 @@ body::before {
 
 @media (max-width: 900px) {
   .entry {
-    height: auto;
+    width: min(420px, 88vw);
     min-height: 100vh;
-    overflow: visible;
-    padding: 28px 18px 42px;
+    padding: 28px 0 42px;
+  }
+
+  .top-nav {
+    display: none;
+  }
+
+  .hero-top {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+    margin-bottom: 24px;
   }
 
   .logo-stack {
-    width: min(340px, 82vw);
-    margin-bottom: 12px;
+    width: min(330px, 82vw);
+    grid-row: 1;
   }
 
-.doors {
-  width: min(340px, 86vw);
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "tattoo"
-    "book"
-    "studio";
-  gap: 22px;
-  margin-top: 24px;
-}
+  .side-copy {
+    display: none;
+  }
 
-.door-wrap {
-  max-width: 300px;
-}
+  .doors {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "tattoo"
+      "book"
+      "studio";
+    gap: 24px;
+  }
 
-.door {
-  transform: none;
-}
+  .door-wrap {
+    max-width: 300px;
+  }
+
+  .door {
+    transform: none;
+  }
+
+  .bottom-links {
+    width: min(320px, 80vw);
+  }
 }
   </style>
 </head>
 <body>
   <main class="entry">
-   <div class="logo-stack">
-  <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
-  <img src="Images/logo-crane.png" class="logo-crane" alt="">
-</div>
 
+  <nav class="top-nav" aria-label="Main navigation">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="artists.html">Artists</a>
+    <span></span>
+    <a href="events.html">Events</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<section class="doors" aria-label="Choose where to enter">
+  <section class="hero-top" aria-label="PaperCrane Books and Tattoo introduction">
 
-  <div class="door-wrap tattoo-wrap">
-    <a class="door tattoo" href="tattoo.html">
-      <img src="Images/door.png"
-           class="door-frame"
-           alt=""
-           aria-hidden="true">
+    <div class="side-copy left-copy">
+      <div class="accent-line"></div>
+      <p>One space.</p>
+      <p>Many stories.</p>
+      <div class="accent-line short"></div>
+    </div>
 
-      <img src="Images/gun.png"
-           class="door-art tattoo-art"
-           alt="Coil tattoo machine">
-    </a>
-  </div>
+    <div class="logo-stack">
+      <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
+      <img src="Images/logo-crane.png" class="logo-crane" alt="">
+    </div>
 
-  <div class="door-wrap book-wrap">
-    <a class="door book" href="bookstore.html">
-      <img src="Images/door.png"
-           class="door-frame"
-           alt=""
-           aria-hidden="true">
+    <div class="side-copy right-copy">
+      <div class="accent-line"></div>
+      <p>Books. Ink.</p>
+      <p>Connection.</p>
+      <div class="accent-line short"></div>
+    </div>
 
-      <img src="Images/book.png"
-           class="door-art book-art"
-           alt="Open book illustration">
-    </a>
-  </div>
+  </section>
 
-  <div class="door-wrap studio-wrap">
-    <a class="door studio" href="studio.html">
-      <img src="Images/door.png"
-           class="door-frame"
-           alt=""
-           aria-hidden="true">
+  <section class="doors" aria-label="Choose where to enter">
 
-      <img src="Images/keyhole.png"
-           class="keyhole-art"
-           alt="Private studio keyhole">
-    </a>
-  </div>
+    <div class="door-wrap tattoo-wrap">
+      <a class="door tattoo" href="tattoo.html">
+        <img src="Images/door.png"
+             class="door-frame"
+             alt=""
+             aria-hidden="true">
 
-</section>
-      
-  </main>
+        <img src="Images/gun.png"
+             class="door-art tattoo-art"
+             alt="Coil tattoo machine">
+      </a>
+    </div>
+
+    <div class="door-wrap book-wrap">
+      <a class="door book" href="bookstore.html">
+        <img src="Images/door.png"
+             class="door-frame"
+             alt=""
+             aria-hidden="true">
+
+        <img src="Images/book.png"
+             class="door-art book-art"
+             alt="Open book illustration">
+      </a>
+    </div>
+
+    <div class="door-wrap studio-wrap">
+      <a class="door studio" href="studio.html">
+        <img src="Images/door.png"
+             class="door-frame"
+             alt=""
+             aria-hidden="true">
+
+        <img src="Images/keyhole.png"
+             class="keyhole-art"
+             alt="Private studio keyhole">
+      </a>
+    </div>
+
+  </section>
+
+  <footer class="bottom-links" aria-label="Social links">
+    <div class="bottom-line"></div>
+    <a href="#" aria-label="Instagram">◎</a>
+    <span>|</span>
+    <a href="#" aria-label="TikTok">♪</a>
+    <span>|</span>
+    <a href="mailto:hello@papercrane.com" aria-label="Email">✉</a>
+    <div class="bottom-line"></div>
+  </footer>
+
+</main>
 </body>
 </html>  
