@@ -22,38 +22,36 @@
       padding: 0;
     }
 
-    body {
-      min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at center top, rgba(255,255,255,.55), transparent 36%),
-        radial-gradient(circle at 15% 20%, rgba(183,134,60,.18), transparent 22%),
-        linear-gradient(135deg, #f5ead5, var(--paper) 48%, #dbc6a4);
-      overflow-x: hidden;
-    }
+body {
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #efe3c7;
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(rgba(23,18,14,.12) 1px, transparent 1px),
-        radial-gradient(rgba(23,18,14,.08) 1px, transparent 1px);
-      background-size: 27px 27px, 11px 11px;
-      opacity: .22;
-      mix-blend-mode: multiply;
-    }
+  background: #050505;
+
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255,238,198,.08) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: .16;
+  mix-blend-mode: screen;
+}
 
 .entry {
-  height: 100vh;
-  max-height: 100vh;
+  height: 100svh;
+  max-height: 100svh;
   display: grid;
-  grid-template-rows: 44vh 4vh 52vh;
+  grid-template-rows: 42vh 58vh;
   justify-items: center;
-  align-items: start;
-  padding: 1.5vh 3vw 1vh;
+  align-items: center;
+  padding: clamp(12px, 2vh, 24px) 3vw clamp(14px, 2vh, 24px);
   overflow: hidden;
 }
 
@@ -67,9 +65,10 @@
 
 .logo-stack {
   position: relative;
-  width: min(920px, 64vw, 58vh);
-  margin: -2.2vh auto 0;
+  width: min(1040px, 82vw, 42vh);
+  margin: 0 auto;
   z-index: 5;
+  align-self: center;
 }
 
 
@@ -84,7 +83,7 @@
   position: absolute;
   width: 58%;
   top: 2%;
-  left: 24%;
+  left: 26%;
   z-index: 2;
   transform-origin: 50% 55%;
   animation: craneSpinLand 4.5s cubic-bezier(.18,.85,.22,1) forwards;
@@ -100,7 +99,15 @@
       scale(5);
   }
 
-  10% {
+  8% {
+    opacity: .45;
+  }
+
+  18% {
+    opacity: .85;
+  }
+
+  28% {
     opacity: 1;
   }
 
@@ -155,155 +162,367 @@
   animation-delay: 4.7s;
 }
 
+/* =========================================================
+   DOOR LAYOUT
+========================================================= */
+
 .doors {
-  width: min(1080px, 90vw);
-  height: 100%;
+  width: min(1040px, 88vw);
   display: grid;
-  grid-template-columns: 1fr .82fr 1fr;
+  grid-template-columns: minmax(220px, 300px) minmax(200px, 270px) minmax(220px, 300px);
   grid-template-areas: "tattoo book studio";
-  gap: 1vw;
+  justify-content: center;
   align-items: end;
   justify-items: center;
-  margin: -4vh 0 0;
+  gap: clamp(30px, 4vw, 64px);
+  margin: 0;
+  padding-bottom: clamp(10px, 1.5vh, 20px);
+  overflow: visible;
   animation: fadeUp .9s ease both;
   animation-delay: 3.7s;
 }
+
+
+/* =========================================================
+   OUTSIDE SHADOW WRAPPER
+   This is what creates the smoky shadow on the page background.
+   The shadow is NOT on the door itself.
+========================================================= */
+
+.door-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  isolation: isolate;
+}
+
+/* SOFT HALO AROUND THE WHOLE PLAQUE
+   This creates the smoky side shadow from the reference image. */
+.door-wrap::before {
+  content: "";
+  position: absolute;
+
+  left: 50%;
+  top: 52%;
+
+  width: 128%;
+  height: 116%;
+
+  transform: translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(23,18,14,.30) 0%,
+      rgba(23,18,14,.22) 28%,
+      rgba(23,18,14,.12) 50%,
+      rgba(23,18,14,.06) 66%,
+      transparent 82%
+    );
+
+  filter: blur(34px);
+  border-radius: 50%;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* HEAVIER BOTTOM CONTACT SHADOW
+   This is the darker shadow right under the frame. */
+.door-wrap::after {
+  content: "";
+  position: absolute;
+
+  left: 50%;
+  bottom: -38px;
+
+  width: 112%;
+  height: 26%;
+
+  transform: translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(23,18,14,.58) 0%,
+      rgba(23,18,14,.38) 34%,
+      rgba(23,18,14,.18) 60%,
+      transparent 84%
+    );
+
+  filter: blur(24px);
+  border-radius: 50%;
+
+  z-index: 0;
+  pointer-events: none;
+}
+    /* SIDE SHADOW BLOOM — makes the plaque feel raised off the page */
+.door-wrap .door-shadow-side {
+  display: none;
+}
+
+/* =========================================================
+   PHYSICAL BEVELED DOOR / PLAQUE
+   This is the actual visible frame.
+   Outside shadow comes from .door-wrap, not here.
+========================================================= */
 
 .door {
   position: relative;
   display: block;
   width: 100%;
-  background: rgba(255,248,232,.34);
-  border: 2px solid rgba(23,18,14,.78);
-  text-decoration: none;
+  height: 100%;
+
   overflow: hidden;
+  text-decoration: none;
+  isolation: isolate;
+  z-index: 1;
+
+  /* closed mitered rectangle */
   clip-path: polygon(
-    0 18px,
-    18px 0,
-    calc(100% - 18px) 0,
-    100% 18px,
-    100% calc(100% - 18px),
-    calc(100% - 18px) 100%,
-    18px 100%,
-    0 calc(100% - 18px)
+    24px 0,
+    calc(100% - 24px) 0,
+    100% 24px,
+    100% calc(100% - 24px),
+    calc(100% - 24px) 100%,
+    24px 100%,
+    0 calc(100% - 24px),
+    0 24px
   );
+
+  /* warm carved frame base */
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.58), transparent 34%),
+    linear-gradient(315deg, rgba(48,35,22,.26), transparent 34%),
+    linear-gradient(
+      to bottom,
+      rgba(226,210,178,.98),
+      rgba(188,164,125,.98)
+    );
+
+  /* softer frame depth — fewer hard stripes */
+  box-shadow:
+    inset 0 0 0 2px rgba(20,17,13,.72),
+    inset 0 0 0 9px rgba(255,242,214,.42),
+    inset 0 0 0 12px rgba(64,47,31,.42),
+    inset 0 0 0 21px rgba(205,181,140,.50),
+    inset 0 0 0 24px rgba(38,28,19,.42),
+    inset 0 0 48px rgba(54,38,22,.16);
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
 }
+/* =========================================================
+   SOFT TOP FRAME DETAIL
+   Adds illustrated linework without making the frame look striped.
+========================================================= */
 
-.door::before {
-  content: "✦";
-  position: absolute;
-  top: 78px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--accent);
-  font-size: 1.2rem;
-  opacity: .75;
-  pointer-events: none;
-}
-
-
- .door::after {
+.door::after {
   content: "";
   position: absolute;
-  width: 150px;
-  height: 92px;
-  top: 42px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-4deg);
-  opacity: .9;
-  z-index: 0;
-  border-radius: 48% 42% 46% 40%;
-  filter: saturate(.9);
+  inset: 8px;
+  z-index: 5;
+  pointer-events: none;
+
+  clip-path: polygon(
+    19px 0,
+    calc(100% - 19px) 0,
+    100% 19px,
+    100% calc(100% - 19px),
+    calc(100% - 19px) 100%,
+    19px 100%,
+    0 calc(100% - 19px),
+    0 19px
+  );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(18,14,10,.42),
+    inset 0 0 0 7px rgba(255,250,236,.20),
+    inset 0 0 0 8px rgba(18,14,10,.20),
+    inset 0 -14px 18px rgba(23,18,14,.08),
+    inset 0 10px 14px rgba(255,255,255,.15);
 }
 
-    .door > * {
-      position: relative;
-      z-index: 1;
-    }
+    /* =========================================================
+   WATERCOLOR / INK WASH
+   This is now a real layer inside the door,
+   not attached to the frame itself.
+========================================================= */
+
+.door-wash {
+  position: absolute;
+  width: 64%;
+  aspect-ratio: 1.45 / 1;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-8deg);
+  z-index: 1;
+  pointer-events: none;
+  opacity: .74;
+
+  background:
+    radial-gradient(circle at 22% 46%, rgba(158,36,31,.30) 0 7px, transparent 9px),
+    radial-gradient(circle at 36% 31%, rgba(158,36,31,.22) 0 4px, transparent 6px),
+    radial-gradient(circle at 58% 40%, rgba(158,36,31,.28) 0 8px, transparent 11px),
+    radial-gradient(circle at 72% 58%, rgba(158,36,31,.20) 0 5px, transparent 7px),
+    radial-gradient(circle at 44% 55%, rgba(158,36,31,.36) 0%, rgba(158,36,31,.20) 38%, transparent 72%);
+
+  filter:
+    blur(1.2px)
+    saturate(1.05);
+
+  border-radius: 54% 46% 48% 52%;
+}
+    
+/* =========================================================
+   INNER PAPER PANEL
+   This creates the cream inset surface inside the frame.
+========================================================= */
+
+.door::before {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  z-index: 0;
+  pointer-events: none;
+
+  clip-path: polygon(
+    16px 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% calc(100% - 16px),
+    calc(100% - 16px) 100%,
+    16px 100%,
+    0 calc(100% - 16px),
+    0 16px
+  );
+
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,.68), transparent 58%),
+    radial-gradient(circle at center, transparent 58%, rgba(23,18,14,.07) 100%),
+    linear-gradient(
+      to bottom,
+      rgba(250,244,229,.98),
+      rgba(235,225,205,.98)
+    );
+
+  box-shadow:
+    inset 0 0 0 1.5px rgba(38,31,24,.45),
+    inset 0 0 0 4px rgba(255,250,236,.42),
+    inset 0 0 26px rgba(23,18,14,.08);
+}
+    
+   .door img,
+.door h2,
+.door p,
+.door div {
+  position: relative;
+  z-index: 1;
+}
+    /* =========================================================
+   ARTWORK SHADOW
+   This gives the object weight inside the frame.
+========================================================= */
 .door-art {
   position: absolute;
-  width: 62%;
-  top: 16%;
-  left: 50%;
-  transform: translateX(-50%) rotate(-18deg);
   z-index: 2;
   pointer-events: none;
+
   filter:
-    drop-shadow(0 6px 8px rgba(23,18,14,.18));
+    drop-shadow(0 16px 16px rgba(23,18,14,.32))
+    drop-shadow(0 4px 3px rgba(23,18,14,.25));
+
+  transition:
+    transform .35s ease,
+    filter .35s ease;
 }
 
+.door.book:hover .book-art {
+  transform:
+    translateX(-50%)
+    scale(1.05);
+}
+
+
+/* TATTOO MACHINE POSITION */
 .tattoo-art {
-  width: 42%;
-  top: 6%;
-  left: 46%;
+  width: 58%;
+  top: 14%;
+  left: 43%;
   transform:
     translateX(-50%)
     rotate(34deg);
 }
-    .door:hover {
-      transform: translateY(-8px);
-      background: rgba(255,248,232,.62);
-    }
+
+/* =========================================================
+   DOOR SIZES
+   Outer doors are taller.
+   Middle book door is shorter like your reference.
+========================================================= */
+
+.tattoo-wrap {
+  grid-area: tattoo;
+  height: min(38vh, 370px);
+}
+
+.book-wrap {
+  grid-area: book;
+  height: min(29vh, 285px);
+}
+
+.studio-wrap {
+  grid-area: studio;
+  height: min(38vh, 370px);
+}
 
 .door.tattoo {
-  grid-area: tattoo;
-  height: min(43vh, 390px);
   --accent: var(--red);
 }
 
 .door.book {
-  grid-area: book;
-  height: min(35vh, 320px);
   --accent: var(--green);
 }
 
 .door.studio {
-  grid-area: studio;
-  height: min(43vh, 390px);
   --accent: var(--purple);
 }
 
-    .door.tattoo::after { background: var(--red); }
-    .door.book::after { background: var(--green); }
-    .door.studio::after { background: var(--purple); }
+/* TATTOO DOOR HOVER — PRESERVES FLOATING SHADOW */
+ /*.door.tattoo:hover {
+  box-shadow:
+    0 58px 80px rgba(23,18,14,.26),
+    0 24px 34px rgba(23,18,14,.18),
+    0 10px 16px rgba(23,18,14,.12),
 
-    .door.tattoo:hover {
-      border-color: var(--red);
-      box-shadow: 0 0 22px rgba(158,36,31,.55), 0 22px 60px rgba(42, 28, 16, .18);
-    }
+    inset 0 0 45px rgba(23,18,14,.07),
 
-    .door.tattoo:hover::before {
-      opacity: 1;
-      background: radial-gradient(circle at center 28%, rgba(158,36,31,.22), transparent 46%);
-      animation: neonFlicker 1.2s infinite alternate;
-    }
+    inset 0 0 0 2px rgba(110,28,20,.85),
+    inset 0 0 0 8px rgba(255,248,236,.82),
+    inset 0 0 0 10px rgba(150,35,24,.42);
 
-    .door.book:hover {
-      border-color: var(--green);
-      box-shadow: 0 0 20px rgba(85,97,47,.44), 0 22px 60px rgba(42, 28, 16, .18);
-    }
+  transform: translateY(-8px);
+}*/
+/* =========================================================
+   TEMP HOVER — PHYSICAL LIFT ONLY
+   No neon yet. This tests whether the plaque feels real.
+========================================================= */
 
-    .door.book:hover::before {
-      opacity: 1;
-      background: radial-gradient(circle at center 28%, rgba(183,134,60,.25), transparent 48%);
-    }
+/* TEMP HOVER — PHYSICAL LIFT ONLY */
+.door.tattoo:hover {
+  transform: translateY(-8px);
+}
+/* TATTOO MACHINE LIFTS SLIGHTLY ON HOVER */
+.door.tattoo:hover .tattoo-art {
+  filter:
+    drop-shadow(0 20px 24px rgba(23,18,14,.36));
 
-    .door.studio:hover {
-      border-color: var(--purple);
-      box-shadow: 0 0 20px rgba(109,63,120,.48), 0 22px 60px rgba(42, 28, 16, .18);
-    }
-
-    .door.studio:hover::before {
-      opacity: 1;
-      background: radial-gradient(circle at center 28%, rgba(109,63,120,.22), transparent 48%);
-    }
-
-    @keyframes neonFlicker {
-      0%, 100% { opacity: .72; }
-      45% { opacity: .95; }
-      52% { opacity: .58; }
-      58% { opacity: 1; }
-    }
+  transform:
+    translateX(-50%)
+    rotate(42deg)
+    scale(1.05);
+}
 
 .icon {
   width: clamp(72px, 6vw, 118px);
@@ -340,11 +559,13 @@
   letter-spacing: .34em;
   transform: translateY(-2px);
 }
-    .book-art {
-  width: 52%;
-  top: 16%;
+/* BOOK IMAGE POSITION */
+.book-art {
+  width: 54%;
+  top: 21%;
   left: 50%;
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 }
 
     @keyframes fadeUp {
@@ -389,17 +610,34 @@
 
  <div class="hero-spacer" aria-hidden="true"></div>
 
-    <!-- this is commented out -->
-    <section class="doors" aria-label="Choose where to enter">
-    <a class="door tattoo" href="tattoo.html">
-    <img src="Images/gun.png"
-         class="door-art tattoo-art"
-         alt="Coil tattoo machine">
-  </a>
-  <a class="door book" href="bookstore.html">
-   <img src="Images/book.png" class="door-art book-art" alt="Open book illustration">
-  </a>
-  <a class="door studio" href="studio.html"></a>
+<section class="doors" aria-label="Choose where to enter">
+
+  <div class="door-wrap tattoo-wrap">
+<a class="door tattoo" href="tattoo.html">
+  <span class="door-wash" aria-hidden="true"></span>
+
+  <img src="Images/gun.png"
+       class="door-art tattoo-art"
+       alt="Coil tattoo machine">
+</a>
+  </div>
+
+  <div class="door-wrap book-wrap">
+ <a class="door book" href="bookstore.html">
+  <span class="door-wash" aria-hidden="true"></span>
+
+  <img src="Images/book.png"
+       class="door-art book-art"
+       alt="Open book illustration">
+</a>
+  </div>
+
+  <div class="door-wrap studio-wrap">
+   <a class="door studio" href="studio.html">
+  <span class="door-wash" aria-hidden="true"></span>
+</a>
+  </div>
+
 </section>
 
       <!--  
