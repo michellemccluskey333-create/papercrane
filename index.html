@@ -45,14 +45,13 @@ body::before {
 }
 
 .entry {
-  height: 100svh;
-  max-height: 100svh;
+  min-height: 100svh;
   display: grid;
-  grid-template-rows: 42vh 58vh;
+  grid-template-rows: 38vh 62vh;
   justify-items: center;
   align-items: center;
   padding: clamp(12px, 2vh, 24px) 3vw clamp(14px, 2vh, 24px);
-  overflow: hidden;
+  overflow: visible;
 }
 
     .crane {
@@ -360,7 +359,6 @@ body::before {
   <img src="Images/logo-crane.png" class="logo-crane" alt="">
 </div>
 
- <div class="hero-spacer" aria-hidden="true"></div>
 
 <section class="doors" aria-label="Choose where to enter">
 
