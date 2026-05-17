@@ -145,7 +145,7 @@ body::before {
   left: 26%;
   z-index: 2;
   transform-origin: 50% 55%;
-  animation: craneSpinLand 4.5s cubic-bezier(.18,.85,.22,1) forwards;
+  animation: craneSpinLand 4.5s linear forwards;
 }
 /* SIDE COPY */
 
@@ -224,31 +224,15 @@ body::before {
   }
 
   10% {
-    opacity: .45;
+    opacity: .35;
   }
 
-  25% {
-    opacity: 1;
-    transform:
-      translateY(30vh)
-      rotate(540deg)
-      scale(4);
+  22% {
+    opacity: .75;
   }
 
-  55% {
+  35% {
     opacity: 1;
-    transform:
-      translateY(14vh)
-      rotate(1260deg)
-      scale(2.3);
-  }
-
-  80% {
-    opacity: 1;
-    transform:
-      translateY(3vh)
-      rotate(1710deg)
-      scale(1.18);
   }
 
   100% {
