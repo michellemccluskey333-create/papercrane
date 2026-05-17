@@ -22,14 +22,13 @@
       padding: 0;
     }
 
-   body {
+body {
   min-height: 100vh;
   font-family: Georgia, "Times New Roman", serif;
-  color: var(--ink);
-  background:
-    radial-gradient(circle at center top, rgba(255,255,255,.78), transparent 42%),
-    radial-gradient(circle at 15% 20%, rgba(183,134,60,.10), transparent 24%),
-    linear-gradient(135deg, #fbf4e7, #f3e8d2 48%, #ead8b8);
+  color: #efe3c7;
+
+  background: #050505;
+
   overflow-x: hidden;
 }
 
@@ -39,11 +38,10 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(rgba(23,18,14,.12) 1px, transparent 1px),
-    radial-gradient(rgba(23,18,14,.08) 1px, transparent 1px);
-  background-size: 27px 27px, 11px 11px;
-  opacity: .14;
-  mix-blend-mode: multiply;
+    radial-gradient(rgba(255,238,198,.08) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: .16;
+  mix-blend-mode: screen;
 }
 
 .entry {
