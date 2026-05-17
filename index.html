@@ -45,13 +45,14 @@ body::before {
 }
 
 .entry {
-  min-height: 100svh;
+  height: 100svh;
+  max-height: 100svh;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 42vh 58vh;
   justify-items: center;
   align-items: center;
-  padding: clamp(18px, 3vh, 34px) 3vw clamp(24px, 4vh, 46px);
-  overflow: visible;
+  padding: clamp(12px, 2vh, 24px) 3vw clamp(14px, 2vh, 24px);
+  overflow: hidden;
 }
 
     .crane {
@@ -64,10 +65,10 @@ body::before {
 
 .logo-stack {
   position: relative;
-  width: min(1080px, 84vw, 52vh);
+  width: min(1040px, 82vw, 42vh);
   margin: 0 auto;
   z-index: 5;
-  align-self: end;
+  align-self: center;
 }
 
 
@@ -168,20 +169,15 @@ body::before {
 .doors {
   width: min(1040px, 88vw);
   display: grid;
-
   grid-template-columns: minmax(220px, 300px) minmax(200px, 270px) minmax(220px, 300px);
   grid-template-areas: "tattoo book studio";
-
   justify-content: center;
   align-items: end;
   justify-items: center;
-
   gap: clamp(30px, 4vw, 64px);
-  margin: clamp(12px, 2.5vh, 28px) 0 0;
-  padding-bottom: clamp(18px, 3vh, 36px);
-
+  margin: 0;
+  padding-bottom: clamp(10px, 1.5vh, 20px);
   overflow: visible;
-
   animation: fadeUp .9s ease both;
   animation-delay: 3.7s;
 }
@@ -468,17 +464,17 @@ body::before {
 
 .tattoo-wrap {
   grid-area: tattoo;
-  height: min(42vh, 400px);
+  height: min(38vh, 370px);
 }
 
 .book-wrap {
   grid-area: book;
-  height: min(32vh, 310px);
+  height: min(29vh, 285px);
 }
 
 .studio-wrap {
   grid-area: studio;
-  height: min(42vh, 400px);
+  height: min(38vh, 370px);
 }
 
 .door.tattoo {
