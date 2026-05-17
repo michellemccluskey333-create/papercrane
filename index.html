@@ -218,27 +218,43 @@ body::before {
   0% {
     opacity: 0;
     transform:
-      translate(0vw, 0vh)
+      translateY(34vh)
       rotate(0deg)
-      scale(5);
+      scale(4.6);
   }
 
-  8% {
+  10% {
     opacity: .45;
   }
 
-  18% {
-    opacity: .85;
+  25% {
+    opacity: 1;
+    transform:
+      translateY(30vh)
+      rotate(540deg)
+      scale(4);
   }
 
-  28% {
+  55% {
     opacity: 1;
+    transform:
+      translateY(14vh)
+      rotate(1260deg)
+      scale(2.3);
+  }
+
+  80% {
+    opacity: 1;
+    transform:
+      translateY(3vh)
+      rotate(1710deg)
+      scale(1.18);
   }
 
   100% {
     opacity: 1;
     transform:
-      translate(0, 0)
+      translateY(0)
       rotate(1800deg)
       scale(1);
   }
@@ -311,7 +327,7 @@ body::before {
 .door-wrap {
   position: relative;
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
   aspect-ratio: 4 / 5.05;
   overflow: visible;
 }
@@ -319,7 +335,7 @@ body::before {
 .door-wrap {
   position: relative;
   width: 100%;
-  max-width: 340px;
+  max-width: 380px;
   aspect-ratio: 4 / 5.05;
   overflow: visible;
 }
