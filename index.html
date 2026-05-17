@@ -75,12 +75,35 @@ body::before {
 }
 
 .top-nav a {
-  color: rgba(239, 227, 199, .78);
+  color: rgba(255, 226, 160, .88);
   text-decoration: none;
+  text-shadow:
+    0 0 6px rgba(183, 134, 60, .45),
+    0 0 14px rgba(183, 134, 60, .22);
+  transition:
+    color .25s ease,
+    text-shadow .25s ease;
+}
+
+.top-nav a:hover {
+  color: rgba(166, 112, 42, .95);
+  text-shadow:
+    0 0 4px rgba(183, 134, 60, .22),
+    0 0 10px rgba(120, 78, 28, .18);
 }
 
 .top-nav a.active {
-  color: #9e241f;
+  color: rgba(255, 226, 160, .95);
+  text-shadow:
+    0 0 7px rgba(183, 134, 60, .55),
+    0 0 16px rgba(183, 134, 60, .28);
+}
+
+.top-nav a.active:hover {
+  color: rgba(166, 112, 42, .95);
+  text-shadow:
+    0 0 4px rgba(183, 134, 60, .22),
+    0 0 10px rgba(120, 78, 28, .18);
 }
 
 .top-nav a::after {
