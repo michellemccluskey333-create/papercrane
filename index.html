@@ -45,13 +45,12 @@ body::before {
 }
 
 .entry {
-  height: 100vh;
-  max-height: 100vh;
+  min-height: 100svh;
   display: grid;
-  grid-template-rows: 44vh 4vh 52vh;
+  grid-template-rows: auto 1fr;
   justify-items: center;
-  align-items: start;
-  padding: 1.5vh 3vw 1vh;
+  align-items: center;
+  padding: clamp(18px, 3vh, 34px) 3vw clamp(24px, 4vh, 46px);
   overflow: visible;
 }
 
@@ -65,9 +64,10 @@ body::before {
 
 .logo-stack {
   position: relative;
-  width: min(920px, 64vw, 58vh);
-  margin: -2.2vh auto 0;
+  width: min(760px, 58vw, 34vh);
+  margin: 0 auto;
   z-index: 5;
+  align-self: end;
 }
 
 
@@ -163,32 +163,23 @@ body::before {
 
 /* =========================================================
    DOOR LAYOUT
-   Goal:
-   - keep the three-door composition
-   - give shadows room to breathe
-   - prevent clipping
 ========================================================= */
 
 .doors {
-  width: min(1120px, 90vw);
-  height: 100%;
+  width: min(1040px, 88vw);
   display: grid;
 
-  /* outer doors wider, center door slightly smaller */
-  grid-template-columns: minmax(240px, 320px) minmax(230px, 300px) minmax(240px, 320px);
+  grid-template-columns: minmax(220px, 300px) minmax(200px, 270px) minmax(220px, 300px);
   grid-template-areas: "tattoo book studio";
 
-  justify-content: space-between;
+  justify-content: center;
   align-items: end;
   justify-items: center;
 
-  gap: clamp(36px, 4vw, 72px);
-  margin: -4vh 0 0;
+  gap: clamp(30px, 4vw, 64px);
+  margin: clamp(12px, 2.5vh, 28px) 0 0;
+  padding-bottom: clamp(18px, 3vh, 36px);
 
-  /* gives the smoky shadows room below */
-  padding-bottom: 10vh;
-
-  /* critical: never clip outside shadows */
   overflow: visible;
 
   animation: fadeUp .9s ease both;
@@ -477,17 +468,17 @@ body::before {
 
 .tattoo-wrap {
   grid-area: tattoo;
-  height: min(48vh, 440px);
+  height: min(42vh, 400px);
 }
 
 .book-wrap {
   grid-area: book;
-  height: min(36vh, 340px);
+  height: min(32vh, 310px);
 }
 
 .studio-wrap {
   grid-area: studio;
-  height: min(48vh, 440px);
+  height: min(42vh, 400px);
 }
 
 .door.tattoo {
