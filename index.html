@@ -23,13 +23,13 @@
     }
 
 body {
-  min-height: 100vh;
+  height: 100svh;
   font-family: Georgia, "Times New Roman", serif;
   color: #efe3c7;
 
   background: #050505;
 
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body::before {
@@ -45,17 +45,17 @@ body::before {
 }
 
 .entry {
-  min-height: 100svh;
+  height: 100svh;
   width: min(1180px, 92vw);
   margin: 0 auto;
 
   display: grid;
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: 44px 285px 1fr 34px;
   justify-items: center;
-  align-content: start;
+  align-items: start;
 
-  padding: clamp(12px, 2vh, 24px) 0 clamp(12px, 2vh, 24px);
-  overflow: visible;
+  padding: 18px 0 14px;
+  overflow: hidden;
 }
 /* TOP NAV */
 
@@ -66,7 +66,7 @@ body::before {
   align-items: center;
   column-gap: clamp(28px, 5vw, 80px);
 
-  margin-bottom: clamp(8px, 1.5vh, 18px);
+  margin-bottom: 0;
 
   font-family: Georgia, "Times New Roman", serif;
   text-transform: uppercase;
@@ -105,13 +105,13 @@ body::before {
   align-items: center;
   column-gap: clamp(28px, 5vw, 72px);
 
-  margin-bottom: clamp(2px, .8vh, 10px);
+  margin-bottom: 0;
 }
 
 .logo-stack {
   position: relative;
   width: min(390px, 34vw);
-  margin: 0 auto;
+  margin: -18px auto 0;
   z-index: 5;
 }
 
@@ -189,14 +189,14 @@ body::before {
   margin: 18px auto 0;
 }
 
-    .bottom-links {
+.bottom-links {
   width: min(520px, 70vw);
   display: grid;
   grid-template-columns: 1fr auto auto auto auto auto 1fr;
   align-items: center;
   gap: 16px;
 
-  margin-top: clamp(12px, 2vh, 24px);
+  margin-top: -4px;
 
   color: rgba(239, 227, 199, .58);
   font-size: .95rem;
@@ -300,8 +300,8 @@ body::before {
 
   gap: clamp(32px, 4.5vw, 72px);
 
-  /* pulls the doors upward without shrinking them */
-  margin-top: clamp(-60px, -6vh, -28px);
+  /* this is the big fix */
+  margin-top: -70px;
 
   overflow: visible;
 
