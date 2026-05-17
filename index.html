@@ -382,8 +382,11 @@ body::before {
 
 .door:hover .door-frame {
   filter:
-    drop-shadow(0 18px 26px rgba(0,0,0,.55))
-    drop-shadow(0 0 18px var(--glow));
+    drop-shadow(0 18px 26px rgba(0,0,0,.58))
+    drop-shadow(0 0 4px var(--glow-core))
+    drop-shadow(0 0 12px var(--glow))
+    drop-shadow(0 0 28px var(--glow-soft))
+    drop-shadow(0 0 52px var(--glow-faint));
 }
 
 /* Shared interior artwork */
@@ -451,17 +454,27 @@ body::before {
     drop-shadow(0 0 12px rgba(109,63,120,.55));
 }
 
-/* Door-specific glow colors */
+/* Door-specific neon glow colors */
+
 .door.tattoo {
-  --glow: rgba(158,36,31,.55);
+  --glow-core: rgba(255, 64, 190, .95);
+  --glow: rgba(255, 64, 190, .72);
+  --glow-soft: rgba(255, 64, 190, .42);
+  --glow-faint: rgba(255, 64, 190, .22);
 }
 
 .door.book {
-  --glow: rgba(85,97,47,.50);
+  --glow-core: rgba(255, 215, 90, .95);
+  --glow: rgba(255, 190, 38, .72);
+  --glow-soft: rgba(255, 170, 24, .42);
+  --glow-faint: rgba(255, 150, 12, .22);
 }
 
 .door.studio {
-  --glow: rgba(109,63,120,.55);
+  --glow-core: rgba(190, 70, 255, .95);
+  --glow: rgba(178, 70, 255, .72);
+  --glow-soft: rgba(150, 45, 255, .42);
+  --glow-faint: rgba(130, 30, 220, .24);
 }
 
     @keyframes fadeUp {
