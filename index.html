@@ -165,6 +165,7 @@ body::before {
   margin: 0 auto;
   top: -10px;
   z-index: 5;
+  overflow: visible;
 }
 
     .crane {
@@ -191,53 +192,77 @@ body::before {
   transform-origin: 50% 55%;
   animation: craneSpinLand 1.8s linear forwards;
 }
-    .logo-spark {
+/* =========================
+   LOGO SPARKLES / STARBURSTS
+   ========================= */
+
+
+
+.logo-spark {
   position: absolute;
-  z-index: 6;
+  z-index: 8;
   pointer-events: none;
   line-height: 1;
-  opacity: .72;
-  color: rgba(183, 134, 60, .72);
 
-  text-shadow: none;
-  filter: none;
+  color: rgba(214, 167, 74, .82);
+  opacity: 0;
+
+  text-shadow:
+    0 0 2px rgba(255, 235, 185, .35);
+
+  animation: logoSparkBurst 2s ease-out forwards;
 }
 
-/* random sparkle placements — smaller, closer, uneven */
-
+/* around upper crane */
 .spark-1 {
-  top: -6%;
-  left: 28%;
-  font-size: .72rem;
-  animation: logoSparkGlow 2s ease-out 1.8s both;
+  top: 5%;
+  left: 24%;
+  font-size: .78rem;
+  animation-delay: 1.8s;
 }
 
 .spark-2 {
-  top: -11%;
-  left: 46%;
-  font-size: .5rem;
-  animation: logoSparkGlow 2s ease-out 1.95s both;
+  top: -2%;
+  left: 48%;
+  font-size: .52rem;
+  animation-delay: 1.96s;
 }
 
 .spark-3 {
-  top: -4%;
-  right: 25%;
-  font-size: .88rem;
-  animation: logoSparkGlow 2s ease-out 1.86s both;
+  top: 13%;
+  right: 18%;
+  font-size: .9rem;
+  animation-delay: 2.08s;
 }
 
+/* small cluster above ribbon */
 .spark-4 {
-  top: 24%;
-  left: 6%;
-  font-size: .62rem;
-  animation: logoSparkGlow 2s ease-out 2.05s both;
+  top: 52%;
+  left: 43%;
+  font-size: .48rem;
+  animation-delay: 2.16s;
 }
 
 .spark-5 {
-  top: 30%;
-  right: 8%;
-  font-size: .54rem;
-  animation: logoSparkGlow 2s ease-out 2.12s both;
+  top: 48%;
+  left: 51%;
+  font-size: .9rem;
+  animation-delay: 2.02s;
+}
+
+.spark-6 {
+  top: 55%;
+  right: 39%;
+  font-size: .56rem;
+  animation-delay: 2.22s;
+}
+
+/* side sparkle near ribbon edge */
+.spark-7 {
+  top: 78%;
+  right: 6%;
+  font-size: .7rem;
+  animation-delay: 2.28s;
 }
 /* =========================
    SIDE COPY BLOCK
@@ -393,99 +418,58 @@ body::before {
       scale(1);
   }
 }
-
-    @keyframes logoSparkGlow {
+@keyframes logoSparkBurst {
   0% {
-    color: rgba(183, 134, 60, .68);
-    opacity: .28;
+    opacity: 0;
+    color: rgba(183, 134, 60, .55);
+    transform: scale(.35) rotate(0deg);
     text-shadow: none;
     filter: none;
-    transform: scale(.85) rotate(0deg);
-  }
-
-  20% {
-    color: rgba(255, 250, 230, 1);
-    opacity: 1;
-    text-shadow:
-      0 0 2px rgba(255,255,245,.95),
-      0 0 6px rgba(255,236,150,.85);
-
-    filter:
-      drop-shadow(0 0 4px rgba(255,236,170,1))
-      drop-shadow(0 0 10px rgba(255,154,32,.75))
-      drop-shadow(0 0 18px rgba(230,95,12,.42));
-
-    transform: scale(1.28) rotate(8deg);
-  }
-
-  55% {
-    color: rgba(255, 242, 200, .96);
-    opacity: .95;
-    text-shadow:
-      0 0 2px rgba(255,236,170,.9),
-      0 0 7px rgba(255,154,32,.5);
-
-    filter:
-      drop-shadow(0 0 5px rgba(255,154,32,.52))
-      drop-shadow(0 0 12px rgba(230,95,12,.26));
-
-    transform: scale(1.06) rotate(-4deg);
-  }
-
-  100% {
-    color: rgba(183, 134, 60, .72);
-    opacity: .72;
-    text-shadow: none;
-    filter: none;
-    transform: scale(1) rotate(0deg);
-  }
-}
-    @keyframes logoSparkGlowCenter {
-  0% {
-    color: rgba(183, 134, 60, .68);
-    opacity: .45;
-    text-shadow: none;
-    filter: none;
-    transform: translateX(-50%) scale(1);
   }
 
   18% {
-    color: rgba(255, 250, 224, 1);
     opacity: 1;
+    color: rgba(255, 250, 224, 1);
+    transform: scale(1.35) rotate(8deg);
+
     text-shadow:
-      0 0 2px rgba(255, 255, 245, .95),
-      0 0 6px rgba(255, 236, 150, .85);
+      0 0 3px rgba(255, 255, 245, .95),
+      0 0 8px rgba(255, 236, 150, .85),
+      0 0 18px rgba(255, 154, 32, .60);
 
     filter:
-      drop-shadow(0 0 3px rgba(255, 236, 170, 1))
-      drop-shadow(0 0 10px rgba(255, 154, 32, .85))
-      drop-shadow(0 0 22px rgba(230, 95, 12, .55));
-
-    transform: translateX(-50%) scale(1.35);
+      drop-shadow(0 0 4px rgba(255, 236, 170, .95))
+      drop-shadow(0 0 12px rgba(255, 154, 32, .60))
+      drop-shadow(0 0 24px rgba(230, 95, 12, .35));
   }
 
-  65% {
-    color: rgba(255, 236, 170, .95);
+  52% {
     opacity: .95;
+    color: rgba(255, 238, 184, .95);
+    transform: scale(1.08) rotate(-4deg);
+
     text-shadow:
-      0 0 2px rgba(255, 236, 170, .9),
-      0 0 8px rgba(255, 154, 32, .55);
+      0 0 2px rgba(255, 236, 170, .85),
+      0 0 7px rgba(255, 154, 32, .48);
 
     filter:
-      drop-shadow(0 0 6px rgba(255, 154, 32, .65))
-      drop-shadow(0 0 16px rgba(230, 95, 12, .35));
-
-    transform: translateX(-50%) scale(1.12);
+      drop-shadow(0 0 6px rgba(255, 154, 32, .45))
+      drop-shadow(0 0 14px rgba(230, 95, 12, .24));
   }
 
   100% {
-    color: rgba(183, 134, 60, .72);
-    opacity: .75;
-    text-shadow: none;
+    opacity: .72;
+    color: rgba(214, 167, 74, .78);
+    transform: scale(1) rotate(0deg);
+
+    text-shadow:
+      0 0 2px rgba(255, 235, 185, .28);
+
     filter: none;
-    transform: translateX(-50%) scale(1);
   }
 }
+    
+    
     .brand {
       text-align: center;
       animation: fadeUp .9s ease both;
@@ -694,11 +678,12 @@ body::before {
   --glow: rgba(255, 154, 32, .92);
   --glow-soft: rgba(230, 95, 12, .62);
   --glow-faint: rgba(160, 55, 0, .38);
+}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 @media (max-width: 900px) {
   .entry {
@@ -778,11 +763,14 @@ body::before {
 </div>
 
  <div class="logo-stack">
-  <span class="logo-spark spark-top-left">✦</span>
-  <span class="logo-spark spark-top-center">✦</span>
-  <span class="logo-spark spark-top-right">✦</span>
-  <span class="logo-spark spark-side-left">✦</span>
-  <span class="logo-spark spark-side-right">✦</span>
+<!-- SPARKLES / STARBURSTS -->
+<span class="logo-spark spark-1">✦</span>
+<span class="logo-spark spark-2">✧</span>
+<span class="logo-spark spark-3">✦</span>
+<span class="logo-spark spark-4">✶</span>
+<span class="logo-spark spark-5">✦</span>
+<span class="logo-spark spark-6">✧</span>
+<span class="logo-spark spark-7">✦</span>
 
   <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
   <img src="Images/logo-crane.png" class="logo-crane" alt="">
