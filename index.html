@@ -23,13 +23,13 @@
     }
 
 body {
-  min-height: 100vh;
+  height: 100svh;
   font-family: Georgia, "Times New Roman", serif;
   color: #efe3c7;
 
   background: #050505;
 
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body::before {
@@ -45,13 +45,126 @@ body::before {
 }
 
 .entry {
-  min-height: 100svh;
+  height: 100svh;
+  width: min(1180px, 92vw);
+  margin: 0 auto;
+
   display: grid;
-  grid-template-rows: 38vh 62vh;
+  grid-template-rows: 44px 255px 1fr;
   justify-items: center;
+  align-items: start;
+
+  padding: 14px 0 18px;
+  overflow: hidden;
+}
+/* TOP NAV */
+
+.top-nav {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, auto) 1fr repeat(3, auto);
   align-items: center;
-  padding: clamp(12px, 2vh, 24px) 3vw clamp(14px, 2vh, 24px);
-  overflow: visible;
+  column-gap: clamp(28px, 5vw, 80px);
+
+  margin-bottom: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: clamp(.68rem, .9vw, .9rem);
+
+  position: relative;
+  z-index: 20;
+}
+
+.top-nav a {
+  color: rgba(255, 232, 170, .88);
+  text-decoration: none;
+
+  text-shadow:
+    0 0 1px rgba(255, 246, 218, .85);
+
+  filter:
+    drop-shadow(0 0 2px rgba(255, 220, 120, .45))
+    drop-shadow(0 0 8px rgba(255, 190, 38, .22));
+
+  transition:
+    color .25s ease,
+    filter .25s ease,
+    text-shadow .25s ease;
+}
+
+.top-nav a:hover {
+  color: rgba(255, 236, 170, 1);
+
+  text-shadow:
+    0 0 2px rgba(255, 236, 170, 1),
+    0 0 6px rgba(255, 154, 32, .82);
+
+  filter:
+    drop-shadow(0 0 3px rgba(255, 236, 170, 1))
+    drop-shadow(0 0 10px rgba(255, 154, 32, .92))
+    drop-shadow(0 0 22px rgba(230, 95, 12, .62))
+    drop-shadow(0 0 40px rgba(160, 55, 0, .38));
+}
+
+.top-nav a.active {
+  color: rgba(255, 232, 170, .95);
+
+  text-shadow:
+    0 0 1px rgba(255, 246, 218, .85);
+
+  filter:
+    drop-shadow(0 0 2px rgba(255, 220, 120, .50))
+    drop-shadow(0 0 10px rgba(255, 190, 38, .26));
+}
+
+.top-nav a.active:hover {
+  color: rgba(255, 236, 170, 1);
+
+  text-shadow:
+    0 0 2px rgba(255, 236, 170, 1),
+    0 0 6px rgba(255, 154, 32, .82);
+
+  filter:
+    drop-shadow(0 0 3px rgba(255, 236, 170, 1))
+    drop-shadow(0 0 10px rgba(255, 154, 32, .92))
+    drop-shadow(0 0 22px rgba(230, 95, 12, .62))
+    drop-shadow(0 0 40px rgba(160, 55, 0, .38));
+}
+
+.top-nav a::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  margin: 9px auto 0;
+  background: transparent;
+}
+
+.top-nav a.active::after {
+  background: linear-gradient(90deg, transparent, #b7863c, transparent);
+}
+
+
+/* TOP HERO: LEFT TEXT / LOGO / RIGHT TEXT */
+
+.hero-top {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 390px) 1fr;
+  align-items: center;
+  column-gap: clamp(28px, 5vw, 72px);
+
+  margin-bottom: 0;
+}
+
+.logo-stack {
+  position: relative;
+  width: min(390px, 34vw);
+  margin: 0 auto;
+  top: -90px;
+  z-index: 5;
 }
 
     .crane {
@@ -62,16 +175,7 @@ body::before {
     transform-origin: center;
     }
 
-.logo-stack {
-  position: relative;
-  width: min(1040px, 82vw, 42vh);
-  margin: 0 auto;
-  z-index: 5;
-  align-self: center;
-}
-
-
- .logo-base {
+.logo-base {
   width: 100%;
   display: block;
   position: relative;
@@ -85,36 +189,159 @@ body::before {
   left: 26%;
   z-index: 2;
   transform-origin: 50% 55%;
-  animation: craneSpinLand 4.5s cubic-bezier(.18,.85,.22,1) forwards;
+  animation: craneSpinLand 1.8s linear forwards;
+}
+/* =========================
+   SIDE COPY BLOCK
+   ========================= */
+.side-copy {
+  width: 100%;
+  text-align: center;
+
+  font-family: Georgia, "Times New Roman", serif;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  color: rgba(239, 227, 199, .82);
+
+  font-size: clamp(.95rem, 1.4vw, 1.35rem);
+  line-height: 1.65;
 }
 
+.side-copy p {
+  margin: 0;
+}
+
+/* add spacing around the text rows */
+.side-copy p + .accent-short {
+  margin-top: 12px;
+}
+
+.accent-middle {
+  margin-bottom: 12px;
+}
+
+.accent-bottom {
+  margin-top: 14px;
+}
+
+
+/* =========================
+   TOP LONG ACCENT LINE
+   ========================= */
+.accent-top {
+  position: relative;
+  width: min(430px, 100%);
+  height: 1px;
+  margin: 0 auto 26px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(183,134,60,.72),
+    rgba(183,134,60,.42),
+    rgba(183,134,60,.18)
+  );
+}
+
+/* mirror the top line direction on the right side */
+.right-copy .accent-top {
+  background: linear-gradient(
+    90deg,
+    rgba(183,134,60,.18),
+    rgba(183,134,60,.42),
+    rgba(183,134,60,.72)
+  );
+}
+
+/* center diamond on top line */
+.accent-top::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  left: 56%;
+  transform: translate(-50%, -52%);
+  font-size: .65rem;
+  color: rgba(183,134,60,.88);
+}
+
+/* outer-edge larger burst on left block */
+.left-copy .accent-top::before {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  transform: translateY(-52%);
+  font-size: 1rem;
+  color: rgba(183,134,60,.92);
+}
+
+/* outer-edge larger burst on right block */
+.right-copy .accent-top::before {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-52%);
+  font-size: 1rem;
+  color: rgba(183,134,60,.92);
+}
+
+
+/* =========================
+   SHORT ACCENT LINES
+   one between text rows
+   one at the bottom
+   ========================= */
+.accent-short {
+  position: relative;
+  width: min(220px, 72%);
+  height: 1px;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(183,134,60,.62),
+    transparent
+  );
+}
+
+.accent-short::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  font-size: .6rem;
+  color: rgba(183,134,60,.85);
+}
 
 @keyframes craneSpinLand {
   0% {
     opacity: 0;
     transform:
-      translate(0vw, 0vh)
+      translateY(34vh)
       rotate(0deg)
-      scale(5);
+      scale(4.2);
   }
 
-  8% {
-    opacity: .45;
-  }
-
-  18% {
-    opacity: .85;
+  14% {
+    opacity: .35;
   }
 
   28% {
+    opacity: .75;
+  }
+
+  42% {
     opacity: 1;
   }
 
   100% {
     opacity: 1;
     transform:
-      translate(0, 0)
-      rotate(1800deg)
+      translateY(0)
+      rotate(1080deg)
       scale(1);
   }
 }
@@ -166,26 +393,36 @@ body::before {
 ========================================================= */
 
 .doors {
-  width: min(1120px, 90vw);
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 300px));
+  grid-template-columns: repeat(3, minmax(260px, 360px));
   grid-template-areas: "tattoo book studio";
   justify-content: center;
   align-items: end;
   justify-items: center;
-  gap: clamp(28px, 4vw, 64px);
-  margin: 0;
-  padding-bottom: clamp(10px, 2vh, 24px);
+
+  gap: clamp(32px, 4.5vw, 72px);
+
+  margin-top: 20px;
+
   overflow: visible;
+
   animation: fadeUp .9s ease both;
-  animation-delay: 3.7s;
+  animation-delay: 2.0s;
+}
+.door-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4 / 5.05;
+  overflow: visible;
 }
 
 .door-wrap {
   position: relative;
   width: 100%;
-  max-width: 300px;
-  aspect-ratio: 4 / 5.65;
+  max-width: 380px;
+  aspect-ratio: 4 / 5.05;
   overflow: visible;
 }
 
@@ -231,8 +468,11 @@ body::before {
 
 .door:hover .door-frame {
   filter:
-    drop-shadow(0 18px 26px rgba(0,0,0,.55))
-    drop-shadow(0 0 18px var(--glow));
+    drop-shadow(0 18px 26px rgba(0,0,0,.58))
+    drop-shadow(0 0 4px var(--glow-core))
+    drop-shadow(0 0 12px var(--glow))
+    drop-shadow(0 0 28px var(--glow-soft))
+    drop-shadow(0 0 52px var(--glow-faint));
 }
 
 /* Shared interior artwork */
@@ -243,14 +483,17 @@ body::before {
   transition:
     transform .35s ease,
     filter .35s ease;
+
+  /* same dark shadow for tattoo + book */
   filter:
-    drop-shadow(0 12px 12px rgba(23,18,14,.32));
+    drop-shadow(0 16px 16px rgba(0,0,0,.48))
+    drop-shadow(0 5px 5px rgba(0,0,0,.38));
 }
 
 /* Tattoo machine */
 .tattoo-art {
   width: 50%;
-  top: 22%;
+  top: 18%;
   left: 50%;
   transform: translateX(-50%) rotate(32deg);
 }
@@ -258,13 +501,13 @@ body::before {
 .door.tattoo:hover .tattoo-art {
   transform: translateX(-50%) rotate(40deg) scale(1.05);
   filter:
-    drop-shadow(0 16px 18px rgba(23,18,14,.38))
-    drop-shadow(0 0 8px rgba(158,36,31,.42));
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
 }
 
 /* Book */
 .book-art {
-  width: 48%;
+  width: 58%;
   top: 24%;
   left: 50%;
   transform: translateX(-50%);
@@ -273,21 +516,22 @@ body::before {
 .door.book:hover .book-art {
   transform: translateX(-50%) scale(1.05);
   filter:
-    drop-shadow(0 16px 18px rgba(23,18,14,.38))
-    drop-shadow(0 0 8px rgba(85,97,47,.38));
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
 }
 
 /* Keyhole for private studio */
 .keyhole-art {
   position: absolute;
   z-index: 2;
-  width: 34%;
-  top: 26%;
+  width: 48%;
+  top: 22%;
   left: 50%;
   transform: translateX(-50%);
   pointer-events: none;
   filter:
-    drop-shadow(0 10px 12px rgba(0,0,0,.42));
+  drop-shadow(0 16px 16px rgba(0,0,0,.48))
+  drop-shadow(0 5px 5px rgba(0,0,0,.38));
   transition:
     transform .35s ease,
     filter .35s ease;
@@ -296,22 +540,19 @@ body::before {
 .door.studio:hover .keyhole-art {
   transform: translateX(-50%) scale(1.06);
   filter:
-    drop-shadow(0 12px 16px rgba(0,0,0,.50))
-    drop-shadow(0 0 12px rgba(109,63,120,.55));
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
 }
 
-/* Door-specific glow colors */
-.door.tattoo {
-  --glow: rgba(158,36,31,.55);
-}
+/* Door-specific neon glow colors */
 
-.door.book {
-  --glow: rgba(85,97,47,.50);
-}
-
+.door.tattoo,
+.door.book,
 .door.studio {
-  --glow: rgba(109,63,120,.55);
-}
+  --glow-core: rgba(255, 236, 170, 1);
+  --glow: rgba(255, 154, 32, .92);
+  --glow-soft: rgba(230, 95, 12, .62);
+  --glow-faint: rgba(160, 55, 0, .38);
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
@@ -320,89 +561,145 @@ body::before {
 
 @media (max-width: 900px) {
   .entry {
-    height: auto;
+    width: min(420px, 88vw);
     min-height: 100vh;
-    overflow: visible;
-    padding: 28px 18px 42px;
+    padding: 28px 0 42px;
+  }
+
+  .top-nav {
+    display: none;
+  }
+
+  .hero-top {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+    margin-bottom: 24px;
   }
 
   .logo-stack {
-    width: min(340px, 82vw);
-    margin-bottom: 12px;
+    width: min(330px, 82vw);
+    grid-row: 1;
   }
 
-.doors {
-  width: min(340px, 86vw);
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "tattoo"
-    "book"
-    "studio";
-  gap: 22px;
-  margin-top: 24px;
-}
+  .side-copy {
+    display: none;
+  }
 
-.door-wrap {
-  max-width: 300px;
-}
+  .doors {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "tattoo"
+      "book"
+      "studio";
+    gap: 24px;
+  }
 
-.door {
-  transform: none;
-}
+  .door-wrap {
+    max-width: 300px;
+  }
+
+  .door {
+    transform: none;
+  }
+
+  .bottom-links {
+    width: min(320px, 80vw);
+  }
 }
   </style>
 </head>
 <body>
   <main class="entry">
-   <div class="logo-stack">
-  <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
-  <img src="Images/logo-crane.png" class="logo-crane" alt="">
+
+  <nav class="top-nav" aria-label="Main navigation">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="artists.html">Artists</a>
+    <span></span>
+    <a href="events.html">Events</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="hero-top" aria-label="PaperCrane Books and Tattoo introduction">
+
+<div class="side-copy left-copy">
+  <div class="accent-top"></div>
+
+  <p>ONE SPACE.</p>
+
+  <div class="accent-short accent-middle"></div>
+
+  <p>MANY STORIES.</p>
+
+  <div class="accent-short accent-bottom"></div>
 </div>
 
+    <div class="logo-stack">
+      <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
+      <img src="Images/logo-crane.png" class="logo-crane" alt="">
+    </div>
 
-<section class="doors" aria-label="Choose where to enter">
+  <div class="side-copy right-copy">
+  <div class="accent-top"></div>
 
-  <div class="door-wrap tattoo-wrap">
-    <a class="door tattoo" href="tattoo.html">
-      <img src="Images/door.png"
-           class="door-frame"
-           alt=""
-           aria-hidden="true">
+  <p>BOOKS. INK.</p>
 
-      <img src="Images/gun.png"
-           class="door-art tattoo-art"
-           alt="Coil tattoo machine">
-    </a>
-  </div>
+  <div class="accent-short accent-middle"></div>
 
-  <div class="door-wrap book-wrap">
-    <a class="door book" href="bookstore.html">
-      <img src="Images/door.png"
-           class="door-frame"
-           alt=""
-           aria-hidden="true">
+  <p>CONNECTION.</p>
 
-      <img src="Images/book.png"
-           class="door-art book-art"
-           alt="Open book illustration">
-    </a>
-  </div>
+  <div class="accent-short accent-bottom"></div>
+</div>
 
-  <div class="door-wrap studio-wrap">
-    <a class="door studio" href="studio.html">
-      <img src="Images/door.png"
-           class="door-frame"
-           alt=""
-           aria-hidden="true">
+  </section>
 
-      <img src="Images/keyhole.png"
-           class="keyhole-art"
-           alt="Private studio keyhole">
-    </a>
-  </div>
+  <section class="doors" aria-label="Choose where to enter">
 
-</section>
-      
-  </main>
+    <div class="door-wrap tattoo-wrap">
+      <a class="door tattoo" href="tattoo.html">
+        <img src="Images/door.png"
+             class="door-frame"
+             alt=""
+             aria-hidden="true">
+
+        <img src="Images/gun.png"
+             class="door-art tattoo-art"
+             alt="Coil tattoo machine">
+      </a>
+    </div>
+
+    <div class="door-wrap book-wrap">
+      <a class="door book" href="bookstore.html">
+        <img src="Images/door.png"
+             class="door-frame"
+             alt=""
+             aria-hidden="true">
+
+        <img src="Images/book.png"
+             class="door-art book-art"
+             alt="Open book illustration">
+      </a>
+    </div>
+
+    <div class="door-wrap studio-wrap">
+      <a class="door studio" href="studio.html">
+        <img src="Images/door.png"
+             class="door-frame"
+             alt=""
+             aria-hidden="true">
+
+        <img src="Images/keyhole.png"
+             class="keyhole-art"
+             alt="Private studio keyhole">
+      </a>
+    </div>
+
+  </section>
+
+
+
+</main>
 </body>
 </html>  
