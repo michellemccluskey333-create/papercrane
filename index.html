@@ -204,11 +204,46 @@ body::before {
 
   font-size: clamp(.9rem, 1.5vw, 1.25rem);
   line-height: 1.8;
+}
 
-  transition:
-    color .25s ease,
-    text-shadow .25s ease,
-    filter .25s ease;
+.side-copy p {
+  margin: 0;
+}
+
+.accent-line {
+  width: min(300px, 100%);
+  height: 1px;
+  margin: 0 auto 22px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(183, 134, 60, .45),
+      transparent
+    );
+
+  position: relative;
+  filter: none;
+}
+
+.accent-line::after {
+  content: "✦";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -52%);
+
+  color: rgba(183, 134, 60, .75);
+  font-size: .7rem;
+
+  text-shadow: none;
+  filter: none;
+}
+
+.accent-line.short {
+  width: min(210px, 82%);
+  margin: 18px auto 0;
 }
 
 .side-copy p {
@@ -258,47 +293,8 @@ body::before {
   width: min(210px, 82%);
   margin: 18px auto 0;
 }
-.side-copy:hover {
-  color: rgba(255, 250, 224, .98);
 
-  text-shadow:
-    0 0 2px rgba(255, 255, 245, .95),
-    0 0 6px rgba(255, 236, 150, .75);
 
-  filter:
-    drop-shadow(0 0 2px rgba(255, 255, 235, .65))
-    drop-shadow(0 0 10px rgba(255, 230, 125, .45))
-    drop-shadow(0 0 22px rgba(255, 205, 55, .25));
-}
-
-.side-copy:hover .accent-line {
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 250, 224, .85),
-      rgba(255, 220, 120, .65),
-      transparent
-    );
-
-  filter:
-    drop-shadow(0 0 6px rgba(255, 220, 120, .35))
-    drop-shadow(0 0 14px rgba(255, 190, 38, .22));
-}
-
-.side-copy:hover .accent-line::after {
-  color: rgba(255, 250, 224, .98);
-
-  text-shadow:
-    0 0 2px rgba(255, 255, 245, .95),
-    0 0 6px rgba(255, 236, 150, .75);
-
-  filter:
-    drop-shadow(0 0 2px rgba(255, 255, 235, .95))
-    drop-shadow(0 0 8px rgba(255, 230, 125, .75))
-    drop-shadow(0 0 18px rgba(255, 205, 55, .48))
-    drop-shadow(0 0 34px rgba(255, 180, 25, .28));
-}
 .bottom-links {
   width: min(520px, 70vw);
   display: grid;
@@ -490,15 +486,17 @@ body::before {
   transition:
     transform .35s ease,
     filter .35s ease;
+
+  /* same dark shadow for tattoo + book */
   filter:
-    drop-shadow(0 16px 14px rgba(0,0,0,.42))
-    drop-shadow(0 5px 5px rgba(0,0,0,.35));
+    drop-shadow(0 16px 16px rgba(0,0,0,.48))
+    drop-shadow(0 5px 5px rgba(0,0,0,.38));
 }
 
 /* Tattoo machine */
 .tattoo-art {
   width: 50%;
-  top: 22%;
+  top: 18%;
   left: 50%;
   transform: translateX(-50%) rotate(32deg);
 }
@@ -506,8 +504,8 @@ body::before {
 .door.tattoo:hover .tattoo-art {
   transform: translateX(-50%) rotate(40deg) scale(1.05);
   filter:
-    drop-shadow(0 16px 18px rgba(23,18,14,.38))
-    drop-shadow(0 0 8px rgba(158,36,31,.42));
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
 }
 
 /* Book */
@@ -521,8 +519,8 @@ body::before {
 .door.book:hover .book-art {
   transform: translateX(-50%) scale(1.05);
   filter:
-    drop-shadow(0 16px 18px rgba(23,18,14,.38))
-    drop-shadow(0 0 8px rgba(85,97,47,.38));
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
 }
 
 /* Keyhole for private studio */
@@ -530,12 +528,12 @@ body::before {
   position: absolute;
   z-index: 2;
   width: 48%;
-  top: 26%;
+  top: 22%;
   left: 50%;
   transform: translateX(-50%);
   pointer-events: none;
   filter:
-  drop-shadow(0 16px 16px rgba(0,0,0,.50))
+  drop-shadow(0 16px 16px rgba(0,0,0,.48))
   drop-shadow(0 5px 5px rgba(0,0,0,.38));
   transition:
     transform .35s ease,
@@ -545,8 +543,8 @@ body::before {
 .door.studio:hover .keyhole-art {
   transform: translateX(-50%) scale(1.06);
   filter:
-    drop-shadow(0 12px 16px rgba(0,0,0,.50))
-    drop-shadow(0 0 12px rgba(109,63,120,.55));
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
 }
 
 /* Door-specific neon glow colors */
@@ -558,27 +556,6 @@ body::before {
   --glow: rgba(255, 154, 32, .92);
   --glow-soft: rgba(230, 95, 12, .62);
   --glow-faint: rgba(160, 55, 0, .38);
-}
-  /*  .door.tattoo {
-  --glow-core: rgba(255, 245, 235, 1);
-  --glow: rgba(255, 45, 45, .95);
-  --glow-soft: rgba(255, 0, 0, .68);
-  --glow-faint: rgba(150, 0, 0, .42);
-}
-
-.door.book {
-  --glow-core: rgba(235, 255, 220, 1);
-  --glow: rgba(120, 255, 85, .88);
-  --glow-soft: rgba(45, 255, 35, .58);
-  --glow-faint: rgba(20, 220, 20, .34);
-}
-
-.door.studio {
-  --glow-core: rgba(190, 70, 255, .95);
-  --glow: rgba(178, 70, 255, .72);
-  --glow-soft: rgba(150, 45, 255, .42);
-  --glow-faint: rgba(130, 30, 220, .24);
-}*/
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
