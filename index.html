@@ -191,132 +191,129 @@ body::before {
   transform-origin: 50% 55%;
   animation: craneSpinLand 1.8s linear forwards;
 }
-/* SIDE COPY */
-
+/* =========================
+   SIDE COPY BLOCK
+   ========================= */
 .side-copy {
   width: 100%;
   text-align: center;
 
   font-family: Georgia, "Times New Roman", serif;
   text-transform: uppercase;
-  letter-spacing: .28em;
-  color: rgba(239, 227, 199, .78);
+  letter-spacing: .22em;
+  color: rgba(239, 227, 199, .82);
 
-  font-size: clamp(.9rem, 1.5vw, 1.25rem);
-  line-height: 1.8;
+  font-size: clamp(.95rem, 1.4vw, 1.35rem);
+  line-height: 1.65;
 }
 
 .side-copy p {
   margin: 0;
 }
 
-.accent-line {
-  width: min(300px, 100%);
-  height: 1px;
-  margin: 0 auto 22px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(183, 134, 60, .45),
-      transparent
-    );
-
-  position: relative;
-  filter: none;
+/* add spacing around the text rows */
+.side-copy p + .accent-short {
+  margin-top: 12px;
 }
 
-.accent-line::after {
+.accent-middle {
+  margin-bottom: 12px;
+}
+
+.accent-bottom {
+  margin-top: 14px;
+}
+
+
+/* =========================
+   TOP LONG ACCENT LINE
+   ========================= */
+.accent-top {
+  position: relative;
+  width: min(430px, 100%);
+  height: 1px;
+  margin: 0 auto 26px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(183,134,60,.72),
+    rgba(183,134,60,.42),
+    rgba(183,134,60,.18)
+  );
+}
+
+/* mirror the top line direction on the right side */
+.right-copy .accent-top {
+  background: linear-gradient(
+    90deg,
+    rgba(183,134,60,.18),
+    rgba(183,134,60,.42),
+    rgba(183,134,60,.72)
+  );
+}
+
+/* center diamond on top line */
+.accent-top::after {
   content: "✦";
   position: absolute;
-  left: 50%;
   top: 50%;
+  left: 56%;
   transform: translate(-50%, -52%);
-
-  color: rgba(183, 134, 60, .75);
-  font-size: .7rem;
-
-  text-shadow: none;
-  filter: none;
+  font-size: .65rem;
+  color: rgba(183,134,60,.88);
 }
 
-.accent-line.short {
-  width: min(210px, 82%);
-  margin: 18px auto 0;
-}
-
-.side-copy p {
-  margin: 0;
-}
-
-.accent-line {
-  width: min(300px, 100%);
-  height: 1px;
-  margin: 0 auto 22px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(183, 134, 60, .45),
-      transparent
-    );
-
-  position: relative;
-
-  transition:
-    background .25s ease,
-    filter .25s ease;
-}
-
-.accent-line::after {
+/* outer-edge larger burst on left block */
+.left-copy .accent-top::before {
   content: "✦";
   position: absolute;
-  left: 50%;
   top: 50%;
-  transform: translate(-50%, -52%);
-
-  color: rgba(183, 134, 60, .75);
-  font-size: .7rem;
-
-  text-shadow: none;
-  filter: none;
-
-  transition:
-    color .25s ease,
-    text-shadow .25s ease,
-    filter .25s ease;
+  left: -10px;
+  transform: translateY(-52%);
+  font-size: 1rem;
+  color: rgba(183,134,60,.92);
 }
 
-.accent-line.short {
-  width: min(210px, 82%);
-  margin: 18px auto 0;
+/* outer-edge larger burst on right block */
+.right-copy .accent-top::before {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-52%);
+  font-size: 1rem;
+  color: rgba(183,134,60,.92);
 }
 
 
-.bottom-links {
-  width: min(520px, 70vw);
-  display: grid;
-  grid-template-columns: 1fr auto auto auto auto auto 1fr;
-  align-items: center;
-  gap: 16px;
-
-  margin-top: -4px;
-
-  color: rgba(239, 227, 199, .58);
-  font-size: .95rem;
-}
-
-.bottom-links a {
-  color: rgba(239, 227, 199, .58);
-  text-decoration: none;
-}
-
-.bottom-line {
+/* =========================
+   SHORT ACCENT LINES
+   one between text rows
+   one at the bottom
+   ========================= */
+.accent-short {
+  position: relative;
+  width: min(220px, 72%);
   height: 1px;
-  background:
-    linear-gradient(90deg, transparent, rgba(183,134,60,.65), transparent);
+  margin-left: auto;
+  margin-right: auto;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(183,134,60,.62),
+    transparent
+  );
+}
+
+.accent-short::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  font-size: .6rem;
+  color: rgba(183,134,60,.85);
 }
 
 @keyframes craneSpinLand {
@@ -627,24 +624,34 @@ body::before {
 
   <section class="hero-top" aria-label="PaperCrane Books and Tattoo introduction">
 
-    <div class="side-copy left-copy">
-      <div class="accent-line"></div>
-      <p>One space.</p>
-      <p>Many stories.</p>
-      <div class="accent-line short"></div>
-    </div>
+<div class="side-copy left-copy">
+  <div class="accent-top"></div>
+
+  <p>ONE SPACE.</p>
+
+  <div class="accent-short accent-middle"></div>
+
+  <p>MANY STORIES.</p>
+
+  <div class="accent-short accent-bottom"></div>
+</div>
 
     <div class="logo-stack">
       <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
       <img src="Images/logo-crane.png" class="logo-crane" alt="">
     </div>
 
-    <div class="side-copy right-copy">
-      <div class="accent-line"></div>
-      <p>Books. Ink.</p>
-      <p>Connection.</p>
-      <div class="accent-line short"></div>
-    </div>
+  <div class="side-copy right-copy">
+  <div class="accent-top"></div>
+
+  <p>BOOKS. INK.</p>
+
+  <div class="accent-short accent-middle"></div>
+
+  <p>CONNECTION.</p>
+
+  <div class="accent-short accent-bottom"></div>
+</div>
 
   </section>
 
