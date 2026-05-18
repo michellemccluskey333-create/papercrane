@@ -161,13 +161,13 @@ body::before {
 
 .logo-stack {
   position: relative;
-  width: min(390px, 34vw);
+  width: min(460px, 38vw);
   margin: 0 auto;
-  top: -10px;
+  transform: translateY(-10px);
   z-index: 5;
   overflow: visible;
 
-  animation: logoShapeGlow 2s ease-out 2.7s forwards;
+  animation: logoShapeGlow 3.5s ease-out 1.8s forwards;
 }
 
 /* make sure the real logo artwork stays above the glow */
@@ -265,7 +265,7 @@ body::before {
   font-size: .65rem;
   color: rgba(183,134,60,.88);
 
-  animation: accentDiamondGlow 2s ease-out 2.7s forwards;
+  animation: accentDiamondGlow 3.5s ease-out 1.8s forwards;
 }
 
 
@@ -279,7 +279,7 @@ body::before {
   font-size: 1rem;
   color: rgba(183,134,60,.92);
 
-  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
+  animation: accentDiamondGlow 3.5s ease-out 1.8s forwards;
 }
 
 /* =========================
@@ -310,7 +310,7 @@ body::before {
   font-size: .6rem;
   color: rgba(183,134,60,.85);
 
-  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
+  animation: accentDiamondGlow 3.5s ease-out 1.8s forwards;
 }
 
 /* outer-edge larger burst on right block */
@@ -323,7 +323,7 @@ body::before {
   font-size: 1rem;
   color: rgba(183,134,60,.92);
 
-  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
+  animation: accentDiamondGlow 3.5s ease-out 1.8s forwards;
 }
 
 @keyframes craneSpinLand {
@@ -362,7 +362,7 @@ body::before {
     filter: none;
   }
 
-  18% {
+  15% {
     color: rgba(255, 250, 224, 1);
     text-shadow:
       0 0 3px rgba(255, 255, 245, .95),
@@ -375,14 +375,16 @@ body::before {
       drop-shadow(0 0 14px rgba(255, 154, 32, .55));
   }
 
-  55% {
+  65% {
     color: rgba(255, 238, 184, .95);
     text-shadow:
-      0 0 2px rgba(255, 236, 170, .8),
-      0 0 8px rgba(255, 154, 32, .42);
+      0 0 3px rgba(255, 255, 245, .75),
+      0 0 8px rgba(255, 236, 150, .62),
+      0 0 16px rgba(255, 154, 32, .42);
 
     filter:
-      drop-shadow(0 0 7px rgba(255, 154, 32, .35));
+      drop-shadow(0 0 4px rgba(255, 236, 170, .68))
+      drop-shadow(0 0 12px rgba(255, 154, 32, .35));
   }
 
   100% {
@@ -396,7 +398,7 @@ body::before {
     filter: none;
   }
 
-  18% {
+  15% {
     filter:
       drop-shadow(0 0 4px rgba(255, 250, 224, .95))
       drop-shadow(0 0 14px rgba(255, 236, 170, .75))
@@ -404,11 +406,12 @@ body::before {
       drop-shadow(0 0 58px rgba(230, 95, 12, .28));
   }
 
-  55% {
+  65% {
     filter:
-      drop-shadow(0 0 3px rgba(255, 236, 170, .75))
-      drop-shadow(0 0 16px rgba(255, 154, 32, .35))
-      drop-shadow(0 0 32px rgba(230, 95, 12, .18));
+      drop-shadow(0 0 4px rgba(255, 250, 224, .90))
+      drop-shadow(0 0 12px rgba(255, 236, 170, .68))
+      drop-shadow(0 0 28px rgba(255, 154, 32, .40))
+      drop-shadow(0 0 48px rgba(230, 95, 12, .22));
   }
 
   100% {
@@ -642,11 +645,15 @@ body::before {
     display: none;
   }
 
-  .hero-top {
-    grid-template-columns: 1fr;
-    row-gap: 18px;
-    margin-bottom: 24px;
-  }
+.hero-top {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 460px) 1fr;
+  align-items: center;
+  column-gap: clamp(24px, 4vw, 64px);
+
+  margin-bottom: 0;
+}
 
   .logo-stack {
     width: min(330px, 82vw);
