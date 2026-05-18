@@ -511,7 +511,7 @@ body::before {
 
 /* Book */
 .book-art {
-  width: 48%;
+  width: 54%;
   top: 24%;
   left: 50%;
   transform: translateX(-50%);
@@ -549,7 +549,15 @@ body::before {
 
 /* Door-specific neon glow colors */
 
-.door.tattoo {
+.door.tattoo,
+.door.book,
+.door.studio {
+  --glow-core: rgba(255, 236, 170, 1);
+  --glow: rgba(255, 154, 32, .92);
+  --glow-soft: rgba(230, 95, 12, .62);
+  --glow-faint: rgba(160, 55, 0, .38);
+}
+  /*  .door.tattoo {
   --glow-core: rgba(255, 245, 235, 1);
   --glow: rgba(255, 45, 45, .95);
   --glow-soft: rgba(255, 0, 0, .68);
@@ -568,7 +576,7 @@ body::before {
   --glow: rgba(178, 70, 255, .72);
   --glow-soft: rgba(150, 45, 255, .42);
   --glow-faint: rgba(130, 30, 220, .24);
-}
+}*/
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
