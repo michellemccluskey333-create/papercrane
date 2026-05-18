@@ -165,8 +165,9 @@ body::before {
   margin: 0 auto;
   top: -10px;
   z-index: 5;
-   isolation: isolate;
   overflow: visible;
+
+  animation: logoShapeGlow 2s ease-out 1.8s forwards;
 }
 
 /* make sure the real logo artwork stays above the glow */
@@ -174,68 +175,6 @@ body::before {
   position: relative;
   z-index: 2;
 }
-
-/* =========================================
-   SOFT NEON GLOW AROUND LOGO STACK
-   glows for ~2 seconds after crane lands, then fades out
-   ========================================= */
-.logo-stack::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-
-  /* expand outside the logo area */
-  top: -28px;
-  right: -34px;
-  bottom: -24px;
-  left: -34px;
-
-  border-radius: 40px;
-  opacity: 0;
-  filter: blur(20px);
-
-  /* warm golden-orange glow */
-  box-shadow:
-    0 0 18px rgba(255, 236, 190, .28),
-    0 0 42px rgba(255, 204, 120, .22),
-    0 0 78px rgba(255, 153, 55, .18),
-    0 0 120px rgba(255, 118, 20, .10);
-
-  animation: logoGlowBurst 2s ease-out 1.8s forwards;
-}
-
-/* =========================================
-   LOGO GLOW ANIMATION
-   adjust 1.8s above if crane timing changes
-   ========================================= */
-@keyframes logoGlowBurst {
-  0% {
-    opacity: 0;
-    transform: scale(.96);
-  }
-
-  18% {
-    opacity: .95;
-    transform: scale(1);
-  }
-
-  48% {
-    opacity: .72;
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-}
-    .crane {
-    width: 95px;
-    height: 66px;
-    margin-bottom: 18px;
-    animation: craneLand 1.9s cubic-bezier(.2,.9,.2,1) both;
-    transform-origin: center;
-    }
 
 .logo-base {
   width: 100%;
@@ -455,7 +394,30 @@ body::before {
     filter: none;
   }
 }
-    
+    @keyframes logoShapeGlow {
+  0% {
+    filter: none;
+  }
+
+  18% {
+    filter:
+      drop-shadow(0 0 4px rgba(255, 250, 224, .95))
+      drop-shadow(0 0 14px rgba(255, 236, 170, .75))
+      drop-shadow(0 0 34px rgba(255, 154, 32, .48))
+      drop-shadow(0 0 58px rgba(230, 95, 12, .28));
+  }
+
+  55% {
+    filter:
+      drop-shadow(0 0 3px rgba(255, 236, 170, .75))
+      drop-shadow(0 0 16px rgba(255, 154, 32, .35))
+      drop-shadow(0 0 32px rgba(230, 95, 12, .18));
+  }
+
+  100% {
+    filter: none;
+  }
+}
     
     .brand {
       text-align: center;
