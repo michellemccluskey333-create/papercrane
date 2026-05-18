@@ -167,7 +167,7 @@ body::before {
   z-index: 5;
   overflow: visible;
 
-  animation: logoShapeGlow 3.5s ease-out 1.8s forwards;
+  animation: logoShapeGlow 2.8s ease-out 1.8s forwards;
 }
 
 /* make sure the real logo artwork stays above the glow */
@@ -265,7 +265,7 @@ body::before {
   font-size: .65rem;
   color: rgba(183,134,60,.88);
 
-  animation: accentDiamondGlow 3.5s ease-out 1.8s forwards;
+  animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
 
 
@@ -279,7 +279,7 @@ body::before {
   font-size: 1rem;
   color: rgba(183,134,60,.92);
 
-  animation: accentDiamondGlow 3.5s ease-out 1.8s forwards;
+  animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
 
 /* =========================
@@ -310,7 +310,7 @@ body::before {
   font-size: .6rem;
   color: rgba(183,134,60,.85);
 
-  animation: accentDiamondGlow 3.5s ease-out 1.8s forwards;
+  animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
 
 /* outer-edge larger burst on right block */
@@ -323,7 +323,7 @@ body::before {
   font-size: 1rem;
   color: rgba(183,134,60,.92);
 
-  animation: accentDiamondGlow 3.5s ease-out 1.8s forwards;
+  animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
 
 @keyframes craneSpinLand {
@@ -548,7 +548,45 @@ body::before {
     drop-shadow(0 0 28px var(--glow-soft))
     drop-shadow(0 0 52px var(--glow-faint));
 }
+/* Door text labels */
 
+.door-label {
+  position: absolute;
+  z-index: 3;
+
+  left: 50%;
+  bottom: 18%;
+
+  transform: translateX(-50%);
+  width: 72%;
+  text-align: center;
+
+  color: rgba(45, 31, 20, .92);
+  pointer-events: none;
+}
+
+.door-label h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.95rem, 1.25vw, 1.25rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  line-height: 1.05;
+  margin: 0 0 6px;
+
+  color: rgba(35, 24, 17, .94);
+}
+
+.door-label p {
+  font-family: Arial, sans-serif;
+  font-size: clamp(.56rem, .72vw, .72rem);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  line-height: 1.2;
+  margin: 0;
+
+  color: rgba(90, 60, 35, .82);
+}
 /* Shared interior artwork */
 .door-art {
   position: absolute;
@@ -736,18 +774,23 @@ body::before {
 
   <section class="doors" aria-label="Choose where to enter">
 
-    <div class="door-wrap tattoo-wrap">
-      <a class="door tattoo" href="tattoo.html">
-        <img src="Images/door.png"
-             class="door-frame"
-             alt=""
-             aria-hidden="true">
+<div class="door-wrap tattoo-wrap">
+  <a class="door tattoo" href="tattoo.html">
+    <img src="Images/door.png"
+         class="door-frame"
+         alt=""
+         aria-hidden="true">
 
-        <img src="Images/gun.png"
-             class="door-art tattoo-art"
-             alt="Coil tattoo machine">
-      </a>
+    <img src="Images/gun.png"
+         class="door-art tattoo-art"
+         alt="Coil tattoo machine">
+
+    <div class="door-label">
+      <h2>Tattoo Shop</h2>
+      <p>Walk-ins Welcome</p>
     </div>
+  </a>
+</div>
 
     <div class="door-wrap book-wrap">
       <a class="door book" href="bookstore.html">
@@ -759,6 +802,10 @@ body::before {
         <img src="Images/book.png"
              class="door-art book-art"
              alt="Open book illustration">
+            <div class="door-label">
+            <h2>Book Store</h2>
+            <p>Books &amp; Oddities</p>
+        </div>
       </a>
     </div>
 
@@ -772,6 +819,10 @@ body::before {
         <img src="Images/keyhole.png"
              class="keyhole-art"
              alt="Private studio keyhole">
+            <div class="door-label">
+            <h2>Private Studio</h2>
+            <p>Appt. Only</p>
+          </div>
       </a>
     </div>
 
