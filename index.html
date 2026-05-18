@@ -195,50 +195,49 @@ body::before {
   position: absolute;
   z-index: 6;
   pointer-events: none;
-
-  color: rgba(183, 134, 60, .72);
-  font-size: clamp(.7rem, 1.2vw, 1rem);
   line-height: 1;
-
-  opacity: .75;
+  opacity: .72;
+  color: rgba(183, 134, 60, .72);
 
   text-shadow: none;
   filter: none;
+}
 
+/* random sparkle placements — smaller, closer, uneven */
+
+.spark-1 {
+  top: -6%;
+  left: 28%;
+  font-size: .72rem;
   animation: logoSparkGlow 2s ease-out 1.8s both;
 }
 
-/* three around the top */
-.spark-top-left {
-  top: -10%;
-  left: 19%;
+.spark-2 {
+  top: -11%;
+  left: 46%;
+  font-size: .5rem;
+  animation: logoSparkGlow 2s ease-out 1.95s both;
 }
 
-.spark-top-center {
-  top: -16%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: clamp(.85rem, 1.5vw, 1.25rem);
-  animation-name: logoSparkGlowCenter;
-
+.spark-3 {
+  top: -4%;
+  right: 25%;
+  font-size: .88rem;
+  animation: logoSparkGlow 2s ease-out 1.86s both;
 }
 
-.spark-top-right {
-  top: -10%;
-  right: 19%;
+.spark-4 {
+  top: 24%;
+  left: 6%;
+  font-size: .62rem;
+  animation: logoSparkGlow 2s ease-out 2.05s both;
 }
 
-/* two on the sides */
-.spark-side-left {
-  top: 38%;
-  left: -8%;
-  font-size: clamp(.8rem, 1.4vw, 1.15rem);
-}
-
-.spark-side-right {
-  top: 38%;
-  right: -8%;
-  font-size: clamp(.8rem, 1.4vw, 1.15rem);
+.spark-5 {
+  top: 30%;
+  right: 8%;
+  font-size: .54rem;
+  animation: logoSparkGlow 2s ease-out 2.12s both;
 }
 /* =========================
    SIDE COPY BLOCK
@@ -398,47 +397,47 @@ body::before {
     @keyframes logoSparkGlow {
   0% {
     color: rgba(183, 134, 60, .68);
-    opacity: .45;
+    opacity: .28;
     text-shadow: none;
     filter: none;
-    transform: scale(1);
+    transform: scale(.85) rotate(0deg);
   }
 
-  18% {
-    color: rgba(255, 250, 224, 1);
+  20% {
+    color: rgba(255, 250, 230, 1);
     opacity: 1;
     text-shadow:
-      0 0 2px rgba(255, 255, 245, .95),
-      0 0 6px rgba(255, 236, 150, .85);
+      0 0 2px rgba(255,255,245,.95),
+      0 0 6px rgba(255,236,150,.85);
 
     filter:
-      drop-shadow(0 0 3px rgba(255, 236, 170, 1))
-      drop-shadow(0 0 10px rgba(255, 154, 32, .85))
-      drop-shadow(0 0 22px rgba(230, 95, 12, .55));
+      drop-shadow(0 0 4px rgba(255,236,170,1))
+      drop-shadow(0 0 10px rgba(255,154,32,.75))
+      drop-shadow(0 0 18px rgba(230,95,12,.42));
 
-    transform: scale(1.35);
+    transform: scale(1.28) rotate(8deg);
   }
 
-  65% {
-    color: rgba(255, 236, 170, .95);
+  55% {
+    color: rgba(255, 242, 200, .96);
     opacity: .95;
     text-shadow:
-      0 0 2px rgba(255, 236, 170, .9),
-      0 0 8px rgba(255, 154, 32, .55);
+      0 0 2px rgba(255,236,170,.9),
+      0 0 7px rgba(255,154,32,.5);
 
     filter:
-      drop-shadow(0 0 6px rgba(255, 154, 32, .65))
-      drop-shadow(0 0 16px rgba(230, 95, 12, .35));
+      drop-shadow(0 0 5px rgba(255,154,32,.52))
+      drop-shadow(0 0 12px rgba(230,95,12,.26));
 
-    transform: scale(1.12);
+    transform: scale(1.06) rotate(-4deg);
   }
 
   100% {
     color: rgba(183, 134, 60, .72);
-    opacity: .75;
+    opacity: .72;
     text-shadow: none;
     filter: none;
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
   }
 }
     @keyframes logoSparkGlowCenter {
