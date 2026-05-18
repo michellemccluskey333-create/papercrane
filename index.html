@@ -282,20 +282,6 @@ body::before {
   animation: accentDiamondGlow 2s ease-out 1.8s forwards;
 }
 
-/* outer-edge larger burst on right block */
-.right-copy .accent-top::before {
-  content: "✦";
-  position: absolute;
-  top: 50%;
-  right: -10px;
-  transform: translateY(-52%);
-  font-size: 1rem;
-  color: rgba(183,134,60,.92);
-
-  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
-}
-
-
 /* =========================
    SHORT ACCENT LINES
    one between text rows
@@ -314,6 +300,17 @@ body::before {
     rgba(183,134,60,.62),
     transparent
   );
+}
+    .accent-short::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  font-size: .6rem;
+  color: rgba(183,134,60,.85);
+
+  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
 }
 
 /* outer-edge larger burst on right block */
@@ -712,7 +709,6 @@ body::before {
 </div>
 
  <div class="logo-stack">
-<!-- SPARKLES / STARBURSTS -->
 <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
 <img src="Images/logo-crane.png" class="logo-crane" alt="">
 </div>
