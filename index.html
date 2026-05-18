@@ -165,9 +165,70 @@ body::before {
   margin: 0 auto;
   top: -10px;
   z-index: 5;
+   isolation: isolate;
   overflow: visible;
 }
 
+/* make sure the real logo artwork stays above the glow */
+.logo-stack > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================
+   SOFT NEON GLOW AROUND LOGO STACK
+   glows for ~2 seconds after crane lands, then fades out
+   ========================================= */
+.logo-stack::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+
+  /* expand outside the logo area */
+  top: -28px;
+  right: -34px;
+  bottom: -24px;
+  left: -34px;
+
+  border-radius: 40px;
+  opacity: 0;
+  filter: blur(20px);
+
+  /* warm golden-orange glow */
+  box-shadow:
+    0 0 18px rgba(255, 236, 190, .28),
+    0 0 42px rgba(255, 204, 120, .22),
+    0 0 78px rgba(255, 153, 55, .18),
+    0 0 120px rgba(255, 118, 20, .10);
+
+  animation: logoGlowBurst 2s ease-out 1.8s forwards;
+}
+
+/* =========================================
+   LOGO GLOW ANIMATION
+   adjust 1.8s above if crane timing changes
+   ========================================= */
+@keyframes logoGlowBurst {
+  0% {
+    opacity: 0;
+    transform: scale(.96);
+  }
+
+  18% {
+    opacity: .95;
+    transform: scale(1);
+  }
+
+  48% {
+    opacity: .72;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
     .crane {
     width: 95px;
     height: 66px;
@@ -191,85 +252,6 @@ body::before {
   z-index: 2;
   transform-origin: 50% 55%;
   animation: craneSpinLand 1.8s linear forwards;
-}
-/* =========================
-   LOGO SPARKLES / STARBURSTS
-   ========================= */
-
-
-
-/* =========================
-   LOGO SPARKLES / STARBURSTS
-   ========================= */
-
-.logo-spark {
-  position: absolute;
-  z-index: 50;
-  display: block;
-  pointer-events: none;
-  line-height: 1;
-
-  color: rgba(214, 167, 74, .82);
-  opacity: 0;
-
-  text-shadow:
-    0 0 2px rgba(255, 235, 185, .35);
-
-  animation: logoSparkBurst 2s ease-out forwards;
-}
-
-/* left side of crane / roses */
-.spark-1 {
-  top: 12%;
-  left: 13%;
-  font-size: .8rem;
-  animation-delay: 1.82s;
-}
-
-/* above crane */
-.spark-2 {
-  top: -3%;
-  left: 45%;
-  font-size: .58rem;
-  animation-delay: 1.96s;
-}
-
-/* right side of crane */
-.spark-3 {
-  top: 14%;
-  right: 15%;
-  font-size: .9rem;
-  animation-delay: 2.08s;
-}
-
-/* small cluster above ribbon */
-.spark-4 {
-  top: 46%;
-  left: 37%;
-  font-size: .5rem;
-  animation-delay: 2.16s;
-}
-
-.spark-5 {
-  top: 42%;
-  left: 50%;
-  font-size: .95rem;
-  animation-delay: 2.02s;
-}
-
-.spark-6 {
-  top: 49%;
-  right: 36%;
-  font-size: .55rem;
-  animation-delay: 2.22s;
-}
-
-/* right ribbon edge */
-.spark-7 {
-  top: 75%;
-  right: 5%;
-  font-size: .72rem;
-  animation-delay: 2.28s;
 }
 
 
@@ -343,7 +325,10 @@ body::before {
   transform: translate(-50%, -52%);
   font-size: .65rem;
   color: rgba(183,134,60,.88);
+
+  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
 }
+
 
 /* outer-edge larger burst on left block */
 .left-copy .accent-top::before {
@@ -354,6 +339,8 @@ body::before {
   transform: translateY(-52%);
   font-size: 1rem;
   color: rgba(183,134,60,.92);
+
+  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
 }
 
 /* outer-edge larger burst on right block */
@@ -365,6 +352,8 @@ body::before {
   transform: translateY(-52%);
   font-size: 1rem;
   color: rgba(183,134,60,.92);
+
+  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
 }
 
 
@@ -388,14 +377,17 @@ body::before {
   );
 }
 
-.accent-short::after {
+/* outer-edge larger burst on right block */
+.right-copy .accent-top::before {
   content: "✦";
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -52%);
-  font-size: .6rem;
-  color: rgba(183,134,60,.85);
+  right: -10px;
+  transform: translateY(-52%);
+  font-size: 1rem;
+  color: rgba(183,134,60,.92);
+
+  animation: accentDiamondGlow 2s ease-out 1.8s forwards;
 }
 
 @keyframes craneSpinLand {
@@ -427,53 +419,39 @@ body::before {
       scale(1);
   }
 }
-@keyframes logoSparkBurst {
+@keyframes accentDiamondGlow {
   0% {
-    opacity: 0;
-    color: rgba(183, 134, 60, .55);
-    transform: scale(.35) rotate(0deg);
+    color: rgba(183,134,60,.82);
     text-shadow: none;
     filter: none;
   }
 
   18% {
-    opacity: 1;
     color: rgba(255, 250, 224, 1);
-    transform: scale(1.35) rotate(8deg);
-
     text-shadow:
       0 0 3px rgba(255, 255, 245, .95),
-      0 0 8px rgba(255, 236, 150, .85),
-      0 0 18px rgba(255, 154, 32, .60);
+      0 0 8px rgba(255, 236, 150, .88),
+      0 0 18px rgba(255, 154, 32, .62),
+      0 0 32px rgba(230, 95, 12, .38);
 
     filter:
       drop-shadow(0 0 4px rgba(255, 236, 170, .95))
-      drop-shadow(0 0 12px rgba(255, 154, 32, .60))
-      drop-shadow(0 0 24px rgba(230, 95, 12, .35));
+      drop-shadow(0 0 14px rgba(255, 154, 32, .55));
   }
 
-  52% {
-    opacity: .95;
+  55% {
     color: rgba(255, 238, 184, .95);
-    transform: scale(1.08) rotate(-4deg);
-
     text-shadow:
-      0 0 2px rgba(255, 236, 170, .85),
-      0 0 7px rgba(255, 154, 32, .48);
+      0 0 2px rgba(255, 236, 170, .8),
+      0 0 8px rgba(255, 154, 32, .42);
 
     filter:
-      drop-shadow(0 0 6px rgba(255, 154, 32, .45))
-      drop-shadow(0 0 14px rgba(230, 95, 12, .24));
+      drop-shadow(0 0 7px rgba(255, 154, 32, .35));
   }
 
   100% {
-    opacity: .72;
-    color: rgba(214, 167, 74, .78);
-    transform: scale(1) rotate(0deg);
-
-    text-shadow:
-      0 0 2px rgba(255, 235, 185, .28);
-
+    color: rgba(183,134,60,.82);
+    text-shadow: none;
     filter: none;
   }
 }
@@ -775,15 +753,6 @@ body::before {
 <!-- SPARKLES / STARBURSTS -->
 <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
 <img src="Images/logo-crane.png" class="logo-crane" alt="">
-
-<!-- SPARKLES / STARBURSTS -->
-<span class="logo-spark spark-1">✦</span>
-<span class="logo-spark spark-2">✧</span>
-<span class="logo-spark spark-3">✦</span>
-<span class="logo-spark spark-4">✶</span>
-<span class="logo-spark spark-5">✦</span>
-<span class="logo-spark spark-6">✧</span>
-<span class="logo-spark spark-7">✦</span>
 </div>
 
   <div class="side-copy right-copy">
