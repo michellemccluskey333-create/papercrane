@@ -28,7 +28,8 @@
     }
 
 body {
-  height: 100svh;
+  min-height: 100svh;
+
   font-family: Georgia, "Times New Roman", serif;
   color: #efe3c7;
 
@@ -51,12 +52,13 @@ body::before {
 }
 
 .entry {
-  height: 100svh;
+  min-height: 100svh;
+  height: auto;
   width: min(1180px, 94vw);
   margin: 0 auto;
 
   display: grid;
-  grid-template-rows: 44px clamp(180px, 28svh, 255px) 1fr;
+  grid-template-rows: 44px clamp(180px, 28svh, 255px) auto;
   justify-items: center;
   align-items: start;
 
