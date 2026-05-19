@@ -18,7 +18,7 @@
       --door-col-max: 360px;
       --door-gap: clamp(32px, 4.5vw, 72px);
 
-      --main-grid-columns: repeat(3, minmax(300px, 360px));
+      --main-grid-columns: repeat(3, minmax(0, 1fr));
     }
 
     * {
@@ -51,7 +51,7 @@ body::before {
 
 .entry {
   height: 100svh;
-  width: min(1180px, 92vw);
+  width: min(1180px, 94vw);
   margin: 0 auto;
 
   display: grid;
@@ -154,16 +154,19 @@ body::before {
 
 /* TOP HERO: LEFT TEXT / LOGO / RIGHT TEXT */
 
-.hero-top {
+.hero-top,
+.doors {
   width: 100%;
   display: grid;
   grid-template-columns: var(--main-grid-columns);
-  grid-template-areas: "left logo right";
   justify-content: center;
-  align-items: center;
   justify-items: center;
-
   column-gap: var(--door-gap);
+}
+
+.hero-top {
+  grid-template-areas: "left logo right";
+  align-items: center;
   margin-bottom: 0;
 }
 
@@ -292,8 +295,8 @@ body::before {
   content: "✦";
   position: absolute;
   top: 50%;
-  left: -4px;
-  transform: translateY(-52%);
+  left: 0;
+  transform: translate(-50%, -52%);
   font-size: .55rem;
   color: rgba(183,134,60,.82);
 
@@ -336,8 +339,8 @@ body::before {
   content: "✦";
   position: absolute;
   top: 50%;
-  right: -4px;
-  transform: translateY(-52%);
+  right: 0;
+  transform: translate(50%, -52%);
   font-size: .55rem;
   color: rgba(183,134,60,.82);
 
@@ -484,17 +487,8 @@ body::before {
 ========================================================= */
 
 .doors {
-  width: 100%;
-  display: grid;
-  grid-template-columns: var(--main-grid-columns);
   grid-template-areas: "tattoo book studio";
-
-  justify-content: center;
   align-items: end;
-  justify-items: center;
-
-  column-gap: var(--door-gap);
-
   margin-top: 20px;
   overflow: visible;
 
@@ -503,8 +497,7 @@ body::before {
 }
 .door-wrap {
   position: relative;
-  width: 100%;
-  max-width: 380px;
+  width: min(100%, 380px);
   aspect-ratio: 4 / 5.05;
   overflow: visible;
 }
