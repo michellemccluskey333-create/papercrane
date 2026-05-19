@@ -17,6 +17,8 @@
       --door-col-min: 260px;
       --door-col-max: 360px;
       --door-gap: clamp(32px, 4.5vw, 72px);
+
+      --main-grid-columns: repeat(3, minmax(0, 1fr));
     }
 
     * {
@@ -26,13 +28,15 @@
     }
 
 body {
-  height: 100svh;
+  min-height: 100svh;
+
   font-family: Georgia, "Times New Roman", serif;
   color: #efe3c7;
 
   background: #050505;
 
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body::before {
@@ -48,17 +52,18 @@ body::before {
 }
 
 .entry {
-  height: 100svh;
-  width: min(1180px, 92vw);
+  min-height: 100svh;
+  height: auto;
+  width: min(1180px, 94vw);
   margin: 0 auto;
 
   display: grid;
-  grid-template-rows: 44px 255px 1fr;
+  grid-template-rows: 44px clamp(180px, 28svh, 255px) auto;
   justify-items: center;
   align-items: start;
 
-  padding: 14px 0 18px;
-  overflow: hidden;
+  padding: clamp(8px, 1.6svh, 14px) 0 clamp(12px, 2svh, 18px);
+  overflow: visible;
 }
 /* TOP NAV */
 
@@ -110,7 +115,6 @@ body::before {
     drop-shadow(0 0 22px rgba(230, 95, 12, .62))
     drop-shadow(0 0 40px rgba(160, 55, 0, .38));
 }
-
 .top-nav a.active {
   color: rgba(255, 232, 170, .95);
 
@@ -149,23 +153,45 @@ body::before {
   background: linear-gradient(90deg, transparent, #b7863c, transparent);
 }
 
+/* Mobile tap/focus glow for nav links */
+.top-nav a:active,
+.top-nav a:focus-visible {
+  color: rgba(255, 236, 170, 1);
 
+  text-shadow:
+    0 0 2px rgba(255, 236, 170, 1),
+    0 0 6px rgba(255, 154, 32, .82);
+
+  filter:
+    drop-shadow(0 0 3px rgba(255, 236, 170, 1))
+    drop-shadow(0 0 10px rgba(255, 154, 32, .92))
+    drop-shadow(0 0 22px rgba(230, 95, 12, .62))
+    drop-shadow(0 0 40px rgba(160, 55, 0, .38));
+}
+.top-nav a:active::after,
+.top-nav a:focus-visible::after {
+  background: linear-gradient(90deg, transparent, #b7863c, transparent);
+}
 /* TOP HERO: LEFT TEXT / LOGO / RIGHT TEXT */
 
-.hero-top {
+.hero-top,
+.doors {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(var(--door-col-min), var(--door-col-max)));
-  grid-template-areas: "left logo right";
+  grid-template-columns: var(--main-grid-columns);
   justify-content: center;
-  align-items: center;
   justify-items: center;
-
   column-gap: var(--door-gap);
+}
+
+.hero-top {
+  grid-template-areas: "left logo right";
+  align-items: center;
   margin-bottom: 0;
 }
 
 .logo-stack {
+  grid-area: logo;
   position: relative;
   width: min(460px, 38vw);
   margin: 0 auto;
@@ -173,9 +199,10 @@ body::before {
   z-index: 5;
   overflow: visible;
 
+  --logo-art-shift: -50px;
+
   animation: logoShapeGlow 2.8s ease-out 1.8s forwards;
 }
-
 /* make sure the real logo artwork stays above the glow */
 .logo-stack > * {
   position: relative;
@@ -186,6 +213,7 @@ body::before {
   width: 100%;
   display: block;
   position: relative;
+  left: var(--logo-art-shift);
   z-index: 1;
 }
 
@@ -193,7 +221,7 @@ body::before {
   position: absolute;
   width: 75%;
   top: -10%;
-  left: 10%;
+  left: calc(10% + var(--logo-art-shift));
   z-index: 2;
   transform-origin: 50% 55%;
   animation: craneSpinLand 1.8s linear forwards;
@@ -222,10 +250,6 @@ body::before {
 
     .left-copy {
   grid-area: left;
-}
-
-.logo-stack {
-  grid-area: logo;
 }
 
 .right-copy {
@@ -273,29 +297,28 @@ body::before {
   );
 }
 
-/* center diamond on top line */
+/* larger center diamond on top accent line */
 .accent-top::after {
   content: "✦";
   position: absolute;
   top: 50%;
-  left: 56%;
+  left: 50%;
   transform: translate(-50%, -52%);
-  font-size: .65rem;
-  color: rgba(183,134,60,.88);
+  font-size: .9rem;
+  color: rgba(183,134,60,.9);
 
   animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
 
-
-/* outer-edge larger burst on left block */
+/* small outer-edge diamond on left block */
 .left-copy .accent-top::before {
   content: "✦";
   position: absolute;
   top: 50%;
-  left: -10px;
-  transform: translateY(-52%);
-  font-size: 1rem;
-  color: rgba(183,134,60,.92);
+  left: 0;
+  transform: translate(-50%, -52%);
+  font-size: .55rem;
+  color: rgba(183,134,60,.82);
 
   animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
@@ -331,19 +354,18 @@ body::before {
   animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
 
-/* outer-edge larger burst on right block */
+/* small outer-edge diamond on right block */
 .right-copy .accent-top::before {
   content: "✦";
   position: absolute;
   top: 50%;
-  right: -10px;
-  transform: translateY(-52%);
-  font-size: 1rem;
-  color: rgba(183,134,60,.92);
+  right: 0;
+  transform: translate(50%, -52%);
+  font-size: .55rem;
+  color: rgba(183,134,60,.82);
 
   animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
-
 @keyframes craneSpinLand {
   0% {
     opacity: 0;
@@ -480,22 +502,13 @@ body::before {
   animation-delay: 4.7s;
 }
 /* =========================================================
-   DOOR LAYOUT — IMAGE-BASED VERSION
-   The frame is now an image asset: Images/door.png
+   DOOR LAYOUT- DeskTop
 ========================================================= */
 
 .doors {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(var(--door-col-min), var(--door-col-max)));
   grid-template-areas: "tattoo book studio";
-  justify-content: center;
   align-items: end;
-  justify-items: center;
-
-  gap: var(--door-gap);
-
-  margin-top: 20px;
+  margin-top: clamp(8px, 2svh, 20px);
   overflow: visible;
 
   animation: fadeUp .9s ease both;
@@ -503,16 +516,7 @@ body::before {
 }
 .door-wrap {
   position: relative;
-  width: 100%;
-  max-width: 380px;
-  aspect-ratio: 4 / 5.05;
-  overflow: visible;
-}
-
-.door-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 380px;
+  width: min(100%, 380px);
   aspect-ratio: 4 / 5.05;
   overflow: visible;
 }
@@ -553,17 +557,57 @@ body::before {
   transition: filter .35s ease;
 }
 
-.door:hover {
+/* Door lift on hover, tap, and keyboard focus */
+.door:hover,
+.door:active,
+.door:focus-visible {
   transform: translateY(-8px);
 }
 
-.door:hover .door-frame {
+/* Door frame glow on hover, tap, and keyboard focus */
+.door:hover .door-frame,
+.door:active .door-frame,
+.door:focus-visible .door-frame {
   filter:
     drop-shadow(0 18px 26px rgba(0,0,0,.58))
     drop-shadow(0 0 4px var(--glow-core))
     drop-shadow(0 0 12px var(--glow))
     drop-shadow(0 0 28px var(--glow-soft))
     drop-shadow(0 0 52px var(--glow-faint));
+}
+    /* Door tap class added by JavaScript before navigation */
+.door.door-tapped {
+  transform: translateY(-8px);
+}
+
+.door.door-tapped .door-frame {
+  filter:
+    drop-shadow(0 18px 26px rgba(0,0,0,.58))
+    drop-shadow(0 0 4px var(--glow-core))
+    drop-shadow(0 0 12px var(--glow))
+    drop-shadow(0 0 28px var(--glow-soft))
+    drop-shadow(0 0 52px var(--glow-faint));
+}
+
+.door.tattoo.door-tapped .tattoo-art {
+  transform: translateX(-50%) scale(1.05);
+  filter:
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
+}
+
+.door.book.door-tapped .book-art {
+  transform: translateX(-50%) scale(1.05);
+  filter:
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
+}
+
+.door.studio.door-tapped .keyhole-art {
+  transform: translateX(-50%) scale(1.06);
+  filter:
+    drop-shadow(0 24px 22px rgba(0,0,0,.62))
+    drop-shadow(0 8px 7px rgba(0,0,0,.48));
 }
 /* Door text labels */
 
@@ -575,7 +619,7 @@ body::before {
   bottom: 35%;
 
   transform: translateX(-50%);
-  width: 72%;
+  width: 82%;
   text-align: center;
 
   color: rgba(45, 31, 20, .92);
@@ -584,25 +628,27 @@ body::before {
 
 .door-label h2 {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(.95rem, 1.25vw, 1.25rem);
+  font-size: clamp(.72rem, 1.15vw, 1.25rem);
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: .12em;
+  letter-spacing: clamp(.06em, .55vw, .12em);
   line-height: 1.05;
   margin: 0 0 6px;
 
   color: rgba(35, 24, 17, .94);
+  white-space: nowrap;
 }
 
 .door-label p {
   font-family: Arial, sans-serif;
-  font-size: clamp(.56rem, .72vw, .72rem);
+  font-size: clamp(.44rem, .62vw, .72rem);
   text-transform: uppercase;
-  letter-spacing: .18em;
+  letter-spacing: clamp(.08em, .55vw, .18em);
   line-height: 1.2;
   margin: 0;
 
   color: rgba(90, 60, 35, .82);
+  white-space: nowrap;
 }
 /* Shared interior artwork */
 .door-art {
@@ -624,11 +670,13 @@ body::before {
   width: 35%;
   top: 18%;
   left: 50%;
-  transform: translateX(-50%) rotate(0deg);
+  transform: translateX(-50%);
 }
 
-.door.tattoo:hover .tattoo-art {
-  transform: translateX(-50%) rotate(40deg) scale(1.05);
+.door.tattoo:hover .tattoo-art,
+.door.tattoo:active .tattoo-art,
+.door.tattoo:focus-visible .tattoo-art {
+  transform: translateX(-50%) scale(1.05);
   filter:
     drop-shadow(0 24px 22px rgba(0,0,0,.62))
     drop-shadow(0 8px 7px rgba(0,0,0,.48));
@@ -642,7 +690,9 @@ body::before {
   transform: translateX(-50%);
 }
 
-.door.book:hover .book-art {
+.door.book:hover .book-art,
+.door.book:active .book-art,
+.door.book:focus-visible .book-art {
   transform: translateX(-50%) scale(1.05);
   filter:
     drop-shadow(0 24px 22px rgba(0,0,0,.62))
@@ -666,7 +716,9 @@ body::before {
     filter .35s ease;
 }
 
-.door.studio:hover .keyhole-art {
+.door.studio:hover .keyhole-art,
+.door.studio:active .keyhole-art,
+.door.studio:focus-visible .keyhole-art {
   transform: translateX(-50%) scale(1.06);
   filter:
     drop-shadow(0 24px 22px rgba(0,0,0,.62))
@@ -688,73 +740,135 @@ body::before {
   from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-@media (max-width: 900px) {
-  .entry {
-    width: min(420px, 88vw);
-    min-height: 100vh;
-    padding: 28px 0 42px;
+@media (max-width: 980px) and (min-width: 761px) {
+  .door-label {
+    width: 88%;
   }
 
-  .top-nav {
-    display: none;
+  .door-label h2 {
+    font-size: .76rem;
+    letter-spacing: .07em;
   }
 
-.hero-top {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr minmax(320px, 460px) 1fr;
-  align-items: center;
-  column-gap: clamp(24px, 4vw, 64px);
-
-  margin-bottom: 0;
+  .door-label p {
+    font-size: .46rem;
+    letter-spacing: .09em;
+  }
 }
 
+@media (max-width: 760px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .entry {
+    width: min(420px, 92vw);
+    min-height: 100svh;
+    height: auto;
+
+    display: block;
+
+    padding: 28px 0 56px;
+    overflow: visible;
+  }
+
+/* MOBILE NAV — show only key links */
+.top-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 14px 24px;
+  margin-bottom: 22px;
+
+  font-size: .72rem;
+  letter-spacing: .16em;
+}
+
+/* Hide Home, Events, FAQ on mobile */
+.top-nav .mobile-hide,
+.top-nav span {
+  display: none;
+}
+
+/* Keep About, Artists, Contact visible */
+.top-nav .mobile-show {
+  display: inline-block;
+}
+
+  .hero-top {
+    width: 100%;
+    display: block;
+    margin-bottom: 42px;
+  }
+
   .logo-stack {
-    width: min(330px, 82vw);
-    grid-row: 1;
+    width: min(330px, 86vw);
+    margin: 0 auto 28px;
+    transform: translateY(0);
+
+    --logo-art-shift: 0px;
   }
 
   .side-copy {
     display: none;
   }
 
+  
   .doors {
     width: 100%;
+    display: grid;
+
     grid-template-columns: 1fr;
     grid-template-areas:
       "tattoo"
       "book"
       "studio";
-    gap: 24px;
+
+    justify-items: center;
+    align-items: center;
+
+    gap: 48px;
+    margin-top: 0;
+
+    overflow: visible;
   }
 
-  .door-wrap {
-    max-width: 300px;
-  }
+ .door-wrap {
+  width: min(100%, 320px);
+  max-width: 320px;
+}
 
-  .door {
-    transform: none;
-  }
+.door {
+  transform: none;
+}
 
-  .bottom-links {
-    width: min(320px, 80vw);
-  }
+.door.door-tapped,
+.door:active,
+.door:focus-visible {
+  transform: translateY(-8px);
+}
+
+.door-label {
+  bottom: 34%;
+}
 }
   </style>
 </head>
 <body>
   <main class="entry">
 
-  <nav class="top-nav" aria-label="Main navigation">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="artists.html">Artists</a>
-    <span></span>
-    <a href="events.html">Events</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<nav class="top-nav" aria-label="Main navigation">
+  <a href="index.html" class="active mobile-hide">Home</a>
+  <a href="index.html" class="mobile-show">About</a>
+  <a href="index.html" class="mobile-show">Artists</a>
+  <span></span>
+  <a href="index.html" class="mobile-hide">Events</a>
+  <a href="index.html" class="mobile-hide">FAQ</a>
+  <a href="index.html" class="mobile-show">Contact</a>
+</nav>
 
   <section class="hero-top" aria-label="PaperCrane Books and Tattoo introduction">
 
@@ -792,7 +906,7 @@ body::before {
   <section class="doors" aria-label="Choose where to enter">
 
 <div class="door-wrap tattoo-wrap">
-  <a class="door tattoo" href="tattoo.html">
+  <a class="door tattoo" href="index.html">
     <img src="Images/door.png"
          class="door-frame"
          alt=""
@@ -810,7 +924,7 @@ body::before {
 </div>
 
     <div class="door-wrap book-wrap">
-      <a class="door book" href="bookstore.html">
+      <a class="door book" href="index.html">
         <img src="Images/door.png"
              class="door-frame"
              alt=""
@@ -827,7 +941,7 @@ body::before {
     </div>
 
     <div class="door-wrap studio-wrap">
-      <a class="door studio" href="studio.html">
+      <a class="door studio" href="index.html">
         <img src="Images/door.png"
              class="door-frame"
              alt=""
@@ -842,11 +956,25 @@ body::before {
           </div>
       </a>
     </div>
-
   </section>
-
-
-
 </main>
+
+<script>
+  document.querySelectorAll(".door").forEach((door) => {
+    door.addEventListener("click", function (event) {
+      const href = this.getAttribute("href");
+
+      if (!href || href === "#") return;
+
+      event.preventDefault();
+
+      this.classList.add("door-tapped");
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 350);
+    });
+  });
+</script>
 </body>
 </html>  
