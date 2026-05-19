@@ -484,13 +484,15 @@ body::before {
 .doors {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(var(--door-col-min), var(--door-col-max)));
+
+  grid-template-columns: minmax(260px, 360px) minmax(460px, 460px) minmax(260px, 360px);
   grid-template-areas: "tattoo book studio";
+
   justify-content: center;
   align-items: end;
   justify-items: center;
 
-  gap: var(--door-gap);
+  column-gap: var(--door-gap);
 
   margin-top: 20px;
   overflow: visible;
@@ -498,14 +500,6 @@ body::before {
   animation: fadeUp .9s ease both;
   animation-delay: 2.0s;
 }
-.door-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 380px;
-  aspect-ratio: 4 / 5.05;
-  overflow: visible;
-}
-
 .door-wrap {
   position: relative;
   width: 100%;
