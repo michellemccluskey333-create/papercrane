@@ -905,11 +905,24 @@ body::before {
           </div>
       </a>
     </div>
-
   </section>
-
-
-
 </main>
+  <script>
+  document.querySelectorAll(".door").forEach((door) => {
+    door.addEventListener("click", function (event) {
+      const href = this.getAttribute("href");
+
+      if (!href || href === "#") return;
+
+      event.preventDefault();
+
+      this.classList.add("door-tapped");
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 350);
+    });
+  });
+</script>
 </body>
 </html>  
