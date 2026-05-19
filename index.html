@@ -770,17 +770,13 @@ body::before {
 }
 
 /* Hide Home, Events, FAQ on mobile */
-.top-nav a[href="index.html"],
-.top-nav a[href="events.html"],
-.top-nav a[href="faq.html"],
+.top-nav .mobile-hide,
 .top-nav span {
   display: none;
 }
 
 /* Keep About, Artists, Contact visible */
-.top-nav a[href="about.html"],
-.top-nav a[href="artists.html"],
-.top-nav a[href="contact.html"] {
+.top-nav .mobile-show {
   display: inline-block;
 }
 
@@ -839,15 +835,15 @@ body::before {
 <body>
   <main class="entry">
 
-  <nav class="top-nav" aria-label="Main navigation">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="artists.html">Artists</a>
-    <span></span>
-    <a href="events.html">Events</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<nav class="top-nav" aria-label="Main navigation">
+  <a href="index.html" class="active mobile-hide">Home</a>
+  <a href="index.html" class="mobile-show">About</a>
+  <a href="index.html" class="mobile-show">Artists</a>
+  <span></span>
+  <a href="index.html" class="mobile-hide">Events</a>
+  <a href="index.html" class="mobile-hide">FAQ</a>
+  <a href="index.html" class="mobile-show">Contact</a>
+</nav>
 
   <section class="hero-top" aria-label="PaperCrane Books and Tattoo introduction">
 
@@ -885,7 +881,7 @@ body::before {
   <section class="doors" aria-label="Choose where to enter">
 
 <div class="door-wrap tattoo-wrap">
-  <a class="door tattoo" href="tattoo.html">
+  <a class="door tattoo" href="index.html">
     <img src="Images/door.png"
          class="door-frame"
          alt=""
@@ -903,7 +899,7 @@ body::before {
 </div>
 
     <div class="door-wrap book-wrap">
-      <a class="door book" href="bookstore.html">
+      <a class="door book" href="index.html">
         <img src="Images/door.png"
              class="door-frame"
              alt=""
@@ -920,7 +916,7 @@ body::before {
     </div>
 
     <div class="door-wrap studio-wrap">
-      <a class="door studio" href="studio.html">
+      <a class="door studio" href="index.html">
         <img src="Images/door.png"
              class="door-frame"
              alt=""
