@@ -699,10 +699,13 @@ body::before {
   display: block;
   margin-bottom: 20px;
 }
-  .logo-stack {
-    width: min(330px, 82vw);
-    grid-row: 1;
-  }
+ .logo-stack {
+  width: min(330px, 82vw);
+  margin: 0 auto;
+  transform: translateY(0);
+
+  --logo-art-shift: 0px;
+}
 
   .side-copy {
     display: none;
