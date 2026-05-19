@@ -56,11 +56,11 @@ body::before {
   margin: 0 auto;
 
   display: grid;
-  grid-template-rows: 44px 255px 1fr;
+  grid-template-rows: 44px clamp(180px, 28svh, 255px) 1fr;
   justify-items: center;
   align-items: start;
 
-  padding: 14px 0 18px;
+  padding: clamp(8px, 1.6svh, 14px) 0 clamp(12px, 2svh, 18px);
   overflow: visible;
 }
 /* TOP NAV */
@@ -191,7 +191,7 @@ body::before {
 .logo-stack {
   grid-area: logo;
   position: relative;
-  width: min(460px, 38vw);
+  width: min(460px, 38vw, 34svh);
   margin: 0 auto;
   transform: translateY(-10px);
   z-index: 5;
@@ -500,14 +500,13 @@ body::before {
   animation-delay: 4.7s;
 }
 /* =========================================================
-   DOOR LAYOUT — IMAGE-BASED VERSION
-   The frame is now an image asset: Images/door.png
+   DOOR LAYOUT- DeskTop
 ========================================================= */
 
 .doors {
   grid-template-areas: "tattoo book studio";
   align-items: end;
-  margin-top: 20px;
+  margin-top: clamp(8px, 2svh, 20px);
   overflow: visible;
 
   animation: fadeUp .9s ease both;
@@ -515,7 +514,7 @@ body::before {
 }
 .door-wrap {
   position: relative;
-  width: min(100%, 380px);
+  width: min(100%, 380px, 34svh);
   aspect-ratio: 4 / 5.05;
   overflow: visible;
 }
@@ -798,6 +797,7 @@ body::before {
     display: none;
   }
 
+  
   .doors {
     width: 100%;
     display: grid;
