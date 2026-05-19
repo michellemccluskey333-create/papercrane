@@ -224,10 +224,6 @@ body::before {
   grid-area: left;
 }
 
-.logo-stack {
-  grid-area: logo;
-}
-
 .right-copy {
   grid-area: right;
 }
@@ -703,10 +699,13 @@ body::before {
 .hero-top {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr minmax(320px, 460px) 1fr;
+  grid-template-columns: minmax(260px, 360px) minmax(460px, 460px) minmax(260px, 360px);
+  grid-template-areas: "left logo right";
+  justify-content: center;
   align-items: center;
-  column-gap: clamp(24px, 4vw, 64px);
+  justify-items: center;
 
+  column-gap: var(--door-gap);
   margin-bottom: 0;
 }
 
