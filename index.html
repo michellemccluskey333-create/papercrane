@@ -161,19 +161,20 @@ body::before {
 
 .logo-stack {
   position: relative;
-  width: min(390px, 34vw);
+  width: min(460px, 38vw);
   margin: 0 auto;
-  top: -10px;
+  transform: translateY(-10px);
   z-index: 5;
+  overflow: visible;
+
+  animation: logoShapeGlow 2.8s ease-out 1.8s forwards;
 }
 
-    .crane {
-    width: 95px;
-    height: 66px;
-    margin-bottom: 18px;
-    animation: craneLand 1.9s cubic-bezier(.2,.9,.2,1) both;
-    transform-origin: center;
-    }
+/* make sure the real logo artwork stays above the glow */
+.logo-stack > * {
+  position: relative;
+  z-index: 2;
+}
 
 .logo-base {
   width: 100%;
@@ -184,13 +185,15 @@ body::before {
 
 .logo-crane {
   position: absolute;
-  width: 70%;
-  top: -7%;
-  left: 15%;
+  width: 75%;
+  top: -10%;
+  left: 10%;
   z-index: 2;
   transform-origin: 50% 55%;
   animation: craneSpinLand 1.8s linear forwards;
 }
+
+
 /* =========================
    SIDE COPY BLOCK
    ========================= */
@@ -261,7 +264,10 @@ body::before {
   transform: translate(-50%, -52%);
   font-size: .65rem;
   color: rgba(183,134,60,.88);
+
+  animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
+
 
 /* outer-edge larger burst on left block */
 .left-copy .accent-top::before {
@@ -272,19 +278,9 @@ body::before {
   transform: translateY(-52%);
   font-size: 1rem;
   color: rgba(183,134,60,.92);
-}
 
-/* outer-edge larger burst on right block */
-.right-copy .accent-top::before {
-  content: "✦";
-  position: absolute;
-  top: 50%;
-  right: -10px;
-  transform: translateY(-52%);
-  font-size: 1rem;
-  color: rgba(183,134,60,.92);
+  animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
-
 
 /* =========================
    SHORT ACCENT LINES
@@ -305,8 +301,7 @@ body::before {
     transparent
   );
 }
-
-.accent-short::after {
+    .accent-short::after {
   content: "✦";
   position: absolute;
   top: 50%;
@@ -314,6 +309,21 @@ body::before {
   transform: translate(-50%, -52%);
   font-size: .6rem;
   color: rgba(183,134,60,.85);
+
+  animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
+}
+
+/* outer-edge larger burst on right block */
+.right-copy .accent-top::before {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-52%);
+  font-size: 1rem;
+  color: rgba(183,134,60,.92);
+
+  animation: accentDiamondGlow 2.8s ease-out 1.8s forwards;
 }
 
 @keyframes craneSpinLand {
@@ -345,6 +355,70 @@ body::before {
       scale(1);
   }
 }
+@keyframes accentDiamondGlow {
+  0% {
+    color: rgba(183,134,60,.82);
+    text-shadow: none;
+    filter: none;
+  }
+
+  15% {
+    color: rgba(255, 250, 224, 1);
+    text-shadow:
+      0 0 3px rgba(255, 255, 245, .95),
+      0 0 8px rgba(255, 236, 150, .88),
+      0 0 18px rgba(255, 154, 32, .62),
+      0 0 32px rgba(230, 95, 12, .38);
+
+    filter:
+      drop-shadow(0 0 4px rgba(255, 236, 170, .95))
+      drop-shadow(0 0 14px rgba(255, 154, 32, .55));
+  }
+
+  65% {
+    color: rgba(255, 238, 184, .95);
+    text-shadow:
+      0 0 3px rgba(255, 255, 245, .75),
+      0 0 8px rgba(255, 236, 150, .62),
+      0 0 16px rgba(255, 154, 32, .42);
+
+    filter:
+      drop-shadow(0 0 4px rgba(255, 236, 170, .68))
+      drop-shadow(0 0 12px rgba(255, 154, 32, .35));
+  }
+
+  100% {
+    color: rgba(183,134,60,.82);
+    text-shadow: none;
+    filter: none;
+  }
+}
+    @keyframes logoShapeGlow {
+  0% {
+    filter: none;
+  }
+
+  15% {
+    filter:
+      drop-shadow(0 0 4px rgba(255, 250, 224, .95))
+      drop-shadow(0 0 14px rgba(255, 236, 170, .75))
+      drop-shadow(0 0 34px rgba(255, 154, 32, .48))
+      drop-shadow(0 0 58px rgba(230, 95, 12, .28));
+  }
+
+  65% {
+    filter:
+      drop-shadow(0 0 4px rgba(255, 250, 224, .90))
+      drop-shadow(0 0 12px rgba(255, 236, 170, .68))
+      drop-shadow(0 0 28px rgba(255, 154, 32, .40))
+      drop-shadow(0 0 48px rgba(230, 95, 12, .22));
+  }
+
+  100% {
+    filter: none;
+  }
+}
+    
     .brand {
       text-align: center;
       animation: fadeUp .9s ease both;
@@ -474,7 +548,45 @@ body::before {
     drop-shadow(0 0 28px var(--glow-soft))
     drop-shadow(0 0 52px var(--glow-faint));
 }
+/* Door text labels */
 
+.door-label {
+  position: absolute;
+  z-index: 3;
+
+  left: 50%;
+  bottom: 35%;
+
+  transform: translateX(-50%);
+  width: 72%;
+  text-align: center;
+
+  color: rgba(45, 31, 20, .92);
+  pointer-events: none;
+}
+
+.door-label h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.95rem, 1.25vw, 1.25rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  line-height: 1.05;
+  margin: 0 0 6px;
+
+  color: rgba(35, 24, 17, .94);
+}
+
+.door-label p {
+  font-family: Arial, sans-serif;
+  font-size: clamp(.56rem, .72vw, .72rem);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  line-height: 1.2;
+  margin: 0;
+
+  color: rgba(90, 60, 35, .82);
+}
 /* Shared interior artwork */
 .door-art {
   position: absolute;
@@ -524,7 +636,7 @@ body::before {
 .keyhole-art {
   position: absolute;
   z-index: 2;
-  width: 48%;
+  width: 40%;
   top: 22%;
   left: 50%;
   transform: translateX(-50%);
@@ -553,11 +665,12 @@ body::before {
   --glow: rgba(255, 154, 32, .92);
   --glow-soft: rgba(230, 95, 12, .62);
   --glow-faint: rgba(160, 55, 0, .38);
+}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 @media (max-width: 900px) {
   .entry {
@@ -570,11 +683,15 @@ body::before {
     display: none;
   }
 
-  .hero-top {
-    grid-template-columns: 1fr;
-    row-gap: 18px;
-    margin-bottom: 24px;
-  }
+.hero-top {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 460px) 1fr;
+  align-items: center;
+  column-gap: clamp(24px, 4vw, 64px);
+
+  margin-bottom: 0;
+}
 
   .logo-stack {
     width: min(330px, 82vw);
@@ -636,10 +753,10 @@ body::before {
   <div class="accent-short accent-bottom"></div>
 </div>
 
-    <div class="logo-stack">
-      <img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
-      <img src="Images/logo-crane.png" class="logo-crane" alt="">
-    </div>
+ <div class="logo-stack">
+<img src="Images/logo-base.png" class="logo-base" alt="PaperCrane Books & Tattoo logo">
+<img src="Images/logo-crane.png" class="logo-crane" alt="">
+</div>
 
   <div class="side-copy right-copy">
   <div class="accent-top"></div>
@@ -657,18 +774,23 @@ body::before {
 
   <section class="doors" aria-label="Choose where to enter">
 
-    <div class="door-wrap tattoo-wrap">
-      <a class="door tattoo" href="tattoo.html">
-        <img src="Images/door.png"
-             class="door-frame"
-             alt=""
-             aria-hidden="true">
+<div class="door-wrap tattoo-wrap">
+  <a class="door tattoo" href="tattoo.html">
+    <img src="Images/door.png"
+         class="door-frame"
+         alt=""
+         aria-hidden="true">
 
-        <img src="Images/gun.png"
-             class="door-art tattoo-art"
-             alt="Coil tattoo machine">
-      </a>
+    <img src="Images/gun.png"
+         class="door-art tattoo-art"
+         alt="Coil tattoo machine">
+
+    <div class="door-label">
+      <h2>Tattoo Shop</h2>
+      <p>Walk-ins Welcome</p>
     </div>
+  </a>
+</div>
 
     <div class="door-wrap book-wrap">
       <a class="door book" href="bookstore.html">
@@ -680,6 +802,10 @@ body::before {
         <img src="Images/book.png"
              class="door-art book-art"
              alt="Open book illustration">
+            <div class="door-label">
+            <h2>Book Store</h2>
+            <p>Books &amp; Oddities</p>
+        </div>
       </a>
     </div>
 
@@ -693,6 +819,10 @@ body::before {
         <img src="Images/keyhole.png"
              class="keyhole-art"
              alt="Private studio keyhole">
+            <div class="door-label">
+            <h2>Private Studio</h2>
+            <p>Appt. Only</p>
+          </div>
       </a>
     </div>
 
