@@ -34,7 +34,8 @@ body {
 
   background: #050505;
 
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body::before {
@@ -60,7 +61,7 @@ body::before {
   align-items: start;
 
   padding: 14px 0 18px;
-  overflow: hidden;
+  overflow: visible;
 }
 /* TOP NAV */
 
@@ -675,28 +676,39 @@ body::before {
 }
 
 @media (max-width: 900px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
   .entry {
-    width: min(420px, 88vw);
-    min-height: 100vh;
-    padding: 28px 0 42px;
+    width: min(420px, 92vw);
+    min-height: 100svh;
+    height: auto;
+
+    display: block;
+
+    padding: 28px 0 56px;
+    overflow: visible;
   }
 
   .top-nav {
     display: none;
   }
 
-.hero-top {
-  width: 100%;
-  display: block;
-  margin-bottom: 20px;
-}
- .logo-stack {
-  width: min(330px, 82vw);
-  margin: 0 auto;
-  transform: translateY(0);
+  .hero-top {
+    width: 100%;
+    display: block;
+    margin-bottom: 42px;
+  }
 
-  --logo-art-shift: 0px;
-}
+  .logo-stack {
+    width: min(330px, 86vw);
+    margin: 0 auto 28px;
+    transform: translateY(0);
+
+    --logo-art-shift: 0px;
+  }
 
   .side-copy {
     display: none;
@@ -704,24 +716,38 @@ body::before {
 
   .doors {
     width: 100%;
+    display: grid;
+
     grid-template-columns: 1fr;
     grid-template-areas:
       "tattoo"
       "book"
       "studio";
-    gap: 24px;
+
+    justify-items: center;
+    align-items: center;
+
+    gap: 48px;
+    margin-top: 0;
+
+    overflow: visible;
   }
 
   .door-wrap {
-    max-width: 300px;
+    width: min(100%, 320px);
+    max-width: 320px;
   }
 
   .door {
     transform: none;
   }
 
-  .bottom-links {
-    width: min(320px, 80vw);
+  .door:hover {
+    transform: none;
+  }
+
+  .door-label {
+    bottom: 34%;
   }
 }
   </style>
