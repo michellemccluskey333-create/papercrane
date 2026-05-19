@@ -155,7 +155,7 @@ body::before {
 .hero-top {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(var(--door-col-min), var(--door-col-max)));
+  grid-template-columns: minmax(260px, 360px) 460px minmax(260px, 360px);
   grid-template-areas: "left logo right";
   justify-content: center;
   align-items: center;
@@ -166,10 +166,11 @@ body::before {
 }
 
 .logo-stack {
+  grid-area: logo;
   position: relative;
   width: min(460px, 38vw);
   margin: 0 auto;
-  transform: translate(-10px, -10px);
+  transform: translate(-24px, -10px);
   z-index: 5;
   overflow: visible;
 
@@ -698,17 +699,9 @@ body::before {
 
 .hero-top {
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(260px, 360px) minmax(460px, 460px) minmax(260px, 360px);
-  grid-template-areas: "left logo right";
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
-
-  column-gap: var(--door-gap);
-  margin-bottom: 0;
+  display: block;
+  margin-bottom: 20px;
 }
-
   .logo-stack {
     width: min(330px, 82vw);
     grid-row: 1;
