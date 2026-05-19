@@ -172,13 +172,14 @@ body::before {
   position: relative;
   width: min(460px, 38vw);
   margin: 0 auto;
- transform: translate(-10px, -10px);
+  transform: translateY(-10px);
   z-index: 5;
   overflow: visible;
 
+  --logo-art-shift: -30px;
+
   animation: logoShapeGlow 2.8s ease-out 1.8s forwards;
 }
-
 /* make sure the real logo artwork stays above the glow */
 .logo-stack > * {
   position: relative;
@@ -189,6 +190,7 @@ body::before {
   width: 100%;
   display: block;
   position: relative;
+  left: var(--logo-art-shift);
   z-index: 1;
 }
 
@@ -196,7 +198,7 @@ body::before {
   position: absolute;
   width: 75%;
   top: -10%;
-  left: 10%;
+  left: calc(10% + var(--logo-art-shift));
   z-index: 2;
   transform-origin: 50% 55%;
   animation: craneSpinLand 1.8s linear forwards;
