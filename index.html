@@ -14,6 +14,9 @@
       --red: #9e241f;
       --green: #55612f;
       --purple: #6d3f78;
+      --door-col-min: 260px;
+      --door-col-max: 360px;
+      --door-gap: clamp(32px, 4.5vw, 72px);
     }
 
     * {
@@ -152,10 +155,13 @@ body::before {
 .hero-top {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr minmax(280px, 390px) 1fr;
+  grid-template-columns: repeat(3, minmax(var(--door-col-min), var(--door-col-max)));
+  grid-template-areas: "left logo right";
+  justify-content: center;
   align-items: center;
-  column-gap: clamp(28px, 5vw, 72px);
+  justify-items: center;
 
+  column-gap: var(--door-gap);
   margin-bottom: 0;
 }
 
@@ -214,6 +220,17 @@ body::before {
   margin: 0;
 }
 
+    .left-copy {
+  grid-area: left;
+}
+
+.logo-stack {
+  grid-area: logo;
+}
+
+.right-copy {
+  grid-area: right;
+}
 /* add spacing around the text rows */
 .side-copy p + .accent-short {
   margin-top: 12px;
@@ -227,6 +244,7 @@ body::before {
   margin-top: 14px;
 }
 
+    
 
 /* =========================
    TOP LONG ACCENT LINE
@@ -469,16 +487,15 @@ body::before {
 .doors {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(260px, 360px));
+  grid-template-columns: repeat(3, minmax(var(--door-col-min), var(--door-col-max)));
   grid-template-areas: "tattoo book studio";
   justify-content: center;
   align-items: end;
   justify-items: center;
 
-  gap: clamp(32px, 4.5vw, 72px);
+  gap: var(--door-gap);
 
   margin-top: 20px;
-
   overflow: visible;
 
   animation: fadeUp .9s ease both;
