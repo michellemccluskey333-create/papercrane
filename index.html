@@ -113,7 +113,6 @@ body::before {
     drop-shadow(0 0 22px rgba(230, 95, 12, .62))
     drop-shadow(0 0 40px rgba(160, 55, 0, .38));
 }
-
 .top-nav a.active {
   color: rgba(255, 232, 170, .95);
 
@@ -152,7 +151,25 @@ body::before {
   background: linear-gradient(90deg, transparent, #b7863c, transparent);
 }
 
+/* Mobile tap/focus glow for nav links */
+.top-nav a:active,
+.top-nav a:focus-visible {
+  color: rgba(255, 236, 170, 1);
 
+  text-shadow:
+    0 0 2px rgba(255, 236, 170, 1),
+    0 0 6px rgba(255, 154, 32, .82);
+
+  filter:
+    drop-shadow(0 0 3px rgba(255, 236, 170, 1))
+    drop-shadow(0 0 10px rgba(255, 154, 32, .92))
+    drop-shadow(0 0 22px rgba(230, 95, 12, .62))
+    drop-shadow(0 0 40px rgba(160, 55, 0, .38));
+}
+.top-nav a:active::after,
+.top-nav a:focus-visible::after {
+  background: linear-gradient(90deg, transparent, #b7863c, transparent);
+}
 /* TOP HERO: LEFT TEXT / LOGO / RIGHT TEXT */
 
 .hero-top,
@@ -539,11 +556,17 @@ body::before {
   transition: filter .35s ease;
 }
 
-.door:hover {
+/* Door lift on hover, tap, and keyboard focus */
+.door:hover,
+.door:active,
+.door:focus-visible {
   transform: translateY(-8px);
 }
 
-.door:hover .door-frame {
+/* Door frame glow on hover, tap, and keyboard focus */
+.door:hover .door-frame,
+.door:active .door-frame,
+.door:focus-visible .door-frame {
   filter:
     drop-shadow(0 18px 26px rgba(0,0,0,.58))
     drop-shadow(0 0 4px var(--glow-core))
@@ -613,7 +636,9 @@ body::before {
   transform: translateX(-50%);
 }
 
-.door.tattoo:hover .tattoo-art {
+.door.tattoo:hover .tattoo-art,
+.door.tattoo:active .tattoo-art,
+.door.tattoo:focus-visible .tattoo-art {
   transform: translateX(-50%) scale(1.05);
   filter:
     drop-shadow(0 24px 22px rgba(0,0,0,.62))
@@ -628,7 +653,9 @@ body::before {
   transform: translateX(-50%);
 }
 
-.door.book:hover .book-art {
+.door.book:hover .book-art,
+.door.book:active .book-art,
+.door.book:focus-visible .book-art {
   transform: translateX(-50%) scale(1.05);
   filter:
     drop-shadow(0 24px 22px rgba(0,0,0,.62))
@@ -652,7 +679,9 @@ body::before {
     filter .35s ease;
 }
 
-.door.studio:hover .keyhole-art {
+.door.studio:hover .keyhole-art,
+.door.studio:active .keyhole-art,
+.door.studio:focus-visible .keyhole-art {
   transform: translateX(-50%) scale(1.06);
   filter:
     drop-shadow(0 24px 22px rgba(0,0,0,.62))
@@ -692,9 +721,34 @@ body::before {
     overflow: visible;
   }
 
-  .top-nav {
-    display: none;
-  }
+/* MOBILE NAV — show only key links */
+.top-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 14px 24px;
+  margin-bottom: 22px;
+
+  font-size: .72rem;
+  letter-spacing: .16em;
+}
+
+/* Hide Home, Events, FAQ on mobile */
+.top-nav a[href="index.html"],
+.top-nav a[href="events.html"],
+.top-nav a[href="faq.html"],
+.top-nav span {
+  display: none;
+}
+
+/* Keep About, Artists, Contact visible */
+.top-nav a[href="about.html"],
+.top-nav a[href="artists.html"],
+.top-nav a[href="contact.html"] {
+  display: inline-block;
+}
 
   .hero-top {
     width: 100%;
